@@ -45,8 +45,8 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		// Cache the horizontal input.
-		float h = Input.GetAxis("Horizontal");
+        // Cache the horizontal input.
+        float h = 0.4f;//Input.GetAxis("Horizontal");
 
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		anim.SetFloat("Speed", Mathf.Abs(h));
