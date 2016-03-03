@@ -1,7 +1,19 @@
 fileFormatVersion: 2
 guid: e7d3a1e0e2fac4bd48b6734c2daf4fe1
+timeCreated: 1457044971
+licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: rightFoot
+    21300002: leftFoot
+    21300004: body
+    21300006: tache
+    21300008: leftHand
+    21300010: hat
+    21300012: rightHand
+    21300014: bazooka
+    21300016: rightEye
+    21300018: leftEye
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,7 +70,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -47.5, y: 30.5}
+        - {x: -51.5, y: 29.5}
+        - {x: -51.5, y: -14.5}
+        - {x: -26.5, y: -30.5}
+        - {x: 48.5, y: -30.5}
+        - {x: 51.5, y: -22.5}
+        - {x: 51.5, y: 13.5}
+        - {x: 5.5, y: 30.5}
     - name: leftFoot
       rect:
         serializedVersion: 2
@@ -69,18 +89,59 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -9.5, y: 20}
+        - {x: -29.5, y: 1}
+        - {x: -29.5, y: -16}
+        - {x: -27.5, y: -20}
+        - {x: 11.5, y: -20}
+        - {x: 29.5, y: -13}
+        - {x: 29.5, y: 19}
+        - {x: 27.5, y: 20}
+      - - {x: -29.5, y: 20}
+        - {x: -29.5, y: 16}
+        - {x: -11.5, y: 16}
+        - {x: -7.5, y: 19}
+        - {x: -7.5, y: 20}
     - name: body
       rect:
         serializedVersion: 2
-        x: 79
-        y: 107
-        width: 204
-        height: 341
+        x: 80
+        y: 87
+        width: 229
+        height: 334
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 88.5, y: -156}
+        - {x: 78.5, y: -164}
+        - {x: 78.5, y: -167}
+        - {x: 114.5, y: -167}
+        - {x: 114.5, y: -160}
+        - {x: 104.5, y: -156}
+      - - {x: 108.5, y: -76}
+        - {x: 110.5, y: -53}
+        - {x: 110.5, y: 57}
+        - {x: 108.5, y: 78}
+        - {x: 105.5, y: 104}
+        - {x: 95.5, y: 142}
+        - {x: 87.5, y: 156}
+        - {x: 76.5, y: 165}
+        - {x: -83.5, y: 165}
+        - {x: -86.5, y: 164}
+        - {x: -96.5, y: 153}
+        - {x: -101.5, y: 144}
+        - {x: -109.5, y: 117}
+        - {x: -114.5, y: 90}
+        - {x: -114.5, y: -87}
+        - {x: -108.5, y: -123}
+        - {x: -102.5, y: -140}
+        - {x: -98.5, y: -148}
+        - {x: -85.5, y: -162}
+        - {x: 80.5, y: -162}
+        - {x: 98.5, y: -133}
+        - {x: 104.5, y: -101}
     - name: tache
       rect:
         serializedVersion: 2
@@ -102,18 +163,33 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -16, y: 17}
+        - {x: -16, y: -17}
+        - {x: 9, y: -17}
+        - {x: 16, y: -8}
+        - {x: 16, y: 10}
+        - {x: 10, y: 17}
     - name: hat
       rect:
         serializedVersion: 2
-        x: 772
-        y: 207
-        width: 74
-        height: 71
+        x: 633
+        y: 135
+        width: 241
+        height: 123
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 50.5, y: 60.5}
+        - {x: -48.5, y: 60.5}
+        - {x: -69.5, y: 59.5}
+        - {x: -116.5, y: 29.5}
+        - {x: -116.5, y: -61.5}
+        - {x: 59.5, y: -61.5}
+        - {x: 110.5, y: -57.5}
+        - {x: 110.5, y: -16.5}
+        - {x: 66.5, y: 50.5}
     - name: rightHand
       rect:
         serializedVersion: 2
@@ -124,14 +200,22 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -21, y: 27.5}
+        - {x: -24, y: 24.5}
+        - {x: -24, y: -23.5}
+        - {x: -14, y: -27.5}
+        - {x: 23, y: -27.5}
+        - {x: 24, y: -25.5}
+        - {x: 24, y: 26.5}
+        - {x: 20, y: 27.5}
     - name: bazooka
       rect:
         serializedVersion: 2
-        x: 301
-        y: 262
-        width: 367
-        height: 196
+        x: 455
+        y: 322
+        width: 124
+        height: 71
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -139,25 +223,41 @@ TextureImporter:
     - name: rightEye
       rect:
         serializedVersion: 2
-        x: 741
-        y: 308
-        width: 67
-        height: 72
+        x: 764
+        y: 315
+        width: 50
+        height: 69
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -20, y: 34.5}
+        - {x: -24, y: 25.5}
+        - {x: -24, y: -26.5}
+        - {x: -17, y: -32.5}
+        - {x: 14, y: -32.5}
+        - {x: 22, y: -29.5}
+        - {x: 22, y: 34.5}
     - name: leftEye
       rect:
         serializedVersion: 2
-        x: 835
-        y: 345
-        width: 27
-        height: 27
+        x: 821
+        y: 321
+        width: 44
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 15, y: 32}
+        - {x: -12, y: 32}
+        - {x: -22, y: 28}
+        - {x: -22, y: -24}
+        - {x: -16, y: -32}
+        - {x: 13, y: -32}
+        - {x: 21, y: -26}
+        - {x: 21, y: 14}
+        - {x: 20, y: 26}
     outline: []
   spritePackingTag: characters
   userData: 
