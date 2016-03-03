@@ -695,12 +695,17 @@ MonoBehaviour:
   facingRight: 1
   jump: 0
   moveForce: 365
-  maxSpeed: 8
+  maxSpeed: 5
+  slowSpeed: 5
+  fastSpeed: 8
+  mediumSpeed: 8
   jumpClips:
   - {fileID: 8300000, guid: 50a8d8a939a0f4e77a0dac6ecd2e582b, type: 3}
   - {fileID: 8300000, guid: fc55d077383484ac0ad66aa17fcd746f, type: 3}
   - {fileID: 8300000, guid: dafa1cc4eb8714341a7c595abfba35d8, type: 3}
-  jumpForce: 1000
+  jumpForce:
+  - 20
+  - 12
   taunts:
   - {fileID: 8300000, guid: 27cbebf9d650249e5b032494eae5322c, type: 3}
   - {fileID: 8300000, guid: 986fa1b8984964da79d1be0597332fb2, type: 3}
@@ -712,6 +717,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddd0ca15e5d0a42b98f08337c1690bb1, type: 3}
   tauntProbability: 50
   tauntDelay: 1
+  maxJump: 2
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

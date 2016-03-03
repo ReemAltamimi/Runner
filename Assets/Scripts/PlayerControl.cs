@@ -6,17 +6,20 @@ public class PlayerControl : MonoBehaviour
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
-	public bool jump = false;				// Condition for whether the player should jump.
-
+	public bool jump = false;				// jump trigger.
+    private int jumpLevel = 0;
 
 	public float moveForce = 365f;			// Amount of force added to move the player left and right.
-	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
-	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
-	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
+	public float maxSpeed = 5f;             // The fastest the player can travel in the x axis.
+    public float slowSpeed = 5f;             // The fastest the player can travel in the x axis when slowed.
+    public float fastSpeed = 8f;             // The fastest the player can travel in the x axis at medium pace.
+    public float mediumSpeed = 8f;             // The fastest the player can travel in the x axis at max pace.
+    public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
+	public float[] jumpForce = { 1000f, 600f };			// Amount of force added when the player jumps.
 	public AudioClip[] taunts;				// Array of clips for when the player taunts.
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
-
+    public int maxJump = 2;
 
 	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
@@ -32,15 +35,39 @@ public class PlayerControl : MonoBehaviour
 	}
 
 
-	void Update()
+    public void SetupSlow()
+    {
+        maxSpeed = slowSpeed;
+        maxJump = 0;
+    }
+
+
+    public void SetupMedium()
+    {
+        maxSpeed = mediumSpeed;
+        maxJump = 1;
+    }
+
+
+    public void SetupFast()
+    {
+        maxSpeed = fastSpeed;
+        maxJump = 2;
+    }
+
+    void Update()
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
+		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        if (grounded)
+            jumpLevel = 0;
 
-		// If the jump button is pressed and the player is grounded then the player should jump.
-		if(Input.GetButtonDown("Jump") && grounded)
-			jump = true;
-	}
+        // If the jump button is pressed and the player is grounded then the player should jump.
+		if(Input.GetButtonDown("Jump") && jumpLevel < maxJump)
+        {
+            jump = true;
+        }
+    }
 
 
 	void FixedUpdate ()
@@ -80,8 +107,12 @@ public class PlayerControl : MonoBehaviour
 			int i = Random.Range(0, jumpClips.Length);
 			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
 
-			// Add a vertical force to the player.
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+            // Add a vertical force to the player.
+            float force = (jumpLevel < jumpForce.Length) ? jumpForce[jumpLevel] : 0;
+            var rigidbody = GetComponent<Rigidbody2D>();
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(new Vector2(0f, force), ForceMode2D.Impulse);
+            jumpLevel++;
 
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
