@@ -2353,6 +2353,14 @@ Prefab:
       propertyPath: m_Name
       value: fallenForegrounds
       objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 708042f972a104a1793983dbefca755f, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.0066413064
+      objectReference: {fileID: 0}
+    - target: {fileID: 400014, guid: 708042f972a104a1793983dbefca755f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.99997795
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11467932, guid: 708042f972a104a1793983dbefca755f, type: 2}
     - {fileID: 5014738, guid: 708042f972a104a1793983dbefca755f, type: 2}
