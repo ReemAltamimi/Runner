@@ -17,13 +17,18 @@ public class FallGround : MonoBehaviour {
     void OnCollisionEnter2D (Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
-            Invoke ("Fall", FallDelay);
-        //Destroy(gameObject);
-         
+            Invoke ("Fall", FallDelay); 
     }
 
     void Fall()
     {
         rb2d.isKinematic = false;
+        StartCoroutine(FallCoroutine());
+    }
+
+    IEnumerator FallCoroutine()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(gameObject);
     }
 }
