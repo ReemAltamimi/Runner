@@ -34,9 +34,15 @@ public class PlayerControl : MonoBehaviour
 		anim = GetComponent<Animator>();
 	}
 
+    public void Start()
+    {
+        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+        Application.ExternalCall("onPlayerReady", scene.name);
+    }
 
     public void SetupSlow()
     {
+        print("hero is slowed");
         maxSpeed = slowSpeed;
         maxJump = 0;
     }
@@ -44,6 +50,7 @@ public class PlayerControl : MonoBehaviour
 
     public void SetupMedium()
     {
+        print("hero is medium");
         maxSpeed = mediumSpeed;
         maxJump = 1;
     }
@@ -51,6 +58,7 @@ public class PlayerControl : MonoBehaviour
 
     public void SetupFast()
     {
+        print("hero is fast");
         maxSpeed = fastSpeed;
         maxJump = 2;
     }
