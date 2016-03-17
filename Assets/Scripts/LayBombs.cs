@@ -15,6 +15,7 @@ public class LayBombs : MonoBehaviour
 
 	void Awake ()
 	{
+        
 		// Setting up the reference.
 		bombHUD = GameObject.Find("ui_bombHUD").GetComponent<GUITexture>();
 	}

@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StarCollect : MonoBehaviour {
+public class Key : MonoBehaviour {
 
- 	// Use this for initialization
+	// Use this for initialization
 	void Start () {
 	
 	}
@@ -13,7 +13,7 @@ public class StarCollect : MonoBehaviour {
 	
 	}
 
-    void OnTriggerEnter2D (Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -21,7 +21,7 @@ public class StarCollect : MonoBehaviour {
             var progress = other.gameObject.GetComponent<LevelProgress>();
             if (progress != null)
             {
-                progress.onCollectStar();
+                progress.onCollectKey();
             }
             else
             {
@@ -30,4 +30,5 @@ public class StarCollect : MonoBehaviour {
         }
 
     }
+
 }
