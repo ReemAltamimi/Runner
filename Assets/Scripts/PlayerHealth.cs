@@ -85,8 +85,15 @@ public class PlayerHealth : MonoBehaviour
 		// Add a force to the player in the direction of the vector and multiply by the hurtForce.
 		GetComponent<Rigidbody2D>().AddForce(hurtVector * hurtForce);
 
+        var playerHurt = enemy.GetComponent<PlayerHurt>();
+        float dmg = damageAmount;
+        if (playerHurt)
+        {
+            dmg = playerHurt.Damage;
+        }
+
 		// Reduce the player's health by 10.
-		health -= damageAmount;
+		health -= dmg;
 
 		// Update what the health bar looks like.
 		UpdateHealthBar();
