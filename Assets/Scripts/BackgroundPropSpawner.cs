@@ -46,24 +46,6 @@ public class BackgroundPropSpawner : MonoBehaviour
 		// Instantiate the prop at the desired position.
 		Rigidbody2D propInstance = Instantiate(backgroundProp, spawnPos, Quaternion.identity) as Rigidbody2D;
 
-		// The sprites for the props all face left.  Therefore, if the prop should be facing right...
-		if(!facingLeft)
-		{
-			// ... flip the scale in the x axis.
-			Vector3 scale = propInstance.transform.localScale;
-			scale.x *= -1;
-			propInstance.transform.localScale = scale;
-		}
-
-		// Create a random speed.
-		float speed = Random.Range(minSpeed, maxSpeed);
-
-		// These speeds would naturally move the prop right, so if it's facing left, multiply the speed by -1.
-		speed *= facingLeft ? -1f : 1f;
-
-		// Set the prop's velocity to this speed in the x axis.
-		propInstance.velocity = new Vector2(speed, 0);
-
 		// Restart the coroutine to spawn another prop.
 		StartCoroutine(Spawn());
 
