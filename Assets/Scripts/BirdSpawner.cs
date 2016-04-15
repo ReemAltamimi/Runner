@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BackgroundPropSpawner : MonoBehaviour
+public class BirdSpawner : MonoBehaviour
 {
 	public Rigidbody2D backgroundProp;		// The prop to be instantiated.
-	public float leftSpawnPosX;				// The x coordinate of position if it's instantiated on the left.
-	public float rightSpawnPosX;			// The x coordinate of position if it's instantiated on the right.
-	public float minSpawnPosY;				// The lowest possible y coordinate of position.
-	public float maxSpawnPosY;				// The highest possible y coordinate of position.
-	public float minTimeBetweenSpawns;		// The shortest possible time between spawns.
-	public float maxTimeBetweenSpawns;		// The longest possible time between spawns.
-	public float minSpeed;					// The lowest possible speed of the prop.
-	public float maxSpeed;					// The highest possible speeed of the prop.
+	public float leftSpawnPosX = -12;				// The x coordinate of position if it's instantiated on the left.
+	public float rightSpawnPosX = 12;			// The x coordinate of position if it's instantiated on the right.
+	public float minSpawnPosY = 0;				// The lowest possible y coordinate of position.
+	public float maxSpawnPosY = 10;				// The highest possible y coordinate of position.
+	public float minTimeBetweenSpawns = 0;		// The shortest possible time between spawns.
+	public float maxTimeBetweenSpawns = 10;		// The longest possible time between spawns.
+	public float minSpeed = 5;					// The lowest possible speed of the prop.
+	public float maxSpeed = 15;					// The highest possible speeed of the prop.
 
 	void Start ()
 	{
@@ -41,7 +41,9 @@ public class BackgroundPropSpawner : MonoBehaviour
 		float posY = Random.Range(minSpawnPosY, maxSpawnPosY);
 
 		// Set the position the prop should spawn at.
-		Vector3 spawnPos = new Vector3(posX, posY, transform.position.z);
+		Vector3 spawnPos = new Vector3(transform.position.x + posX, posY, transform.position.z);
+
+
 
 		// Instantiate the prop at the desired position.
 		Rigidbody2D propInstance = Instantiate(backgroundProp, spawnPos, Quaternion.identity) as Rigidbody2D;
