@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EndLevel : MonoBehaviour {
 
-    public string nextLevel = "Level2";
+    public string nextLevel;
 
     void OnTriggerEnter2D(Collider2D other)
     {
