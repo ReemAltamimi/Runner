@@ -73,25 +73,17 @@ namespace MySteps
             try
             {
                 WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
-                var token = Session["access_token"];
 
-
-                if (Session["access_token"] == null)
+                var authorizationState = client.ProcessUserAuthorization();
+                if (authorizationState == null)
                 {
                     var userAuthorization = client.PrepareRequestUserAuthorization(new[] { "activity" });
                     userAuthorization.Send(Context);
-                    Session["requested"] = true;
-                    Response.End();
                 }
-
-                else if ((bool)(Session["requested"]))
+                else
                 {
-                    var authorizationState = client.ProcessUserAuthorization();
-                    if (authorizationState != null)
-                    {
-                        Session["access_token"] = authorizationState.AccessToken;
-                        Session["refresh_token"] = authorizationState.RefreshToken;
-                    }
+                    Session["access_token"] = authorizationState.AccessToken;
+                    Session["refresh_token"] = authorizationState.RefreshToken;
                 }
 
 
@@ -137,12 +129,7 @@ namespace MySteps
                 Response.Write(ex.Message);
                 Response.Close();
             }
-            catch (Exception ex)
-            {
-                Response.Write(ex.Message);
-                Response.Close();
-            }
-
+            
         }
         protected void btnViewChart_Click(object sender, EventArgs e)
         {
