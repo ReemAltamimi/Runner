@@ -1435,7 +1435,6 @@ GameObject:
   - 20: {fileID: 240161000}
   - 124: {fileID: 240160999}
   - 92: {fileID: 240160998}
-  - 81: {fileID: 240160997}
   m_Layer: 0
   m_Name: Level3 Background Camera
   m_TagString: Untagged
@@ -1443,13 +1442,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &240160997
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 240160996}
-  m_Enabled: 1
 --- !u!92 &240160998
 Behaviour:
   m_ObjectHideFlags: 0

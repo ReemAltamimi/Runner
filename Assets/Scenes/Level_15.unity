@@ -1920,10 +1920,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1037167415}
-  - {fileID: 107969123}
-  - {fileID: 61684699}
   - {fileID: 1375374233}
   - {fileID: 1030026341}
+  - {fileID: 107969123}
+  - {fileID: 61684699}
   m_Father: {fileID: 2093041117}
   m_RootOrder: 14
 --- !u!1 &480677024
@@ -3758,7 +3758,6 @@ GameObject:
   - 20: {fileID: 867365368}
   - 124: {fileID: 867365367}
   - 92: {fileID: 867365366}
-  - 81: {fileID: 867365365}
   m_Layer: 0
   m_Name: Level 15 Background Camera
   m_TagString: Untagged
@@ -3766,13 +3765,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &867365365
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 867365364}
-  m_Enabled: 1
 --- !u!92 &867365366
 Behaviour:
   m_ObjectHideFlags: 0
@@ -6143,7 +6135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 472612069}
-  m_RootOrder: 4
+  m_RootOrder: 2
 --- !u!212 &1030026342
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7794,7 +7786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 472612069}
-  m_RootOrder: 3
+  m_RootOrder: 1
 --- !u!212 &1375374234
 SpriteRenderer:
   m_ObjectHideFlags: 0

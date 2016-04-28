@@ -12,7 +12,7 @@ using System.Xml;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
-using DotNetOpenAuth.OAuth2;
+using DotNetOpenAuth.OAuth;
 using System.Net.Http;
 
 

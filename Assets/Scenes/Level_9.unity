@@ -13154,7 +13154,6 @@ GameObject:
   - 20: {fileID: 1957049420}
   - 124: {fileID: 1957049419}
   - 92: {fileID: 1957049418}
-  - 81: {fileID: 1957049417}
   m_Layer: 0
   m_Name: Level9 Background Camera
   m_TagString: Untagged
@@ -13162,13 +13161,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1957049417
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1957049416}
-  m_Enabled: 1
 --- !u!92 &1957049418
 Behaviour:
   m_ObjectHideFlags: 0
