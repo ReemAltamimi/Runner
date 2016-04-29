@@ -6,20 +6,17 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net;
 using System.Xml;
-//using OAuth.Net.Common;
-//using OAuth.Net.Components;
-//using OAuth.Net.Consumer;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Text.RegularExpressions;
-using DotNetOpenAuth.OAuth;
+using DotNetOpenAuth.OAuth2;
 using System.Net.Http;
-
 
 namespace MySteps
 {
     public partial class PhysicalActivityManagement : System.Web.UI.Page
     {
+
         protected XmlDocument Doc { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -76,25 +73,17 @@ namespace MySteps
             try
             {
                 WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
-                var token = Session["access_token"];
 
-
-                if (Session["access_token"] == null)
+                var authorizationState = client.ProcessUserAuthorization();
+                if (authorizationState == null)
                 {
                     var userAuthorization = client.PrepareRequestUserAuthorization(new[] { "activity" });
                     userAuthorization.Send(Context);
-                    Session["requested"] = true;
-                    Response.End();
                 }
-
-                else if ((bool)(Session["requested"]))
+                else
                 {
-                    var authorizationState = client.ProcessUserAuthorization();
-                    if (authorizationState != null)
-                    {
-                        Session["access_token"] = authorizationState.AccessToken;
-                        Session["refresh_token"] = authorizationState.RefreshToken;
-                    }
+                    Session["access_token"] = authorizationState.AccessToken;
+                    Session["refresh_token"] = authorizationState.RefreshToken;
                 }
 
 
@@ -136,11 +125,6 @@ namespace MySteps
 
             }
             catch (WebException ex)
-            {
-                Response.Write(ex.Message);
-                Response.Close();
-            }
-            catch (Exception ex)
             {
                 Response.Write(ex.Message);
                 Response.Close();
