@@ -21,7 +21,8 @@ namespace MySteps
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //userId = Session["UserId"].ToString();
+            string token, refreshToken;
+            String userId = Session["UserId"].ToString();
             Session["DateTime"] = DateTime.Now;
 
             const string FitbitClientId = "227L5Z";
@@ -86,7 +87,8 @@ namespace MySteps
                     Session["refresh_token"] = authorizationState.RefreshToken;
                 }
 
-
+                token = authorizationState.AccessToken.ToString();
+                refreshToken = authorizationState.RefreshToken.ToString();
                 //var authorizationState = client.ProcessUserAuthorization();
                 //if (authorizationState != null)
                 //{
@@ -95,7 +97,34 @@ namespace MySteps
                 //    Response.End();
                 //}
 
+                //=============================================================================
 
+                if (!IsPostBack)
+                {
+                    try
+                    {
+                        //add user data entered in registeration page into UserData table
+                        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
+                        conn.Open();
+                        string insertQuery = "UPDATE UserData SET Token = @token, RefreshToken = @refreshToken WHERE(Id = @userId)";
+                        SqlCommand command = new SqlCommand(insertQuery, conn);
+                        command.Parameters.AddWithValue("@token", token);
+                        command.Parameters.AddWithValue("@refreshToken", refreshToken);
+                        command.Parameters.AddWithValue("@userId", Convert.ToInt32(userId));
+
+                        command.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        Label2.Text = "Error :" + ex.ToString();
+                    }
+                }
+                /*DataRow[] customerRow = 
+                dataSet1.Tables["Customers"].Select("CustomerID = 'ALFKI'");
+
+                customerRow[0]["CompanyName"] = "Updated Company Name";
+                customerRow[0]["City"] = "Seattle";*/
 
 
 
