@@ -24,9 +24,9 @@ namespace MySteps
         {
             string token, refreshToken, id;
             if (Session["UserId"] == null)
-            {
-                Response.Redirect("Default");
-                return;
+                {
+                   Response.Redirect("Default");
+                              return;
             }
 
             String userId = Session["UserId"].ToString();
@@ -80,10 +80,6 @@ namespace MySteps
 
             try
             {
-                // TODO: check for access token in database
-                // Use refresh token
-                // if we don't have these things then process the user authorisation
-
                 WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
 
                 var authorizationState = client.ProcessUserAuthorization();
