@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Text.RegularExpressions;
 using DotNetOpenAuth.OAuth2;
 using System.Net.Http;
+using System.IO;
 
 namespace MySteps
 {
@@ -21,7 +22,7 @@ namespace MySteps
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string token, refreshToken;
+            string token, refreshToken, id;
             String userId = Session["UserId"].ToString();
             Session["DateTime"] = DateTime.Now;
 
@@ -80,15 +81,19 @@ namespace MySteps
                 {
                     var userAuthorization = client.PrepareRequestUserAuthorization(new[] { "activity" });
                     userAuthorization.Send(Context);
+                    //id = userAuthorization.Body.ToString();
+
                 }
                 else
                 {
                     Session["access_token"] = authorizationState.AccessToken;
                     Session["refresh_token"] = authorizationState.RefreshToken;
+                   // id = userAuthorization.Body.ToString();
                 }
 
                 token = authorizationState.AccessToken.ToString();
                 refreshToken = authorizationState.RefreshToken.ToString();
+                //id =;
                 //var authorizationState = client.ProcessUserAuthorization();
                 //if (authorizationState != null)
                 //{
@@ -97,7 +102,9 @@ namespace MySteps
                 //    Response.End();
                 //}
 
-                //=============================================================================
+                //============================================================================
+
+
 
                 if (!IsPostBack)
                 {
@@ -120,11 +127,7 @@ namespace MySteps
                         Label2.Text = "Error :" + ex.ToString();
                     }
                 }
-                /*DataRow[] customerRow = 
-                dataSet1.Tables["Customers"].Select("CustomerID = 'ALFKI'");
-
-                customerRow[0]["CompanyName"] = "Updated Company Name";
-                customerRow[0]["City"] = "Seattle";*/
+                
 
 
 
@@ -158,6 +161,35 @@ namespace MySteps
                 Response.Write(ex.Message);
                 Response.Close();
             }
+
+
+            //===============================================================================
+            //Request the user workout.
+            string urlworkout = "https://api.fitbit.com/1/user/" + "-" + "/activities/steps/date/2015-08-14/1d.json";
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlworkout);
+            request.Method = "GET";
+            request.Headers["Authorization"] = "Bearer " + Session["access_token"];
+            request.Accept = "application/json";
+
+            WebResponse myResponse;
+            string results = "";
+          
+
+            myResponse = request.GetResponse();
+            StreamReader httpwebStreamReader = new StreamReader(myResponse.GetResponseStream());
+            results = httpwebStreamReader.ReadToEnd();
+
+
+
+            // Initialize the XmlDocument object and OAuthResponse object's protected resource to it
+            // this.Doc = new XmlDocument();
+            //this.Doc.Load(httpwebStreamReader);
+            Label2.Text = results;
+            myResponse.Close();
+            httpwebStreamReader.Close();
+
+            //===============================================================================
 
         }
         protected void btnViewChart_Click(object sender, EventArgs e)
