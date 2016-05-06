@@ -2,7 +2,7 @@
 
 <!doctype html>
 <html lang="en-us">
-  <head>
+    <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | _2D v3</title>
@@ -25,14 +25,13 @@
     TOTAL_MEMORY: 268435456,
     errorhandler: null,			// arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
     compatibilitycheck: null,
-    dataUrl: "Development/Game.data",
-    codeUrl: "Development/Game.js",
-    memUrl: "Development/Game.mem",
+    dataUrl: "Release/Game.data",
+    codeUrl: "Release/Game.js",
+    memUrl: "Release/Game.mem",
   };
 </script>
 
-
-<script src="Development/UnityLoader.js"></script>
+<script src="Release/UnityLoader.js"></script>
 
 <script type="text/javascript">
 	function onPlayerReady( arg )
