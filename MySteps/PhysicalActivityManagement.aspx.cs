@@ -162,7 +162,9 @@ namespace MySteps
 
             //===============================================================================
             //Request the user workout.
-            string urlworkout = "https://api.fitbit.com/1/user/" + "-" + "/activities/steps/date/2015-08-14/1d.json";
+            String activityDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            string urlworkout = "https://api.fitbit.com/1/user/" + "-" + "/activities/steps/date/" + activityDate + "/1d.json";
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlworkout);
             request.Method = "GET";
