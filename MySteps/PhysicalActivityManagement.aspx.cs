@@ -23,6 +23,8 @@ namespace MySteps
         protected void Page_Load(object sender, EventArgs e)
         {
             string token, refreshToken, id;
+
+            //check the user id
             if (Session["UserId"] == null)
                 {
                    Response.Redirect("Default");
@@ -32,14 +34,15 @@ namespace MySteps
             String userId = Session["UserId"].ToString();
             Session["DateTime"] = DateTime.Now;
 
+            //"local-fitbit-example-client-application-id";
+            //"227L5Z"
             const string FitbitClientId = "227L5Z";
-            //"local-fitbit-example-client-application";
-            //"aca55fdfdb7d48f3a0c3f5c6505e5567"
-            const string FitbitSecret = "26fed8d066abe1bb28e98260f7d4578c";
-            //"your.secret.key.from.dev.fitbit.com";
-            //"8e97224b8df64178a2970559604fafeb"
 
-            // API call path to get temporary credentials (request token and secret)
+            //"your.secret.key.from.dev.fitbit.com";
+            //"26fed8d066abe1bb28e98260f7d4578c"
+            const string FitbitSecret = "26fed8d066abe1bb28e98260f7d4578c";
+            
+            // API call path to get temporary credentials (request token)
             Uri fitBitRequestTokenUrl = new Uri("https://api.fitbit.com/oauth2/token");
 
             // Base path of URL where the user will authorize this application
@@ -50,26 +53,14 @@ namespace MySteps
             string sDay = Convert.ToString(dt.Day);
             string sMonth = Convert.ToString(dt.Month);
             string sYear = Convert.ToString(dt.Year);
-            //ToShortDateString();
+            
 
             string strFitBit = "http://api.fitbit.com/1/user/-/activities/date/" + sYear + "-" + sMonth + "-" + sDay + ".xml";
 
             string ApiCallUrl = strFitBit;
 
 
-            /*const string ApiCallUrl = "http://api.fitbit.com/1/user/-/activities/date/2014-05-17.xml";*/
-
-            //// Create OAuthService object, containing oauth consumer configuration
-            //OAuthService service = OAuthService.Create(
-            //    new EndPoint(RequestTokenUrl, "POST"),         // requestTokenEndPoint
-            //    new Uri(AuthorizationUrl),                     // authorizationUri
-            //    new EndPoint(AccessTokenUrl, "POST"),          // accessTokenEndPoint
-            //    true,                                          // useAuthorizationHeader
-            //    "http://api.fitbit.com",                       // realm
-            //    "HMAC-SHA1",                                   // signatureMethod
-            //    "2.0",                                         // oauthVersion
-            //    new OAuthConsumer(FitbitClientId, ConsumerSecret) // consumer
-            //    );
+            
 
             var authorizationServer = new AuthorizationServerDescription
             {

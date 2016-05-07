@@ -34,4 +34,9 @@ public partial class Main : System.Web.UI.Page
     {
         Response.Redirect("~/PA_Vs_ST.aspx");
     }
+
+    protected void btnGame_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Game/Game.aspx");
+    }
 }

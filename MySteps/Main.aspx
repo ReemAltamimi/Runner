@@ -52,6 +52,9 @@
         .style5 {
             position:fixed; top:420px; left:690px;
         }
+        .style6 {
+            position:fixed; top:420px; left:530px;
+        }
 
      </style>
 </head>
@@ -96,6 +99,11 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>
+                          <asp:Button ID="btnGame" runat="server" OnClick="btnGame_Click" Text="Game" 
+                              CssClass="style6" Height="80px" Width="100px" BackColor="#004080" ForeColor="White" />
+
+                    </td>
                     
                     <td>
                           <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" 
