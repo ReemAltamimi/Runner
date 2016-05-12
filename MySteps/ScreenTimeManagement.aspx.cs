@@ -13,6 +13,13 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        //check if the user is login in the system
+        if (Session["UserId"] == null)
+        {
+            Response.Redirect("Default");
+            return;
+        }
+
         userId = Session["UserId"].ToString();
         Session["Date"] = DateTime.Now;
         
@@ -36,22 +43,51 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
             //add screen time data into ScreenTimeData table
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
             conn.Open();
-            string insertQuery = "insert into ScreenTimeData (Date,UserID,UserScreenDailyAmnt) values (@date, @id, @amount)";
-            SqlCommand command = new SqlCommand(insertQuery, conn);
-            
-            command.Parameters.AddWithValue("@date",Session["Date"]);
-            command.Parameters.AddWithValue("@id",Convert.ToInt32(userId));
-            command.Parameters.AddWithValue("@amount", Convert.ToInt32(txbScreenUnits.Text));
 
-            command.ExecuteNonQuery();
+            //select the row that match the current session user id and match the date of today
+            string checkUser = "select count(*) from ScreenTimeData where UserID= '" + Session["UserId"] + "' AND Date>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND Date < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+            SqlCommand command1 = new SqlCommand(checkUser, conn);
+            int temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
+            //if the number of rows that found in the table is zero, which means that the user has not yet entered the amount 
+            //of screen time of today 
+            if (temp == 0)
+            {
+
+                string insertQuery = "insert into ScreenTimeData (Date,UserID,UserScreenDailyAmnt) values (@date, @id, @amount)";
+                SqlCommand command = new SqlCommand(insertQuery, conn);
+
+                command.Parameters.AddWithValue("@date", Session["Date"]);
+                command.Parameters.AddWithValue("@id", Convert.ToInt32(userId));
+                command.Parameters.AddWithValue("@amount", Convert.ToInt32(txbScreenUnits.Text));
+
+                command.ExecuteNonQuery();
+                //show successful message
+                Label3.ForeColor = System.Drawing.Color.Green;
+                Label3.Text = "Your Screen Time has been added <br> click on View Chart button ";
+                //clear the textbox
+                txbScreenUnits.Text = "";
+            }
+            else
+            {
+                string updateQuery = "UPDATE ScreenTimeData SET Date = @date, UserScreenDailyAmnt = @amount  WHERE UserID = '" + userId + "' AND Date>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND Date < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+
+                SqlCommand command3 = new SqlCommand(updateQuery, conn);
+
+                command3.Parameters.AddWithValue("@date", Session["Date"]);
+                command3.Parameters.AddWithValue("@amount", Convert.ToInt32(txbScreenUnits.Text));
+
+                command3.ExecuteNonQuery();
+
+                //show successful message
+                Label3.ForeColor = System.Drawing.Color.Green;
+                Label3.Text = "Your Screen Time has been updated <br> click on View Chart button ";
+                //clear the textbox
+                txbScreenUnits.Text = "";
+            }
 
             conn.Close();
 
-            //show successful message
-            Label3.ForeColor = System.Drawing.Color.Green;
-            Label3.Text = "Your Screen Time has been saved <br> click on View Chart button ";
-            //clear the textbox
-            txbScreenUnits.Text = "";
+            
 
         }
         catch
