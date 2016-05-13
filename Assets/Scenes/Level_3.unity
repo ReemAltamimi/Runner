@@ -10640,6 +10640,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1630277215}
   - 95: {fileID: 1630277216}
+  - 114: {fileID: 1630277217}
   m_Layer: 0
   m_Name: Block10
   m_TagString: Untagged
@@ -10684,6 +10685,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1630277217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630277214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3769518a823834ab7a304260e3fcb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalizedTime: 0
+  speed: 1
 --- !u!1001 &1638133267
 Prefab:
   m_ObjectHideFlags: 0
@@ -11733,6 +11747,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1763911668}
   - 95: {fileID: 1763911669}
+  - 114: {fileID: 1763911670}
   m_Layer: 0
   m_Name: Block3
   m_TagString: Untagged
@@ -11778,6 +11793,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &1763911670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1763911667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3769518a823834ab7a304260e3fcb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalizedTime: 0.5
+  speed: 1
 --- !u!1001 &1783084138
 Prefab:
   m_ObjectHideFlags: 0
