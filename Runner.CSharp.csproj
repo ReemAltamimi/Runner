@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WebGL:20</UnityBuildTarget>
     <UnityVersion>5.3.4f1</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -63,7 +65,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MovingPlatform.cs" />
+    <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\BackgroundParallax.cs" />
     <Compile Include="Assets\Scripts\Bird.cs" />
     <Compile Include="Assets\Scripts\BirdSpawner.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Assets\Scripts\LayBombs.cs" />
     <Compile Include="Assets\Scripts\LevelProgress.cs" />
     <Compile Include="Assets\Scripts\LoadOnClick.cs" />
+    <Compile Include="Assets\Scripts\MovingPlatform2.cs" />
     <Compile Include="Assets\Scripts\Pauser.cs" />
     <Compile Include="Assets\Scripts\PickupSpawner.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />

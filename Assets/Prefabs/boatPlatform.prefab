@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 432120}
   - 212: {fileID: 21294430}
   - 61: {fileID: 6122676}
-  - 95: {fileID: 9539216}
+  - 114: {fileID: 11426272}
   m_Layer: 12
   m_Name: boatPlatform
   m_TagString: ground
@@ -53,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130364}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.8, y: -5.8, z: 0}
+  m_LocalPosition: {x: 10.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 409228}
@@ -70,7 +70,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -0.26000023, y: 0.029527724}
+  m_Offset: {x: -0.26000023, y: -1}
   serializedVersion: 2
   m_Size: {x: 10.1125, y: 2.7590551}
 --- !u!61 &6159096
@@ -87,23 +87,19 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1, y: 2.6}
---- !u!95 &9539216
-Animator:
-  serializedVersion: 3
+--- !u!114 &11426272
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130364}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 106bdd52755f37e4ea7d913a7e169a72, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e364a2525cfb7b41bfd9b4129e01fc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endOffset: {x: 16, y: 0}
+  period: 2
 --- !u!212 &21294430
 SpriteRenderer:
   m_ObjectHideFlags: 1
