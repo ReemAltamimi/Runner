@@ -3,6 +3,12 @@
 <!doctype html>
 <html lang="en-us">
     <head>
+       <style type="text/css">
+        /*Page style*/
+        .style2 {
+            background-color:#004080;
+        }
+           </style>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | _2D v3</title>
