@@ -102,6 +102,7 @@
     <Compile Include="Assets\Scripts\SetParticleSortingLayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\StarCollect.cs" />
+    <Compile Include="Assets\Scripts\playerSpawner.cs" />
     <Compile Include="Assets\Scripts\scroll.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
