@@ -42,9 +42,13 @@
 <script type="text/javascript">
 	function onPlayerReady( arg )
 	{
-        var difficultyMethod = "Setup" + "<%= GetMovement() %>";
-		SendMessage ('hero', difficultyMethod);
+	    var difficultyMethod = "Setup" + "<%= GetMovement() %>";
+
+	    SendMessage('hero', difficultyMethod);
+	    SendMessage('hero', "SetSteps", Steps);
 	}
+
+
 </script>
     <form id="form1" runat="server">
     <div>

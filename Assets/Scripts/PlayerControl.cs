@@ -20,13 +20,13 @@ public class PlayerControl : MonoBehaviour
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
     public int maxJump = 2;
-
+    public GUIText stepsPrefab;
 	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private float direction = 1;
-
+    private GUIText stepsText;
 	void Awake()
 	{
 		// Setting up references.
@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
         Application.ExternalCall("onPlayerReady", scene.name);
+        SetSteps(10);
     }
 
     public void SetupSlow()
@@ -61,6 +62,24 @@ public class PlayerControl : MonoBehaviour
         print("hero is fast");
         maxSpeed = fastSpeed;
         maxJump = 2;
+    }
+
+    public void SetSteps(int steps)
+    {
+        if (!stepsText)
+        {
+            if (stepsPrefab)
+            {
+                stepsText = Instantiate(stepsPrefab);
+            }
+
+        }
+
+        if (stepsText)
+        {
+            stepsText.text = "Steps:" + steps.ToString();
+        }
+
     }
 
     void Update()

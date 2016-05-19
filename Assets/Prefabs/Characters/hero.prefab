@@ -274,7 +274,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.327423, y: 3.0568914, z: -1}
+  m_LocalPosition: {x: -73.9, y: 24.3, z: -1}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 400012}
@@ -572,6 +572,7 @@ MonoBehaviour:
   tauntProbability: 50
   tauntDelay: 1
   maxJump: 2
+  stepsPrefab: {fileID: 13267436, guid: 7e58655e87c9a184394c8a1151ce4850, type: 2}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1

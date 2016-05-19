@@ -10,6 +10,10 @@ public partial class Default2 : System.Web.UI.Page
     string userId;
     int steps;
 
+    public int Steps{
+        get { return steps; }
+    }
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -24,8 +28,6 @@ public partial class Default2 : System.Web.UI.Page
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
 
-        //get the mode of the game
-        String mode = GetMovement();
     }
 
 
@@ -43,6 +45,7 @@ public partial class Default2 : System.Web.UI.Page
         
         return "Slow";
     }
+
 
     
 }
