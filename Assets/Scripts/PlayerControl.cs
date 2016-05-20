@@ -3,6 +3,12 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
+    public enum Speed {
+        Slow,
+        Medium,
+        Fast
+    }
+
 	[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
@@ -21,12 +27,16 @@ public class PlayerControl : MonoBehaviour
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
     public int maxJump = 2;
     public GUIText stepsPrefab;
-	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
+    public Speed debugSpeed = Speed.Medium;
+
+    private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private float direction = 1;
     private GUIText stepsText;
+
+
 	void Awake()
 	{
 		// Setting up references.
@@ -37,8 +47,30 @@ public class PlayerControl : MonoBehaviour
     public void Start()
     {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-        Application.ExternalCall("onPlayerReady", scene.name);
-        SetSteps(10);
+
+        
+        if (Application.isEditor)
+        {
+            SetSteps(5000);
+            switch (debugSpeed)
+            {
+                case Speed.Slow:
+                    SetupSlow();
+                    break;
+                case Speed.Medium:
+                    SetupMedium();
+                    break;
+                case Speed.Fast:
+                    SetupFast();
+                    break;
+            }
+        }
+        else
+        {
+            Application.ExternalCall("onPlayerReady", scene.name);
+        }
+        
+        
     }
 
     public void SetupSlow()
