@@ -10,7 +10,8 @@ public class EndLevel : MonoBehaviour {
         print("entered the trigger");
         if (other.gameObject.tag == "Player")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(nextLevel);
+            RewardScreen.SetNextLevel(nextLevel);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Reward");
         }
     }
 }

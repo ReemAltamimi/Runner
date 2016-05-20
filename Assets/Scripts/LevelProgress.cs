@@ -4,7 +4,9 @@ using System.Collections;
 public class LevelProgress : MonoBehaviour {
 
     public int starsNeededForKey = 10;
-
+    public int oneStar = 15;
+    public int twoStars = 25;
+    public int threeStars = 35;
 
     private int starCount = 0;
     private Key key;
@@ -34,6 +36,8 @@ public class LevelProgress : MonoBehaviour {
         {
             Debug.LogError("Missing score");
         }
+        Hearts.Reset();
+        Hearts.SetThreshholds(new[] { oneStar, twoStars, threeStars });
     }
 
 
@@ -42,6 +46,7 @@ public class LevelProgress : MonoBehaviour {
         if (score != null)
         {
             score.score++;
+            Hearts.SetTotal(starCount);
         }
         if (starCount >= starsNeededForKey && key != null)
         {

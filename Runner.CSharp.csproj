@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\FollowPlayer.cs" />
     <Compile Include="Assets\Scripts\Gun.cs" />
     <Compile Include="Assets\Scripts\HealthPickup.cs" />
+    <Compile Include="Assets\Scripts\Hearts.cs" />
     <Compile Include="Assets\Scripts\JumpTrigger.cs" />
     <Compile Include="Assets\Scripts\Key.cs" />
     <Compile Include="Assets\Scripts\LayBombs.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\PlayerHurt.cs" />
     <Compile Include="Assets\Scripts\Remover.cs" />
+    <Compile Include="Assets\Scripts\RewardScreen.cs" />
     <Compile Include="Assets\Scripts\Rocket.cs" />
     <Compile Include="Assets\Scripts\Score.cs" />
     <Compile Include="Assets\Scripts\ScoreShadow.cs" />

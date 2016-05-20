@@ -16,7 +16,10 @@ public class JumpTrigger : MonoBehaviour {
             var playerRig = player.GetComponent<Rigidbody2D>();
             Assert.IsNotNull(playerRig);
 
-            playerRig.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            Vector2 velocity = playerRig.velocity;
+
+            velocity.y = jumpPower;
+            playerRig.velocity = velocity;
         }
     }
 
