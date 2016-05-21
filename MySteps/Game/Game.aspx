@@ -45,7 +45,7 @@
 	    var difficultyMethod = "Setup" + "<%= GetMovement() %>";
 
 	    SendMessage('hero', difficultyMethod);
-	    SendMessage('hero', "SetSteps", Steps);
+	    SendMessage('hero', "SetSteps", <%= Steps %>);
 	}
 
 
