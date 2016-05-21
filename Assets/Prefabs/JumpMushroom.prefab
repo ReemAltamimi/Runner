@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf0a25f7c760c1143b63e44689cf4713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 40
+  jumpPower: 30
   cooldownTime: 2
 --- !u!212 &21244196
 SpriteRenderer:
