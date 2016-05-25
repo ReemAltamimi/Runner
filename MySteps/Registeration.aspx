@@ -54,6 +54,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="auto-style6">Band Code</td>
+                    <td class="auto-style7">
+                        <asp:TextBox ID="txbCodeBand" runat="server" Width="200px"></asp:TextBox>
+                    </td>
+                     <td class="auto-style8">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txbCodeBand" ErrorMessage="* Band Code is required" ForeColor="#FF99CC" Font-Underline="True"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
                     <td class="auto-style9" colspan="3">
                         <asp:Label ID="Label2" runat="server" ForeColor="#FFCCCC" Font-Underline="True"></asp:Label>
                       
