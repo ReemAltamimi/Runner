@@ -14,6 +14,9 @@ public partial class UserHistory : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["New"] == null)
+            Response.Redirect("~/LoginPage.aspx");
+
         //get the user id, the range of 7 previous dates for chart select statements
         userId = Session["UserId"].ToString();
         Session["Date"] = DateTime.Today.ToShortDateString();

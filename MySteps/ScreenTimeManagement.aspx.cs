@@ -85,9 +85,7 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
                 txbScreenUnits.Text = "";
             }
 
-            conn.Close();
-
-            
+            conn.Close();         
 
         }
         catch

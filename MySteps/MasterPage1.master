@@ -62,10 +62,10 @@
             </div>
 
         </div>
-        <div style="position:fixed; top:220px; width:400px; height:500px; border:8px outset #004080">
+        <div style="position:fixed; top:220px; width:200px; height:500px; border:8px outset #004080">
 
 
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="400px" Height="500px"  />
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="200px" Height="500px"  />
 
 
         </div>

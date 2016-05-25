@@ -15,6 +15,9 @@ public partial class PA_Vs_ST : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["New"] == null)
+            Response.Redirect("~/LoginPage.aspx");
+
         userId = Session["UserId"].ToString();
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
         conn.Open();
