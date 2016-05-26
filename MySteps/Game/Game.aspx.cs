@@ -9,9 +9,15 @@ public partial class Default2 : System.Web.UI.Page
 {
     string userId;
     int steps;
-
+    int unlockedLevels;
+    float timeRemaining;
     public int Steps{
         get { return steps; }
+    }
+
+
+    public int UnlockedLevels {
+        get { return unlockedLevels; }
     }
 
 
@@ -27,7 +33,8 @@ public partial class Default2 : System.Web.UI.Page
         userId = Session["UserId"].ToString();
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
-
+        unlockedLevels = 4;// get unlocked levels from DB
+        timeRemaining = 3600;// get time remaining from DB
     }
 
 
@@ -46,6 +53,10 @@ public partial class Default2 : System.Web.UI.Page
         return "Slow";
     }
 
-
+    public void DoHeartBeat(float time)
+    {
+        timeRemaining -= time;
+        // remove time remaining from DB
+    }
     
 }

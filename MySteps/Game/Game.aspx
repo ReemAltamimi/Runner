@@ -2,6 +2,7 @@
 
 <!doctype html>
 <html lang="en-us">
+
     <head>
        <style type="text/css">
         /*Page style*/
@@ -40,6 +41,13 @@
 <script src="Release/UnityLoader.js"></script>
 
 <script type="text/javascript">
+    
+    //
+    // called when the menu is set up
+    function onMenuReady(){
+        SendMessage('Menu', 'SetUnlocked', <%= UnlockedLevels %>)
+    }
+
 	function onPlayerReady( arg )
 	{
 	    var difficultyMethod = "Setup" + "<%= GetMovement() %>";
@@ -48,10 +56,16 @@
 	    SendMessage('hero', "SetSteps", <%= Steps %>);
 	}
 
+    function onLevelComplete(){
+
+    }
 
 </script>
     <form id="form1" runat="server">
     <div>
+    
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+        </asp:ScriptManager>
     
     </div>
     </form>
