@@ -909,8 +909,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xMargin: 10
   yMargin: 10
-  xSmooth: 7
-  ySmooth: 7
+  xSmooth: 10
+  ySmooth: 10
   maxXAndY: {x: 224.3, y: 19}
   minXAndY: {x: -26.7, y: -1.5}
 --- !u!1 &165082227
