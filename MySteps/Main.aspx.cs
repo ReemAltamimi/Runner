@@ -39,4 +39,14 @@ public partial class Main : System.Web.UI.Page
     {
         Response.Redirect("~/Game/Game.aspx");
     }
+
+    protected void btnLeaderboard_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Leaderboard.aspx");
+    }
+
+    protected void btnChatRoom_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/ChatRoom.aspx");
+    }
 }
