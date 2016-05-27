@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -33,13 +34,14 @@ public partial class Default2 : System.Web.UI.Page
         userId = Session["UserId"].ToString();
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
-        unlockedLevels = 4;// get unlocked levels from DB
-        timeRemaining = 3600;// get time remaining from DB
+        unlockedLevels = 4;// TODO: get unlocked levels from DB
+        timeRemaining = 3600;// TODO: get time remaining from DB
     }
 
 
     public String GetMovement()
     {
+        // TODO: get number of steps from user object or DB or session
         //int steps = 10000; // Session[Steps]
         if (steps >= 10000)
         {
@@ -53,10 +55,24 @@ public partial class Default2 : System.Web.UI.Page
         return "Slow";
     }
 
-    public void DoHeartBeat(float time)
+    [WebMethod(EnableSession = true)]
+    public static void CompleteLevel(int level)
     {
-        timeRemaining -= time;
-        // remove time remaining from DB
+        int userId = (int)(HttpContext.Current.Session["UserId"]);
+        // TODO: write unlocked level to db (possibly via User object or database interface class) here
+        HttpContext.Current.Session["unlockedLevels"] = level;
     }
-    
+
+
+    [WebMethod(EnableSession = true)]
+    public static void DoHeartbeat(float time)
+    {
+        float timeRemaining = (float)HttpContext.Current.Session["timeRemaining"];
+        timeRemaining -= time;
+        // TODO: write time remaining to db (possibly via User object or database interface class) here
+        HttpContext.Current.Session["timeRemaining"] = time;
+        
+    }
+
+  
 }
