@@ -45,6 +45,7 @@
     //
     // called when the menu is set up
     function onMenuReady(){
+        console.log("onMenuReady");
         SendMessage('Menu', 'SetUnlocked', <%= UnlockedLevels %>)
     }
 
