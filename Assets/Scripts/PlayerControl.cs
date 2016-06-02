@@ -27,15 +27,20 @@ public class PlayerControl : MonoBehaviour
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
     public int maxJump = 2;
     public GUIText stepsPrefab;
+    public GUIText timePrefab;
     public Speed debugSpeed = Speed.Medium;
-
+    public float heartbeatTime = 30;
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private float direction = 1;
     private GUIText stepsText;
-
+    private GUIText timeText;
+    private bool doHeartbeat = false;
+    private float heartbeatTimeRemaining = 30.0f;
+    private static float playTimeRemaining = 600;
+    private int playTimeRemainingSeconds;
 
 	void Awake()
 	{
@@ -48,10 +53,13 @@ public class PlayerControl : MonoBehaviour
     {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 
-        
+        if (scene.name.StartsWith("Level"))
+            doHeartbeat = true;
+
         if (Application.isEditor)
         {
             SetSteps(5000);
+            SetTime(playTimeRemainingSeconds);
             switch (debugSpeed)
             {
                 case Speed.Slow:
@@ -103,6 +111,7 @@ public class PlayerControl : MonoBehaviour
             if (stepsPrefab)
             {
                 stepsText = Instantiate(stepsPrefab);
+
             }
 
         }
@@ -112,7 +121,31 @@ public class PlayerControl : MonoBehaviour
             stepsText.text = "Steps:" + steps.ToString();
         }
 
+        
+
     }
+
+    public void SetTime(float time)
+    {
+        playTimeRemaining = time;
+
+        if (!timeText)
+        {
+            if (timePrefab)
+            {
+                timeText = Instantiate(timePrefab);
+
+            }
+        }
+
+        if (timeText)
+        {
+            System.TimeSpan span = new System.TimeSpan(0, 0, (int)playTimeRemaining);
+            timeText.text = "Time:" + playTimeRemaining.ToString(span.ToString());
+        }
+
+    }
+
 
     void Update()
 	{
@@ -132,6 +165,24 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpLevel < maxJump)
         {
             jump = true;
+        }
+
+        if (doHeartbeat)
+        {
+            heartbeatTimeRemaining -= Time.deltaTime;
+            playTimeRemaining -= Time.deltaTime;
+            if (Mathf.FloorToInt(playTimeRemaining) != playTimeRemainingSeconds)
+            {
+                playTimeRemainingSeconds = Mathf.FloorToInt(playTimeRemaining);
+                System.TimeSpan span = new System.TimeSpan(0, 0, playTimeRemainingSeconds);
+                
+                timeText.text = "Time:" + Mathf.FloorToInt((float)span.TotalMinutes) + ":" + span.Seconds.ToString("00");
+            }
+            if (heartbeatTimeRemaining < 0)
+            {
+                heartbeatTimeRemaining = Mathf.Min(heartbeatTime, playTimeRemaining);
+                Application.ExternalCall("onHeartbeat", playTimeRemaining);
+            }
         }
     }
 

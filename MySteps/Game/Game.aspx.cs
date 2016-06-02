@@ -52,7 +52,7 @@ public partial class Default2 : System.Web.UI.Page
             return "Medium";
         }
         
-        return "Slow";
+        return "Fast";
     }
 
     [WebMethod(EnableSession = true)]

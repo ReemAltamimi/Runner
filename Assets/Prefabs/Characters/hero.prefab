@@ -238,7 +238,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.8, z: 0}
+  m_LocalPosition: {x: 0, y: -1.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400020}
@@ -274,7 +274,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.9, y: 24.3, z: -1}
+  m_LocalPosition: {x: -39.9, y: 8.1, z: -1}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 400012}
@@ -573,6 +573,9 @@ MonoBehaviour:
   tauntDelay: 1
   maxJump: 2
   stepsPrefab: {fileID: 13267436, guid: 7e58655e87c9a184394c8a1151ce4850, type: 2}
+  timePrefab: {fileID: 13267436, guid: d3262e57d706b8c4e9033637c30144c7, type: 2}
+  debugSpeed: 1
+  heartbeatTime: 30
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -605,6 +608,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starsNeededForKey: 10
+  oneStar: 15
+  twoStars: 25
+  threeStars: 35
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <script src="TemplateData/UnityProgress.js"></script>
+    <script src="Scripts/jquery-2.2.3.js"></script>
   </head>
   <body class="template">
     <p class="header"><span>Unity WebGL Player | </span>_2D v3</p>
@@ -40,7 +41,18 @@
 
 <script src="Release/UnityLoader.js"></script>
 
-<script type="text/javascript">
+    <form id="form1" runat="server">
+    <div>
+    
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+           
+        </asp:ScriptManager>
+    
+    </div>
+    </form>
+
+
+      <script type="text/javascript">
     
     //
     // called when the menu is set up
@@ -52,24 +64,42 @@
 	function onPlayerReady( arg )
 	{
 	    var difficultyMethod = "Setup" + "<%= GetMovement() %>";
+	    $.ajax({
+	        type: "POST",
+	        url: 'Game.aspx/CompleteLevel',
+	        data: "{ level : "+level+" }",
+	        contentType: 'application/json; charset=utf-8'
+	    }).done(function() {
+          
+	    });
 
 	    SendMessage('hero', difficultyMethod);
 	    SendMessage('hero', "SetSteps", <%= Steps %>);
 	}
 
-    function onLevelComplete(){
+    function onLevelComplete(level){
+        $.ajax({
+            type: "POST",
+            url: 'Game.aspx/CompleteLevel',
+            data: "{ level : "+level+" }",
+            contentType: 'application/json; charset=utf-8'
+        }).done(function() {
+          
+        });
+    }
 
+    function onHeartbeat(timeRemaining){
+        $.ajax({
+            type: "POST",
+            url: 'Game.aspx/DoHeartbeat',
+            data: "{ time : "+timeRemaining+" }",
+            contentType: 'application/json; charset=utf-8'
+        }).done(function() {
+          
+        });
     }
 
 </script>
-    <form id="form1" runat="server">
-    <div>
-    
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
-        </asp:ScriptManager>
-    
-    </div>
-    </form>
 
   </body>
 </html>
