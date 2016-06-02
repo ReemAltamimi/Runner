@@ -17,7 +17,11 @@
                 <asp:BoundField DataField="dateTim" HeaderText="dateTim" SortExpression="dateTim" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RegisterationConnectionString %>" SelectCommand="SELECT [answer], [posterName], [dateTim] FROM [Thread]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RegisterationConnectionString %>" SelectCommand="SELECT [answer], [posterName], [dateTim] FROM [Thread] WHERE ([forumId] = @forumId)">
+            <SelectParameters>
+                <asp:SessionParameter Name="forumId" SessionField="forumId" />
+            </SelectParameters>
+        </asp:SqlDataSource>
     
     </div>
         <asp:TextBox ID="txbComment" runat="server" Height="60px" TextMode="MultiLine" Width="300px"></asp:TextBox>
