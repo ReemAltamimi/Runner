@@ -50,10 +50,16 @@
             border:5px outset;
         }
         .style5 {
-            position:fixed; top:420px; left:690px;
+            position:fixed; top:420px; left:520px;
         }
         .style6 {
-            position:fixed; top:420px; left:530px;
+            position:fixed; top:420px; left:420px;
+        }
+        .style7 {
+            position:fixed; top:420px; left:620px;
+        }
+        .style8 {
+            position:fixed; top:420px; left:720px;
         }
 
      </style>
@@ -108,6 +114,16 @@
                     <td>
                           <asp:Button ID="btnLogout" runat="server" OnClick="btnLogout_Click" Text="Logout" 
                               CssClass="style5" Height="80px" Width="100px" BackColor="#004080" ForeColor="White" />
+
+                    </td>
+                    <td>
+                          <asp:Button ID="btnLeaderBoard" runat="server" OnClick="btnLeaderboard_Click" Text="Leaderboard" 
+                              CssClass="style7" Height="80px" Width="100px" BackColor="#004080" ForeColor="White" />
+
+                    </td>
+                    <td>
+                          <asp:Button ID="btnChatRoom" runat="server" OnClick="btnChatRoom_Click" Text="ChatRoom" 
+                              CssClass="style8" Height="80px" Width="100px" BackColor="#004080" ForeColor="White" />
 
                     </td>
                 </tr>
