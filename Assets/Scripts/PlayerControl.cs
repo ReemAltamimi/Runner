@@ -23,6 +23,7 @@ public class PlayerControl : MonoBehaviour
     public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 	public float[] jumpForce = { 1000f, 600f };			// Amount of force added when the player jumps.
 	public AudioClip[] taunts;				// Array of clips for when the player taunts.
+    public AudioClip timeWarning;
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
     public int maxJump = 2;
@@ -59,7 +60,7 @@ public class PlayerControl : MonoBehaviour
         if (Application.isEditor)
         {
             SetSteps(5000);
-            SetTime(60);
+            SetTime(600);
             switch (debugSpeed)
             {
                 case Speed.Slow:
@@ -174,13 +175,27 @@ public class PlayerControl : MonoBehaviour
             if (Mathf.FloorToInt(playTimeRemaining) != playTimeRemainingSeconds)
             {
                 playTimeRemainingSeconds = Mathf.FloorToInt(playTimeRemaining);
-                System.TimeSpan span = new System.TimeSpan(0, 0, playTimeRemainingSeconds);
-                
-                timeText.text = "Time:" + Mathf.FloorToInt((float)span.TotalMinutes) + "-" + span.Seconds.ToString("00");
+               
+
+                if (playTimeRemainingSeconds < 10)
+                {
+                    GetComponent<AudioSource>().PlayOneShot(timeWarning);
+                }
+                if (playTimeRemainingSeconds >= 0)
+                {
+                    System.TimeSpan span = new System.TimeSpan(0, 0, playTimeRemainingSeconds);
+
+                    timeText.text = "Time:" + Mathf.FloorToInt((float)span.TotalMinutes) + "-" + span.Seconds.ToString("00");
+                }
+                else
+                {
+                    Application.ExternalCall("onHeartbeat", 0);
+                    UnityEngine.SceneManagement.SceneManager.LoadScene("TimeEnd");
+                }
             }
             if (heartbeatTimeRemaining < 0)
             {
-                heartbeatTimeRemaining = Mathf.Min(heartbeatTime, playTimeRemaining);
+                heartbeatTimeRemaining = Mathf.Min(heartbeatTime, Mathf.Max(0,playTimeRemaining));
                 Application.ExternalCall("onHeartbeat", playTimeRemaining);
             }
         }

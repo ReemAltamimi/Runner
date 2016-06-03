@@ -6760,7 +6760,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1763911668}
-  m_RootOrder: 9
+  m_RootOrder: 0
 --- !u!212 &816430468
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14701,6 +14701,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 816430467}
   - {fileID: 919335747}
   - {fileID: 1783018551}
   - {fileID: 230313328}
@@ -14710,7 +14711,6 @@ Transform:
   - {fileID: 2042354836}
   - {fileID: 2020470417}
   - {fileID: 618108178}
-  - {fileID: 816430467}
   - {fileID: 561567141}
   - {fileID: 1502469609}
   - {fileID: 1448007503}

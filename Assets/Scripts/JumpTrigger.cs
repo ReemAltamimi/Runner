@@ -5,7 +5,6 @@ public class JumpTrigger : MonoBehaviour {
 
     public float jumpPower = 10;
     public float cooldownTime = 2;
-
     private float coolDown = 0;
     // Use this for initialization
     void OnTriggerEnter2D(Collider2D col)
@@ -20,6 +19,12 @@ public class JumpTrigger : MonoBehaviour {
 
             velocity.y = jumpPower;
             playerRig.velocity = velocity;
+
+            var audioSource = GetComponent<AudioSource>();
+            if (audioSource != null)
+            {
+                audioSource.Play();
+            }
         }
     }
 
