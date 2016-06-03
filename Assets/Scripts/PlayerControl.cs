@@ -59,7 +59,7 @@ public class PlayerControl : MonoBehaviour
         if (Application.isEditor)
         {
             SetSteps(5000);
-            SetTime(playTimeRemainingSeconds);
+            SetTime(60);
             switch (debugSpeed)
             {
                 case Speed.Slow:
@@ -176,7 +176,7 @@ public class PlayerControl : MonoBehaviour
                 playTimeRemainingSeconds = Mathf.FloorToInt(playTimeRemaining);
                 System.TimeSpan span = new System.TimeSpan(0, 0, playTimeRemainingSeconds);
                 
-                timeText.text = "Time:" + Mathf.FloorToInt((float)span.TotalMinutes) + ":" + span.Seconds.ToString("00");
+                timeText.text = "Time:" + Mathf.FloorToInt((float)span.TotalMinutes) + "-" + span.Seconds.ToString("00");
             }
             if (heartbeatTimeRemaining < 0)
             {
