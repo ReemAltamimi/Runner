@@ -12,8 +12,8 @@ public partial class Default2 : System.Web.UI.Page
     int steps;
     int unlockedLevels;
     float timeRemaining;
-    int[] unlockedHearts;
-
+    List<int> unlockedHearts = new List<int>();
+    List<int> stars = new List<int>();
     public int Steps{
         get { return steps; }
     }
@@ -24,8 +24,19 @@ public partial class Default2 : System.Web.UI.Page
     }
 
 
-    public int[] UnlockedHearts {
-        get { return unlockedHearts; }
+    public String UnlockedHearts {
+        get {
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            for (int i = 0; i < unlockedHearts.Count; i++)
+            {
+                builder.Append(unlockedHearts[i]);
+                if (i < unlockedHearts.Count - 1)
+                {
+                    builder.Append(",");
+                }
+            }
+            return builder.ToString();
+        }
     }
 
     public float TimeRemaining {
@@ -44,10 +55,41 @@ public partial class Default2 : System.Web.UI.Page
         userId = Session["UserId"].ToString();
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
-        unlockedLevels = 4;// TODO: get unlocked levels from DB
-        timeRemaining = 4800;// TODO: get time remaining from DB
+        // TODO: get unlocked levels from DB
+        var sessionLevels = HttpContext.Current.Session["unlockedLevels"];
+        if (sessionLevels != null)
+        {
+            unlockedLevels = (int)sessionLevels;
+        }
+        else
+        {
+            unlockedLevels = 1;
+            HttpContext.Current.Session["unlockedLevels"] = unlockedLevels;
+        }
+        // TODO: get time remaining from DB
+        var sessionTime = HttpContext.Current.Session["timeRemaining"];
+        if (sessionTime != null)
+        {
+            timeRemaining = (int)timeRemaining;
+        }
+        else
+        {  
+            timeRemaining = 4800;
+            HttpContext.Current.Session["timeRemaining"] = timeRemaining;
+        }
+
         // TODO: get unlocked hearts from DB
-        unlockedHearts = new int[]{ 1, 2, 2, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0};
+        var sessionUnlockedHearts = HttpContext.Current.Session["unlockedHearts"];
+        if (sessionUnlockedHearts != null)
+        {
+            unlockedHearts = sessionUnlockedHearts as List<int>;
+        }
+        else
+        {
+            // TODO: get unlocked hearts from DB
+            unlockedHearts = new List<int>(new int[] { 1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 });
+            HttpContext.Current.Session["unlockedHearts"] = unlockedHearts;
+        }
     }
 
 
@@ -67,6 +109,8 @@ public partial class Default2 : System.Web.UI.Page
         return "Fast";
     }
 
+
+
     [WebMethod(EnableSession = true)]
     public static void CompleteLevel(int level, int stars, int hearts)
     {
@@ -74,7 +118,18 @@ public partial class Default2 : System.Web.UI.Page
         // TODO: write unlocked level to db (possibly via User object or database interface class) here
         // TODO: write stars count to db
         // TODO: write hearts count to db
-        HttpContext.Current.Session["unlockedLevels"] = level;
+       
+        var sessionObj = HttpContext.Current.Session["unlockedLevels"];
+       if (sessionObj != null)
+        {
+            List<int> heartList = sessionObj as List<int>;
+            while (heartList.Count < level - 1)
+            {
+                heartList.Add(0);
+            }
+            heartList[level - 1] = hearts;
+        }
+        
     }
 
 

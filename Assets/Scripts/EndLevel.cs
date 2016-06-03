@@ -12,7 +12,7 @@ public class EndLevel : MonoBehaviour {
         if (other.gameObject.tag == "Player")
         {
             RewardScreen.SetNextLevel(nextLevel);
-            Application.ExternalCall("onLevelComplete", SceneManager.GetActiveScene().buildIndex);
+            Application.ExternalCall("onLevelComplete", SceneManager.GetActiveScene().buildIndex, Hearts.GetStarCount(), Hearts.GetHeartCount());
             UnityEngine.SceneManagement.SceneManager.LoadScene("Reward");
         }
     }

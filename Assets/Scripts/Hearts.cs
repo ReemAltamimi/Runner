@@ -22,6 +22,18 @@ public class Hearts : MonoBehaviour {
         total = value;
     }
 
+    public static int GetStarCount() { return total; }
+    public static int GetHeartCount()
+    {
+        int heartCount = 0;
+        while (heartCount < ms_thressholds.Length && ms_thressholds[heartCount] < total)
+        {
+            heartCount++;
+        }
+        return heartCount;
+    }
+
+
     private static int[] ms_thressholds = { 10, 20, 30};
     private static int total = 30;
     

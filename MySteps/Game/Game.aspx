@@ -54,13 +54,12 @@
 
       <script type="text/javascript">
           var timeRemaining = <%= TimeRemaining %>;
-          var unlockedHearts = <%= UnlockedHearts %>;
     //
     // called when the menu is set up
     function onMenuReady(){
         console.log("onMenuReady");
-        SendMessage('Menu', 'SetUnlocked', <%= UnlockedLevels %>)
-        SendMessage('Menu', 'SetUnlockedHearts', <%= UnlockedHearts %>)
+        SendMessage('Menu', 'SetUnlocked', <%= UnlockedLevels %>);
+        SendMessage('Menu', 'SetUnlockedHearts','<%= UnlockedHearts %>');
     }
 
 	function onPlayerReady( arg )
@@ -80,11 +79,11 @@
 	    SendMessage('hero', "SetTime", timeRemaining);
 	}
 
-    function onLevelComplete(level){
+    function onLevelComplete(level, stars, hearts){
         $.ajax({
             type: "POST",
             url: 'Game.aspx/CompleteLevel',
-            data: "{ level : "+level+" }",
+            data: "{ level : "+level+ ",  stars:"+stars+", hearts:"+hearts+"}",
             contentType: 'application/json; charset=utf-8'
         }).done(function() {
           

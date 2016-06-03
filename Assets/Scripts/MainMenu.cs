@@ -8,7 +8,7 @@ using System.Collections;
 
 public class MainMenu : MonoBehaviour {
     public int unlocked = 3;
-    public int[] debugUnlockedHearts = { 1, 2, 0};
+    public string debugUnlockedHearts = "1, 2, 0";
     List<Button> m_buttons = new List<Button>();
 	// Use this for initialization
 	void Start () {
@@ -42,14 +42,24 @@ public class MainMenu : MonoBehaviour {
         }
     }
 
-    void SetUnlockedHearts(int[] hearts)
+    void SetUnlockedHearts(string heartstring)
     {
+        var heartstrings = heartstring.Split(new char[] { ',' });
+        List<int> hearts = new List<int>();
+        foreach (var heartVal in heartstrings)
+        {
+            int heartCount = 0;
+            if (int.TryParse(heartVal, out heartCount))
+            {
+                hearts.Add(heartCount);
+            }
+        }
         for (int buttonidx = 0; buttonidx < m_buttons.Count; buttonidx++)
         {
             // get all hearts
             var menuHearts = m_buttons[buttonidx].transform.GetComponentsInChildren<MenuHeart>();
             System.Array.Sort(menuHearts, (heart1, heart2) => { return (heart1.transform.position.x < heart2.transform.position.x)? -1: 1; });
-            if (buttonidx < hearts.Length && m_buttons[buttonidx].interactable)
+            if (buttonidx < hearts.Count && m_buttons[buttonidx].interactable)
             {
                 for (int i = 0; i < hearts[buttonidx]; i++)
                 {
