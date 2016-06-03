@@ -14,6 +14,7 @@ public class Hearts : MonoBehaviour {
     public static void SetThreshholds(int[] threshholds)
     {
         Debug.Assert(threshholds.Length == 3);
+        ms_thressholds = threshholds;
     }
 
     public static void SetTotal(int value)
