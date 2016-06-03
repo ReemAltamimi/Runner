@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="shortcut icon" href="TemplateData/favicon.ico" />
     <script src="TemplateData/UnityProgress.js"></script>
-    <script src="Scripts/jquery-2.2.3.js"></script>
+    <script src="/Scripts/jquery-2.2.3.min.js"></script>
   </head>
   <body class="template">
     <p class="header"><span>Unity WebGL Player | </span>_2D v3</p>
@@ -53,12 +53,14 @@
 
 
       <script type="text/javascript">
-    
+          var timeRemaining = <%= TimeRemaining %>;
+          var unlockedHearts = <%= UnlockedHearts %>;
     //
     // called when the menu is set up
     function onMenuReady(){
         console.log("onMenuReady");
         SendMessage('Menu', 'SetUnlocked', <%= UnlockedLevels %>)
+        SendMessage('Menu', 'SetUnlockedHearts', <%= UnlockedHearts %>)
     }
 
 	function onPlayerReady( arg )
@@ -67,7 +69,7 @@
 	    $.ajax({
 	        type: "POST",
 	        url: 'Game.aspx/CompleteLevel',
-	        data: "{ level : "+level+" }",
+	        data: "{ level : 1 }",
 	        contentType: 'application/json; charset=utf-8'
 	    }).done(function() {
           
@@ -75,6 +77,7 @@
 
 	    SendMessage('hero', difficultyMethod);
 	    SendMessage('hero', "SetSteps", <%= Steps %>);
+	    SendMessage('hero', "SetTime", timeRemaining);
 	}
 
     function onLevelComplete(level){
@@ -88,7 +91,8 @@
         });
     }
 
-    function onHeartbeat(timeRemaining){
+    function onHeartbeat(time){
+        timeRemaining = time;
         $.ajax({
             type: "POST",
             url: 'Game.aspx/DoHeartbeat',

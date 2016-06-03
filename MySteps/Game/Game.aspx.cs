@@ -12,6 +12,8 @@ public partial class Default2 : System.Web.UI.Page
     int steps;
     int unlockedLevels;
     float timeRemaining;
+    int[] unlockedHearts;
+
     public int Steps{
         get { return steps; }
     }
@@ -21,6 +23,14 @@ public partial class Default2 : System.Web.UI.Page
         get { return unlockedLevels; }
     }
 
+
+    public int[] UnlockedHearts {
+        get { return unlockedHearts; }
+    }
+
+    public float TimeRemaining {
+        get { return timeRemaining; }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +45,9 @@ public partial class Default2 : System.Web.UI.Page
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
         unlockedLevels = 4;// TODO: get unlocked levels from DB
-        timeRemaining = 3600;// TODO: get time remaining from DB
+        timeRemaining = 4800;// TODO: get time remaining from DB
+        // TODO: get unlocked hearts from DB
+        unlockedHearts = new int[]{ 1, 2, 2, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0};
     }
 
 
@@ -56,10 +68,12 @@ public partial class Default2 : System.Web.UI.Page
     }
 
     [WebMethod(EnableSession = true)]
-    public static void CompleteLevel(int level)
+    public static void CompleteLevel(int level, int stars, int hearts)
     {
-        int userId = (int)(HttpContext.Current.Session["UserId"]);
+        string userId = (string)(HttpContext.Current.Session["UserId"]);
         // TODO: write unlocked level to db (possibly via User object or database interface class) here
+        // TODO: write stars count to db
+        // TODO: write hearts count to db
         HttpContext.Current.Session["unlockedLevels"] = level;
     }
 
@@ -67,12 +81,10 @@ public partial class Default2 : System.Web.UI.Page
     [WebMethod(EnableSession = true)]
     public static void DoHeartbeat(float time)
     {
-        float timeRemaining = (float)HttpContext.Current.Session["timeRemaining"];
-        timeRemaining -= time;
+        string userId = (string)(HttpContext.Current.Session["UserId"]);
         // TODO: write time remaining to db (possibly via User object or database interface class) here
         HttpContext.Current.Session["timeRemaining"] = time;
         
     }
-
   
 }

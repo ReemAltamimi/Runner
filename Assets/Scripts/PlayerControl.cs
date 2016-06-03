@@ -201,6 +201,14 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        if (doHeartbeat)
+        {
+            heartbeatTimeRemaining = Mathf.Min(heartbeatTime, Mathf.Max(0, playTimeRemaining));
+            Application.ExternalCall("onHeartbeat", playTimeRemaining);
+        }
+    }
 
 	void FixedUpdate ()
 	{
