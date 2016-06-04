@@ -4,20 +4,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <div class="style1">
+    <div style="background-color:#FF8080" class="style1"  >
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="white" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
 
     </div>
        <div class="style2">
 
             <asp:Label ID="Label1" runat="server" Text="Please enter your login details below :" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" ForeColor="#ffccff" Font-Underline="true" style ="position:fixed; left: 32%; top:300px"></asp:Label>
+                 Font-Names="Comic Sans MS" ForeColor="#ffccff" Font-Underline="true" style ="position:fixed; left: 25vw; top:30vh"></asp:Label>
             
             <table class="auto-style1">
                 <tr>
-                    <td class="auto-style6">User Name</td>
+                    <td class="auto-style6" >User Name</td>
                     <td class="auto-style3">
                         <asp:TextBox ID="txbUserName" runat="server" Width="200px"></asp:TextBox>
                     </td>
@@ -45,10 +45,10 @@
 
             <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="#FF8080"
                 Font-Names="Comic Sans MS" Font-Bold="True" ForeColor="White"
-                style="position:fixed; left:45%; top:580px"  Width="140" Height="50px" 
+                style="position:fixed; left:45vw; top:75vh"  Width="140" Height="50px" 
                 OnClick="btnLogin_Click" BorderStyle="Outset" Font-Size="Large" />
 
-           <a href="Default.aspx" style="position:fixed; left:60%; top:700px">Back to home page</a>
+           <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
 
 
 

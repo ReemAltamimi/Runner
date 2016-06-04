@@ -5,14 +5,14 @@
     <div class ="style1" style="background:#AD5BFF">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="white" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
     </div>
         <div class="style2">
 
             <asp:Label ID="Label1" runat="server" Text="Please enter your details below to be a member:" Font-Bold ="False"
-                 Font-Names="Cooper Black" style ="position:fixed; left: 32%; top:300px" ForeColor="#FFFF99"></asp:Label>
+                 Font-Names="Cooper Black" style ="position:fixed; left: 25vw; top:25vh" ForeColor="#FFFF99"></asp:Label>
             
-            <table class="auto-style1">
+            <table class="auto-style10">
                 <tr>
                     <td class="auto-style6">User Name</td>
                     <td class="auto-style7">
@@ -64,7 +64,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9" colspan="3">
-                        <asp:Label ID="Label2" runat="server" ForeColor="#FFCCCC" Font-Underline="True"></asp:Label>
+                        <asp:Label ID="Label2" runat="server" ForeColor="#FFCCCC" Font-Underline="True" Font-Bold="true"></asp:Label>
                       
                     </td>
                 </tr>
@@ -72,9 +72,9 @@
 
             <asp:Button ID="btnRegister" runat="server" Text="Register" BackColor="#AD5BFF"
                 Font-Names="Cooper Black" ForeColor="white"
-                style="position:fixed; left:45%; top:680px"  Width="140" Height="50px" OnClick="btnRegister_Click" Font-Size="Medium" />
+                style="position:fixed; left:38vw; top:82vh"  Width="140" Height="50px" OnClick="btnRegister_Click" Font-Size="Medium" />
 
-            <a href="Default.aspx" style="position:fixed; left:60%; top:700px">Back to home page</a>
+            <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
         </div>
     </asp:Content>
  
@@ -100,6 +100,13 @@
             font-family:'Comic Sans MS';
             font-size:medium;
             height: 40px;
+        }
+        .auto-style10{
+             width: 40vw;
+            height: 30vh;
+            position:fixed;
+            top: 30vh;
+            left:25vw;
         }
     </style>
 </asp:Content>

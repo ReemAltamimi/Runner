@@ -51,7 +51,7 @@ public partial class Registeration : System.Web.UI.Page
                 txbUserName.Text = "";
                 txbEmail.Text = "";
                 txbCodeBand.Text = "";
-                Label1.Text = "User already exists";
+                Label2.Text = "User already exists";
             }
             else
             {
@@ -69,7 +69,7 @@ public partial class Registeration : System.Web.UI.Page
                         txbUserName.Text = "";
                         txbEmail.Text = "";
                         txbCodeBand.Text = "";
-                        Label1.Text = "Your band code has already been used";
+                        Label2.Text = "Your band code has already been used";
                     }
 
                     //The user has not registered before
@@ -90,7 +90,7 @@ public partial class Registeration : System.Web.UI.Page
                         txbUserName.Text = "";
                         txbEmail.Text = "";
                         txbCodeBand.Text = "";
-                        Label1.Text = "Registeration is successfully completed";
+                        Label2.Text = "Registeration is successfully completed";
                     }
 
                 }
@@ -100,7 +100,7 @@ public partial class Registeration : System.Web.UI.Page
                     txbUserName.Text = "";
                     txbEmail.Text = "";
                     txbCodeBand.Text = "";
-                    Label1.Text = "You are not one of the participants, check your band code";
+                    Label2.Text = "You are not one of the participants, check your band code";
 
                 }              
             }
@@ -108,7 +108,7 @@ public partial class Registeration : System.Web.UI.Page
         }
         catch(Exception ex)
         {
-            Label1.Text="Error :"+ex.ToString();
+            Label2.Text="Error :"+ex.ToString();
         }
         
     }

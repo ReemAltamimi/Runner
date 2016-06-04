@@ -49,4 +49,9 @@ public partial class Main : System.Web.UI.Page
     {
         Response.Redirect("~/ChatRoom.aspx");
     }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Default.aspx");
+    }
 }

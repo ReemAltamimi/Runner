@@ -6,33 +6,31 @@
 <head runat="server">
     <title>Physical Activity & Screen Time Management</title>
     <style type="text/css">
+
         /*Title banner style*/
         .style1 {
-            width: 100%;
-            height: 200px;
+            width: 100vw;
+            height: 20vh;
             position:fixed;
             background-color:#adaaaa;
         }
+
         /*Page style*/
         .style2 {
             background-color:#004080;
         }
+
         /*Middle div style*/
         .style3 {
-             width: 550px;
-            height: 480px;
+            width: 50vw;
+            height: 70vh;
             position: fixed;
-            top: 220px;
-            left:30%;
+            top: 22vh;
+            left:24vw;   
         }
+
         /*Table cell style*/
-        .style4 {
-            max-width:275px;
-            min-width:275px;
-            min-height:230px;
-            max-height:230px;
-            width:275px;
-            height:230px;
+        .style4 {            
             vertical-align:middle;
             text-align:center;
             border:8px outset #004080 ;
@@ -40,17 +38,13 @@
 
         /*Table style*/
         .auto-style1 {
-            width: 100%;
-            height:480px;
+          
+            position:fixed;
+            left:24vw;
+            top:23vh;
+            width: 50vw;
+            height:70vh;         
         }
-
-        /*Circle style*/
-        /*.circle-container{width:50px;height:50px}
-        .quarter{width:25px;height:25px}
-        .top-left{border-top-left-radius:25px;background:#FFFF80;float:left}
-        .top-right{border-top-right-radius:25px;background:#FF8080;float:right}
-        .bottom-left{border-bottom-left-radius:25px;background:#AD5BFF;float:left}
-        .bottom-right{border-bottom-right-radius:25px;background:#80FF80;float:right}*/
         
         .circle {
             width:40px;
@@ -59,39 +53,36 @@
             -moz-border-radius: 15px;
             border-radius: 15px; 
             border: solid outset 1px;
-        }
-
-     
+        }     
 
      </style>
+
 </head>
+
+
 <body class="style2">
     <form id="form1" runat="server">
+
+        
     <div class="style1">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="True"
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
        
         
 
-        <div class="circle" style="position:fixed; top:10px; left:15px; background:#FFFF80"></div>
-        <div class="circle" style="position:fixed; top:162px; left:15px; background:#AD5BFF"></div>
-        <div class="circle" style="position:fixed; top:10px; left:97%; background:#FF8080"></div>
-        <div class="circle" style="position:fixed; top:162px; left:97%; background:#80FF80"></div>
-        
-
-        
-        
-    </div>
-        <div style="position:fixed; top:220px; width:400px; height:500px; border:8px outset #004080">
+        <div class="circle" style="position:fixed; top:0vh; left:0vw; background:#FFFF80"></div>
+        <div class="circle" style="position:fixed; top:15vh; left:0vw; background:#AD5BFF"></div>
+        <div class="circle" style="position:fixed; top:0vh; left:96vw; background:#FF8080"></div>
+        <div class="circle" style="position:fixed; top:15vh; left:96vw; background:#80FF80"></div>      
+     </div>
 
 
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="400px" Height="500px"  />
-
-
-        </div>
+     <div style="position:fixed; top:22vh; width:20vw; height:80vh">
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="300px" Height="480px" />
+     </div>
  
-        <div class="style3">
+     <div class="style3">
 
             <table class="auto-style1">
                 <tr>
@@ -134,22 +125,9 @@
                     </td>
                 </tr>
             </table>
-
         </div>
-        <div style="position:fixed; left:71%; top:220px; width:400px; height:500px; border:8px outset #004080">
-
-
-            <asp:Image ID="Image2" runat="server"  Width="400px" Height="500px" ImageUrl="~/Images/ScreenTime1.png" />
-
-
-        </div>
-        
-        <div style="position:fixed; top:410px; left:670px; width:120px; height:100px">
-
-
-            <asp:Image ID="Image3" runat="server" ImageUrl="~/Images/fitbitDevice.png" Width="120px" Height="100px"  />
-
-
+        <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
+            <asp:Image ID="Image2" runat="server"  Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
         </div>
     </form>
 </body>

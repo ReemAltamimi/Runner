@@ -4,15 +4,15 @@
     <div class="style1" style="background: #80FF80">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
 
     </div>
     <div class="style2">
 
             <asp:Label ID="lblAbout" runat="server" Text="If you experience any technical issue or have 
                 any enquiries regarding this website please contact us via email by filling the boxes below:" 
-                Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:500px; text-align:justify; 
-                position:fixed; left: 32%; top:250px" ></asp:Label>
+                Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
+                position:fixed; left: 25vw; top:30vh" ></asp:Label>
 
        
 
@@ -39,18 +39,14 @@
                         <asp:Label ID="lblError" runat="server" ForeColor="#FFCCCC" Font-Underline="True"></asp:Label>
                     </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td class="auto-style10"> 
-                        <asp:Button ID="btnSubmit" runat="server" Text="Submit" BackColor="#80FF80" Font-Bold="true"
-                Font-Names="Cambria" ForeColor="white" Width="140" Height="40px" Font-Size="Medium" OnClick="btnSubmit_Click" />
-                    </td>
-                </tr>
             </table>
 
-       
+       <asp:Button ID="btnSubmit" runat="server" Text="Submit" BackColor="#80FF80" Font-Bold="true"
+           style="position:fixed; left:44vw; top:83vh" Font-Names="Cambria" ForeColor="white" 
+           Width="140" Height="40px" Font-Size="Medium" OnClick="btnSubmit_Click" />
+                    
 
-           <a href="Default.aspx" style="position:fixed; left:60%; top:700px">Back to home page</a>
+           <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
             
             
 
@@ -62,10 +58,11 @@
 <asp:Content ID="Content5" runat="server" contentplaceholderid="head">
     <style type="text/css">
         .auto-style6 {
-            position:fixed; 
-            left: 32%; 
-            top:350px;
-            width:500px;
+             width: 40vw;
+            height: 30vh;
+            position:fixed;
+            top: 40vh;
+            left:25vw;
         }
         .auto-style7 {
            font-family: Comic Sans MS;
@@ -84,13 +81,7 @@
             font-size:medium;
             height: 40px;
         }
-        .auto-style10 {
-            text-align:center;
-            position:fixed;
-            left:48%;
-            top:640px;
-        }
- 
+   
     </style>
 </asp:Content>
  
