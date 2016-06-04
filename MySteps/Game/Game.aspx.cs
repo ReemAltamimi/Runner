@@ -51,7 +51,6 @@ public partial class Default2 : System.Web.UI.Page
             Response.Redirect("~/Default.aspx");
             return;
         }
-
         userId = Session["UserId"].ToString();
         Session["DateTime"] = DateTime.Now;
         steps = Convert.ToInt32(Session["Steps"]);
@@ -70,7 +69,7 @@ public partial class Default2 : System.Web.UI.Page
         var sessionTime = HttpContext.Current.Session["timeRemaining"];
         if (sessionTime != null)
         {
-            timeRemaining = (int)timeRemaining;
+            timeRemaining = (float)sessionTime;
         }
         else
         {  
@@ -118,8 +117,9 @@ public partial class Default2 : System.Web.UI.Page
         // TODO: write unlocked level to db (possibly via User object or database interface class) here
         // TODO: write stars count to db
         // TODO: write hearts count to db
-       
-        var sessionObj = HttpContext.Current.Session["unlockedLevels"];
+
+        HttpContext.Current.Session["unlockedLevels"] = level+1;
+        var sessionObj = HttpContext.Current.Session["unlockedHearts"];
        if (sessionObj != null)
         {
             List<int> heartList = sessionObj as List<int>;
