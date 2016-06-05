@@ -29,22 +29,9 @@
         /*Chart Div Style*/
         .style5 {
             position:fixed;
-            top:220px;
+           top:22vh;
         }
-        /*table style*/
-        .style6 {
-            position:fixed;
-            left:32%;
-            top:350px;
 
-        }
-        /*lable style*/
-        .style7 {
-            position:fixed;
-            left:32%;
-            top:600px;
-
-        }
      </style>
 </head>
 <body class="style2">
@@ -87,7 +74,7 @@
         </asp:SqlDataSource>
  
         <div class="style5" >
-        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="420px" Height="500px" 
+        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="300px" Height="480px" 
             DataSourceID="SqlDataSource1" BackColor="#ffcccc">
             <Series>
                 <asp:Series Name="UserPhysicalSteps" XValueMember="DateAndTime" YValueMembers="DailySteps" XValueType="DateTime" YValueType="Int32"
@@ -105,13 +92,14 @@
                 </asp:ChartArea>
             </ChartAreas>
             <Legends>
-                    <asp:Legend Name="Legend1">
+                    <asp:Legend Name="Legend1" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
         </asp:Chart>
 
             <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
-                              ForeColor="#ff0066" Font-Size="Small" CssClass="style7"></asp:Label>
+                              ForeColor="#ff0066" Font-Size="Small" 
+                style ="position:fixed; left: 25vw; top:62vh" ></asp:Label>
 
             </div> 
      <div style="position:fixed; top:22vh; width:20vw; height:80vh">

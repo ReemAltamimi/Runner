@@ -24,7 +24,8 @@ public partial class Thread : System.Web.UI.Page
 
         PostThread.insertThread(cforumId, comment, name, date);
         GridView1.DataBind();
-        
+        txbComment.Text = "";
+               
 
     }
 }

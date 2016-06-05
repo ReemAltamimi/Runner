@@ -139,6 +139,9 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
         ScreenTimeChart.Series["UserScreenAmount"]["PixelPointWidth"] = "30";
         ScreenTimeChart.Series["ScreenLimit"]["PixelPointWidth"] = "30";
 
+        
+
+
         //Show the Screen time chart
         ScreenTimeChart.Visible = true;
         Label3.ForeColor = System.Drawing.Color.Green;

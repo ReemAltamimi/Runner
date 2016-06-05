@@ -10,8 +10,8 @@
     <style type="text/css">
         /*Title banner style*/
         .style1 {
-            width: 100%;
-            height: 200px;
+           width: 100vw;
+            height: 20vh;
             position:fixed;
             background-color:#adaaaa;
         }
@@ -21,23 +21,24 @@
         }
         /*Middle div style*/
         .style3 {
-             width: 600px;
-            height: 500px;
+          width: 50vw;
+            height: 70vh;
             position: fixed;
-            top: 220px;
-            left:30%;
+            top: 22vh;
+            left:24vw;   
             background:#adaaaa;
         }
         /*Textbox style*/
         .style4 {
             position:fixed; 
-            left: 32%; 
-            top:480px
+           left: 25vw;
+           top:52vh;
         }
         /*Chart Div Style*/
         .style5 {
             position:fixed;
-            top:220px;
+           top:22vh;
+          /*width:20vw*/ 
         }
        
      </style>
@@ -47,35 +48,35 @@
     <div class="style1">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
 
     </div>
  
         <div class="style3">
 
             <asp:Label ID="Label1" runat="server" Text="Screen Time Management" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 37%; top:300px" ForeColor="#FFFF99" Font-Size="XX-Large"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFFF99" Font-Size="XX-Large"></asp:Label>
 
             <asp:Label ID="Label2" runat="server" Text="How many hours you spent today in front of screen:" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 32%; top:400px" Font-Underline="True"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:42vh" Font-Underline="True"></asp:Label>
 
             <asp:TextBox ID="txbScreenUnits" runat="server" Width="200px" CssClass="style4" ></asp:TextBox>
 
             <asp:Button ID="btnSubmit" runat="server" Width="120" Text="Submit"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:40%; top:600px" OnClick="btnSubmit_Click" />
+                                style="position:fixed; left:45vw; top:84vh" OnClick="btnSubmit_Click" />
             <asp:Button ID="btnViewChart" runat="server" Width="120" Text="View Chart"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:53%; top:600px" OnClick="btnViewChart_Click" />
+                                style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
            
 
             <asp:Label ID="Label3" runat="server" Text="" Font-Bold ="true" ForeColor="red"
-                 Font-Names="Cambria" style ="position:fixed; left: 32%; top:530px"></asp:Label>
+                 Font-Names="Cambria" style ="position:fixed; left: 25vw; top:62vh"></asp:Label>
 
         </div>
         
         <div class="style5">
-            <asp:Chart ID="ScreenTimeChart" runat="server" DataSourceID="SqlDataSource1" Visible="False" Width="420px" Height="500px" BackColor="#ffff99">
+            <asp:Chart ID="ScreenTimeChart" runat="server" DataSourceID="SqlDataSource1" Visible="False"  Width="300px" Height="480px" BackColor="#ffff99">
                 <series>
                     <asp:Series Name="UserScreenAmount" XValueMember="Date" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
@@ -89,7 +90,7 @@
                     </asp:ChartArea>
                 </chartareas>
                 <Legends>
-                    <asp:Legend Name="Legend1">
+                    <asp:Legend Name="Legend1" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
             </asp:Chart>
@@ -103,14 +104,11 @@
             </asp:SqlDataSource>
         </div>
 
-        <div style="position:fixed; left:71%; top:220px; width:400px; height:500px; border:8px outset #004080">
-
-
-            <asp:Image ID="Image2" runat="server"  Width="400px" Height="500px" ImageUrl="~/Images/ScreenTime1.png" />
-
-
-        </div>
-         <a href="Main.aspx" style="position:fixed; left:61%; top:680px">Back to main page</a>
+       <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
+            <asp:Image ID="Image2" runat="server"  Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
+     </div>
+          <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+   
     </form>
 </body>
 </html>
