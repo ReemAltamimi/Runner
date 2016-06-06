@@ -91,7 +91,7 @@ namespace MySteps
     
                 if (!IsPostBack)
                 {
-                    try
+                    /*try
                     {
                         //add token and refresh token into UserData table
                         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
@@ -104,6 +104,11 @@ namespace MySteps
 
                         command.ExecuteNonQuery();
                         conn.Close();
+                    }*/
+                    try
+                    {
+                        //add token and refresh token into UserData table
+                        UserData.insertTokens(Convert.ToInt32(userId), token, refreshToken);
                     }
                     catch (Exception ex)
                     {

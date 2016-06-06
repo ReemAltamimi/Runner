@@ -18,25 +18,87 @@ public partial class Registeration : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        /*if(IsPostBack)
-        {
-            //check if the user is already exists, it will worn the user
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-            conn.Open();
-            string checkUser = "select count(*) from UserData where UserName= '"+txbUserName.Text+"'";
-            SqlCommand command = new SqlCommand(checkUser, conn);
-            int temp = Convert.ToInt32(command.ExecuteScalar().ToString());
-            if (temp == 1)
-            {
-                Label2.Text="User already exists";
-            }
-            conn.Close();
-        }*/
 
     }
     protected void btnRegister_Click(object sender, EventArgs e)
     {
+        int isRegistered = 0;
         try
+        {
+            //check if the user is already exists, it will worn the user
+            isRegistered = UserData.checkUser(txbEmail.Text.Trim());
+            
+            if (isRegistered == 1)
+            {
+                txbUserName.Text = "";
+                txbEmail.Text = "";
+                txbPassword.Text = "";
+                txbConfPassword.Text = "";
+                txbCodeBand.Text = "";
+                Label2.Text = "Error: User already exists, please Enter details of a new user";
+            }
+            else
+            {
+                //check if the user is one of the experiment participants (Not allow the public to register)
+                //Check if the band code is correct.
+                isParticipant = checkParticipants(txbCodeBand.Text.Trim());
+                if (isParticipant)
+                {
+                    //Check if this band code has not used before (Allow one user with one band)
+                    int usedBand = UserData.checkBandCode(txbCodeBand.Text.Trim());
+                    
+                    if (usedBand == 1)
+                    {
+                        txbUserName.Text = "";
+                        txbEmail.Text = "";
+                        txbPassword.Text = "";
+                        txbConfPassword.Text = "";
+                        txbCodeBand.Text = "";
+                        Label2.Text = "Error: Your band code has already been used, check your band code";
+                    }
+
+                    //The user has not registered before
+                    //The user is one of the participants
+                    //The user has his/her band code which has not used before.
+                    else
+                    {
+                        //add user data entered in registeration page into UserData table
+                        int inserted = UserData.insertUserData(txbUserName.Text.Trim(), txbEmail.Text.Trim(), txbPassword.Text.Trim(), txbCodeBand.Text.Trim());
+                        if (inserted == 1)
+                        {
+                            txbUserName.Text = "";
+                            txbEmail.Text = "";
+                            txbPassword.Text = "";
+                            txbConfPassword.Text = "";
+                            txbCodeBand.Text = "";
+                            Label2.Text = "Great! Registeration is successfully completed";
+                        }
+
+                        
+                    }
+
+                }
+                //The band code is not correct and the user is not one of the participants
+                else
+                {
+                    txbUserName.Text = "";
+                    txbEmail.Text = "";
+                    txbPassword.Text = "";
+                    txbConfPassword.Text = "";
+                    txbCodeBand.Text = "";
+                    Label2.Text = "Error: You are not one of the participants, check your band code";
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Label2.Text = "Error :" + ex.ToString();
+        }
+
+
+        //==================================================================
+        /*try
         {
             //check if the user is already exists, it will worn the user
             SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
@@ -109,8 +171,8 @@ public partial class Registeration : System.Web.UI.Page
         catch(Exception ex)
         {
             Label2.Text="Error :"+ex.ToString();
-        }
-        
+        }*/
+
     }
 
     //Function to check the participant band code if it one of the listed in the participantsCodes array
