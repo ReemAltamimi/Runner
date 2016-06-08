@@ -107,7 +107,7 @@
        <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
             <asp:Image ID="Image2" runat="server"  Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
      </div>
-          <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+          <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
    
     </form>
 </body>

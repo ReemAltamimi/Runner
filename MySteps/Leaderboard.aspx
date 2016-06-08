@@ -2,10 +2,10 @@
 
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="style1" style="background:#FFFF80">
+    <div class="style1" style="background:#80FF80">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
 
     </div>
 
@@ -15,6 +15,10 @@
             border-style:none;
             background-color:SeaGreen;
             width: 600px;
+            align-items:center;
+            position:fixed; 
+            top:35vh;
+            left:27vw;
             }
         .TableHeader
         {
@@ -72,6 +76,10 @@
 
        <div class="style2">
 
+           <asp:Label ID="lblAbout" runat="server" Text="Check the list below to see your friends and their numbers of steps" 
+                Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
+                position:fixed; left: 25vw; top:30vh" ></asp:Label>
+
             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
 
            <asp:ListView ID="ListView1" runat="server">
@@ -121,7 +129,7 @@
                         <asp:Label 
                             ID="Label1"
                             runat="server"
-                            Text='<%# Eval("UserID")%>'
+                            Text='<%# Eval("UserName")%>'
                             >
                         </asp:Label>
                     </td>
@@ -136,8 +144,7 @@
                 </tr>                
             </ItemTemplate>
            </asp:ListView>
-                        <a href="Default.aspx" style="position:fixed; left:60%; top:700px">Back to home page</a>
-                       
+                       <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
         </div>
 
 </asp:Content> 

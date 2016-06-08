@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\LevelProgress.cs" />
     <Compile Include="Assets\Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\MenuHeart.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\MovingPlatform2.cs" />
     <Compile Include="Assets\Scripts\Pauser.cs" />

@@ -15,5 +15,14 @@ public partial class ChatRoom : System.Web.UI.Page
         else
             Session["UserName"] = Session["New"];
 
+        //this.Form.DefaultButton = "sendmessage";
+
     }
+
+    private void OnKeyDownHandler(object sender, EventArgs e)
+    {
+      
+    }
+
+
 }
