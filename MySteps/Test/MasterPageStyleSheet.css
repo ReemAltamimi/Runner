@@ -1,0 +1,66 @@
+﻿
+#container
+
+{
+    background-color: #004080;
+    width: 100vw;
+    height: 100vh;
+    border: solid 1px black;
+    margin: 0px auto;
+}
+
+ 
+
+#header
+
+{
+    width: 100vw;
+    height: 20vh;
+    color: #FFFFFF;
+
+}
+
+#leftSidePanel
+
+{
+    width: 20vw;
+    height: 70vh;
+    margin-top: 5px;
+    background-color: #778CB3;
+    color: #FFFFFF; 
+}
+
+#content
+
+{
+       width: 50vw;
+       height: 70vh;
+       background-color: gray;
+       margin-top: 5px;
+}
+
+#rightSidePanel
+
+{
+    width: 20vw;
+    height: 70vh;
+    margin-top: 5px;
+    background-color: #778CB3;
+    color: #FFFFFF;   
+}
+
+#footer
+
+{
+    background-color: #F7CB33;
+    padding: 12px;    
+    width: 100vw;
+    height:20vh;
+    color: #000000; 
+    font-size: 90%;
+    text-align: center;
+    clear: both;
+    border-top: 5px solid #FFFFFF;
+}
+
+
