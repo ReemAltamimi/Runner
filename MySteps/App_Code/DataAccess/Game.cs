@@ -16,6 +16,8 @@ using System.Data.SqlClient;
 /// </summary>
 public class Game
 {
+    public const float DEFAULT_TIME = 3600;
+
     public Game()
     {
         //
@@ -23,13 +25,14 @@ public class Game
         //
     }
 
+
     //Fuction to insert game data into GameData table including(userid, date, unlockedLevel and timeofplay)
     public static int insertGameData(int userId, DateTime datetim, int unlockedLevel, float timeofPlay)
     {
         int rowsAffected = 0;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
-        {
+        {           
             string insertQuery = "INSERT INTO GameData (UserID,Date,UnLockedLevel,TimeOfPlay) VALUES (@id, @date, @unlocklevel, @timeofplay)";
             SqlCommand command = new SqlCommand(insertQuery, connection);
 
@@ -44,6 +47,26 @@ public class Game
         }
 
         return rowsAffected;
+    }
+
+    public static bool gameDayRecordExists(int userId)
+    {
+        bool found = false;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            var date = DateTime.Today;
+            string getLevel = "select UnLockedLevel from gamedata where[UserId] = @UserId and CAST([Date] AS DATE) = @Today";
+            SqlCommand command = new SqlCommand(getLevel, connection);
+            command.Parameters.Add(new SqlParameter("UserId", userId));
+            command.Parameters.Add(new SqlParameter("Today", DateTime.Today));
+            var levelObj = command.ExecuteScalar();
+            found = levelObj != null;
+            connection.Close();
+
+        }
+
+        return found;
     }
 
 
@@ -93,17 +116,20 @@ public class Game
 
     //function to get the last unlocked level from the GameData table
     //This function should get the date value only without the time
-    public static int getUnLockedLevel(int userId, DateTime datetim)
+    public static int getUnLockedLevel(int userId)
     {
-        int level = 0;
+        int level = 1;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string getLevel = "SELECT UnLockedLevel FROM GameData where UserID = '" + userId + "' AND CAST(GameData.Date as DATE) = '" + datetim + "'";
+            string getLevel = "select UnLockedLevel from gamedata where[UserId] = @UserId and[Date] = (select max(Date) from GameData)" ;
             SqlCommand command = new SqlCommand(getLevel, connection);
-
-            level = (Int32)command.ExecuteScalar();
-
+            command.Parameters.Add(new SqlParameter("UserId", userId));
+            var levelObj = command.ExecuteScalar(); ;
+            if (levelObj != null)
+            {
+                level = (Int32)levelObj;
+            }
 
             connection.Close();
 
@@ -116,15 +142,19 @@ public class Game
     //This function should get the date value only without the time
     public static float getTimeOfPlay(int userId, DateTime datetim)
     {
-        float timeofPlay = 0;
+        float timeofPlay = DEFAULT_TIME;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string getTime = "SELECT TimeOfPlay FROM GameData where UserID = '" + userId + "' AND CAST(GameData.Date as DATE) = '" + datetim + "'";
+            string getTime = "SELECT TimeOfPlay FROM GameData where UserID = @UserId AND CAST(GameData.Date as DATE) = @Today";
             SqlCommand command = new SqlCommand(getTime, connection);
-
-            timeofPlay = float.Parse(command.ExecuteScalar().ToString());
-
+            command.Parameters.Add(new SqlParameter("UserId", userId));
+            command.Parameters.Add(new SqlParameter("Today", datetim.Date));
+            var timeObj = command.ExecuteScalar();
+            if (timeObj != null)
+            {
+                timeofPlay = float.Parse(timeObj.ToString());
+            }
 
             connection.Close();
 

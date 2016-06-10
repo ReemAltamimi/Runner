@@ -16,6 +16,8 @@ using System.Data.SqlClient;
 /// </summary>
 public class UserLevels
 {
+    const int LEVEL_COUNT = 18;
+
     public UserLevels()
     {
         //
@@ -31,14 +33,14 @@ public class UserLevels
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string insertQuery = "INSERT INTO UserLevels (UserId,Level,Stars,Hearts) VALUES (@id, @level, @stars, @hearts)";
+            string insertQuery = "INSERT INTO UserLevels (UserId,Level,Stars,Hearts, Date) VALUES (@id, @level, @stars, @hearts, @Date)";
             SqlCommand command = new SqlCommand(insertQuery, connection);
 
             command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
             command.Parameters.Add("@level", SqlDbType.Int).Value = level;
             command.Parameters.Add("@stars", SqlDbType.Int).Value = stars;
             command.Parameters.Add("@hearts", SqlDbType.Int).Value = heart;
-
+            command.Parameters.Add(new SqlParameter("@date", DateTime.Now));
             rowsAffected = command.ExecuteNonQuery();
 
             connection.Close();
@@ -85,42 +87,38 @@ public class UserLevels
         return rowsAffected;
     }
 
-    //function to get the number of stars in a specific level from the UserLevels table
-    public static int getStars(int userId, int level)
-    {
-        int stars = 0;
-
-        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
-        {
-            string starQuery = "SELECT Stars FROM UserLevels WHERE UserId = '" + userId + "' AND Level = '" + level + "'";
-            SqlCommand command = new SqlCommand(starQuery, connection);
-
-            stars = (Int32)command.ExecuteScalar();
-
-            connection.Close();
-
-        }
-
-        return stars;
-    }
-
     //function to get the number of hearts in a specific level from the UserLevels table
-    public static int getHearts(int userId, int level)
+    public static List<int> getHearts(int userId)
     {
-        int hearts = 0;
+        List<int> levelhearts = new List<int>(new int[LEVEL_COUNT]);
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string heartsQuery = "SELECT Hearts FROM UserLevels WHERE UserId = '" + userId + "' AND Level = '" + level + "'";
+            string heartsQuery = "select [Level], [Hearts], [Date] from UserLevels where [UserId]=@UserId ORDER BY [Date]";
             SqlCommand command = new SqlCommand(heartsQuery, connection);
+            command.Parameters.Add(new SqlParameter("@UserId", userId));
+            
+            var reader = command.ExecuteReader();
+            while (reader.Read())
+            {
 
-            hearts = (Int32)command.ExecuteScalar();
+                var levelObj = reader["Level"];
+                var heartsObj = reader["Hearts"];
+                var dateObj = reader["Date"];
+
+                if (levelObj != null && heartsObj != null && dateObj != null)
+                {
+                    int level = (int)levelObj;
+                    int hearts = (int)heartsObj;
+                    levelhearts[level-1] = hearts;
+                }
+            }
 
             connection.Close();
 
         }
 
-        return hearts;
+        return levelhearts;
     }
 
 

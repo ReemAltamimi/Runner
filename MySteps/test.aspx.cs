@@ -30,12 +30,12 @@ public partial class test : System.Web.UI.Page
 
 
         //test getTimeOfPlay function
-        //int level = Game.getUnLockedLevel(userid, d);
+        //int level = Game.getUnLockedLevel(16, d);
         //Label1.Text = level.ToString();
 
         //test getTimeOfPlay function
-        //float time = Game.getTimeOfPlay(userid, d);
-        //Label1.Text = time.ToString();
+        float time = Game.getTimeOfPlay(16, DateTime.Now);
+        Label1.Text = time.ToString();
         //==================================================================
 
         //test 
