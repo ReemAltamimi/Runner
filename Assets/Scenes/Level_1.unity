@@ -3909,7 +3909,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: debugSpeed
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11444594, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: threeStars

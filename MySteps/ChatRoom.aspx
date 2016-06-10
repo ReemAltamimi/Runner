@@ -4,22 +4,46 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>SignalR Simple Chat</title>
+    <title>Chat Room</title>
     <style type="text/css">
         .container {
             background-color: #99CCFF;
             border: thick solid #808080;
-            padding: 20px;
-            margin: 20px;
+            /*padding: 20px;
+            margin: 20px;*/
+             width: 50vw;
+            height: 70vh;
+            position: fixed;
+            top: 22vh;
+            left:24vw;  
         }
+         /*Title banner style*/
+        .style1 {
+            width: 100vw;
+            height: 20vh;
+            position:fixed;
+            background-color:#adaaaa;
+        }
+        /*Page style*/
+        .style2 {
+            background-color:#004080;
+        }
+      
     </style>
 </head>
-<body>
-    <div class="container">
-        <input type="text" id="message" />
-        <input type="button" id="sendmessage" value="Send" />
-        <input type="hidden" id="displayname" />
-        <ul id="discussion">
+<body class="style2">
+
+    <div class="style1">
+        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
+            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
+            style="text-align:center; position:fixed; left:20vw; top:5vh" />
+
+    </div>
+    <div class="container">   
+        <input type="text" id="message" style="position: fixed; top: 25vh; left:26vw;" onkeypress="return EnterEvent(event)" />
+        <input type="button" id="sendmessage" value="Send" style="position: fixed; top: 30vh; left:26vw;" />
+        <input type="hidden" id="displayname" style="position: fixed; top: 35vh; left:26vw;" />
+        <ul id="discussion" style="position: fixed; top: 35vh; left:26vw;">
         </ul>
     </div>
     <!--Script references. -->
@@ -31,6 +55,13 @@
     <script src="signalr/hubs"></script>
     <!--Add script to update the page and send messages.--> 
     <script type="text/javascript">
+
+        function EnterEvent(e) {
+            if (e.keyCode == 13) {
+                document.getElementById("sendmessage").click();
+            }
+        }
+
         $(function () {
             // Declare a proxy to reference the hub. 
             var chat = $.connection.chatHub;
@@ -58,5 +89,21 @@
             });
         });
     </script>
+     <div style="position:fixed; top:22vh; width:20vw; height:80vh">
+
+
+            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="300px" Height="480px" />
+
+
+        </div>
+
+        <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
+
+
+            <asp:Image ID="Image2" runat="server"   Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
+
+
+        </div>
+
 </body>
 </html>

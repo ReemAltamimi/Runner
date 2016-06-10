@@ -27,7 +27,9 @@ public partial class Leaderboard : System.Web.UI.Page
 
 
 
-        string str = "SELECT * From PhysicalActivityData where DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+       // string str = "SELECT * From PhysicalActivityData where DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+
+        string str = "SELECT DailySteps, UserData.UserName From PhysicalActivityData INNER JOIN UserData ON PhysicalActivityData.UserID = UserData.Id where DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
 
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
         SqlDataAdapter sda = new SqlDataAdapter(str,conn);

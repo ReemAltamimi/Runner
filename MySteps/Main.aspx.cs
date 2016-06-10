@@ -13,10 +13,10 @@ public partial class Main : System.Web.UI.Page
             Response.Redirect("~/LoginPage.aspx");
 
     }
-    protected void btnLogout_Click(object sender, EventArgs e)
+    protected void btnHome_Click(object sender, EventArgs e)
     {
-        Session["New"] = null;
-        Response.Redirect("~/LoginPage.aspx");
+        //Session["New"] = null;
+        Response.Redirect("~/Default.aspx");
     }
     protected void btnScreenTime_Click(object sender, EventArgs e)
     {
@@ -48,5 +48,10 @@ public partial class Main : System.Web.UI.Page
     protected void btnChatRoom_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/ChatRoom.aspx");
+    }
+
+    protected void btnForum_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Forum.aspx");
     }
 }

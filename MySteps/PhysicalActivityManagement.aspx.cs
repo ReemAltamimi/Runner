@@ -91,7 +91,7 @@ namespace MySteps
     
                 if (!IsPostBack)
                 {
-                    try
+                    /*try
                     {
                         //add token and refresh token into UserData table
                         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
@@ -104,6 +104,11 @@ namespace MySteps
 
                         command.ExecuteNonQuery();
                         conn.Close();
+                    }*/
+                    try
+                    {
+                        //add token and refresh token into UserData table
+                        UserData.insertTokens(Convert.ToInt32(userId), token, refreshToken);
                     }
                     catch (Exception ex)
                     {
@@ -168,7 +173,12 @@ namespace MySteps
 
             // Insert data to database
             //add Physical activity data into PhysicalActivityData table
-            //Check if the user has already insert his/her data for today
+            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, steps,Convert.ToSingle(distance),minSed,minLActive,minFActive,minVActive);
+
+           
+            
+            
+            /*Check if the user has already insert his/her data for today
             SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
             conn1.Open();
 
@@ -208,7 +218,7 @@ namespace MySteps
                     command4.ExecuteNonQuery();
                 }
 
-                conn1.Close();
+                conn1.Close();*/
 
             //print the fitbit results on screen
             Label2.Text = "<br />";
@@ -221,7 +231,7 @@ namespace MySteps
 
         }
         
-        //This Function extraxt the value numbers from a string
+        //This Function extract the value numbers from a string
         //This function is used to extract the workout values from fitbit responses
         private string getNumberFromString(string str)
         {

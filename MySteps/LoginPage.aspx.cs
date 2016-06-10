@@ -25,7 +25,26 @@ public partial class LoginPage : System.Web.UI.Page
 
     protected void btnLogin_Click(object sender, EventArgs e)
     {
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
+        int userId;
+
+        userId = UserData.checkLogin(txbUserName.Text, txbPassword.Text);
+
+        if (userId == 0)
+        {
+            Label2.Text = "Error: User name or password is not correct ..";
+            txbUserName.Text = "";
+            txbPassword.Text = "";
+        }
+        else
+        {
+            Session["New"] = txbUserName.Text;
+            Session["UserId"] = userId;
+            Response.Redirect("~/Main.aspx");
+
+        }
+                
+        //==================================================================================
+        /*SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
         conn.Open();
         string checkUser = "select count(*) from UserData where UserName= '" + txbUserName.Text + "'";
         SqlCommand command1 = new SqlCommand(checkUser, conn);
@@ -57,7 +76,7 @@ public partial class LoginPage : System.Web.UI.Page
             Label2.Text = "Error: User name is not correct ..";
             txbUserName.Text = "";
         }
-        conn.Close();
+        conn.Close(); */
 
     }
 }

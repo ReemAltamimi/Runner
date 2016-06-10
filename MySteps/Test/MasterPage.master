@@ -1,0 +1,65 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="MasterPageStyleSheet.css" rel="stylesheet" />
+
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div id="container">
+
+        <div id="header">
+
+            <h4>Web Application Name</h4>
+
+        </div>
+              <div id="leftSidePanel">
+
+            <asp:ContentPlaceHolder ID="cphLeft" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+        <div id="content">
+
+          <asp:ContentPlaceHolder ID="cphContent" runat="server">
+
+          </asp:ContentPlaceHolder>       
+
+        </div>
+
+        <div id="rightSidePanel">
+
+            <asp:ContentPlaceHolder ID="cphRight" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+        <div id="footer">
+
+            <p>Common Footer Content</p>
+
+            <asp:ContentPlaceHolder ID="cphFooter" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+        </div>
+
+    </div>
+
+    <div>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

@@ -8,8 +8,8 @@
     <style type="text/css">
         /*Title banner style*/
         .style1 {
-            width: 100%;
-            height: 200px;
+            width: 100vw;
+            height: 20vh;
             position:fixed;
             background-color:#adaaaa;
         }
@@ -19,32 +19,19 @@
         }
         /*Middle div style*/
         .style3 {
-             width: 600px;
-            height: 100%;
+             width: 50vw;
+            height: 70vh;
             position: fixed;
-            top: 220px;
-            left:30%;
+            top: 22vh;
+            left:24vw;   
             background:#adaaaa;
         }
         /*Chart Div Style*/
         .style5 {
             position:fixed;
-            top:220px;
+           top:22vh;
         }
-        /*table style*/
-        .style6 {
-            position:fixed;
-            left:32%;
-            top:350px;
 
-        }
-        /*lable style*/
-        .style7 {
-            position:fixed;
-            left:32%;
-            top:600px;
-
-        }
      </style>
 </head>
 <body class="style2">
@@ -52,82 +39,29 @@
         <div class="style1">
         <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
             ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style=" text-align:center; position:fixed; left:4%; top:80px" />
+            style=" text-align:center; position:fixed; left:20vw; top:5vh" />
 
     </div>
         <div class="style3">
             <asp:Label ID="Label1" runat="server" Text="Physical Activity Statistics" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 36%; top:240px" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
-            <table class="style6">
-                <tr>
-                    <td>
+                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
+            
+             <asp:Label ID="Label4" runat="server" Text="Based on your Fitbit data" Font-Names="Comic Sans MS" 
+                            Font-Bold="True" ForeColor="#004080" Font-Underline="true"
+                  style="position:fixed; left: 25vw; top:42vh">
+                  </asp:Label>
 
-                        <asp:Label ID="Label2" runat="server" Text="Your Fitbit Data" Font-Names="Comic Sans MS" 
-                            Font-Bold="True" Font-Underline="true" ForeColor="#004080"></asp:Label>
+              <asp:Label ID="Label2" runat="server" Text="Your Fitbit Data" Font-Names="Comic Sans MS" 
+                            Font-Bold="True" ForeColor="#004080"
+                  style="position:fixed; left: 25vw; top:45vh">
 
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                         <!-- Show activities on the page -->
-    <%
-        if (this.Doc != null)
-        {
-    %>
-    <%--Unit System:
-    <%=this.Doc["result"]["unitSystem"].InnerText%><br />--%>
-    Active Score: 
-    <%=this.Doc["result"]["summary"]["activeScore"].InnerText%><br />
-    Calories Out: 
-    <%=this.Doc["result"]["summary"]["caloriesOut"].InnerText%><br />
-    Fairly Active Minutes: 
-    <%=this.Doc["result"]["summary"]["fairlyActiveMinutes"].InnerText%><br />
-    Lightly Active Minutes: 
-    <%=this.Doc["result"]["summary"]["lightlyActiveMinutes"].InnerText%><br />
-    Very Active Minutes: 
-    <%=this.Doc["result"]["summary"]["veryActiveMinutes"].InnerText%><br />
-    Sedentary Minutes: 
-    <%=this.Doc["result"]["summary"]["sedentaryMinutes"].InnerText%><br />
-    Steps: 
-    <%=this.Doc["result"]["summary"]["steps"].InnerText%><br />
-    Distances:<br /> ** Detailed in the table **
-    <table border="1" style="border-color:#004080; border:solid; position:fixed; left:52%; top: 350px" >
-        <tr>
-            <th style="text-align:center">
-                Activity
-            </th>
-            <th style="text-align:center">
-                Distance
-            </th>
-        </tr>
-        <%
-            foreach (System.Xml.XmlNode distance in this.Doc["result"]["summary"]["distances"].ChildNodes)
-            {
-        %>
-        <tr>
-            <td style="color:#ff0066">
-                <%=distance["activity"].InnerText%>
-            </td>
-            <td style="text-align:center">
-                <%=distance["distance"].InnerText%>
-            </td>
-        </tr>
-        <%
-            }
-        %>
-    </table>
-    <%
-        }
-    %>
+              </asp:Label>
 
-                    </td>
-                </tr>
-            </table>
-
+     
             
             <asp:Button ID="btnViewChart" runat="server" Width="150" Text="View Chart"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:34%; top:690px" OnClick="btnViewChart_Click" />
+                                style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
 
         </div>
    
@@ -140,7 +74,7 @@
         </asp:SqlDataSource>
  
         <div class="style5" >
-        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="420px" Height="500px" 
+        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="300px" Height="480px" 
             DataSourceID="SqlDataSource1" BackColor="#ffcccc">
             <Series>
                 <asp:Series Name="UserPhysicalSteps" XValueMember="DateAndTime" YValueMembers="DailySteps" XValueType="DateTime" YValueType="Int32"
@@ -158,24 +92,25 @@
                 </asp:ChartArea>
             </ChartAreas>
             <Legends>
-                    <asp:Legend Name="Legend1">
+                    <asp:Legend Name="Legend1" Docking="Bottom">
                     </asp:Legend>
                 </Legends>
         </asp:Chart>
 
             <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
-                              ForeColor="#ff0066" Font-Size="Small" CssClass="style7"></asp:Label>
+                              ForeColor="#ff0066" Font-Size="Small" 
+                style ="position:fixed; left: 25vw; top:62vh" ></asp:Label>
 
             </div> 
-        <div style="position:fixed; left:71%; top:220px; width:400px; height:500px; border:8px outset #004080">
+     <div style="position:fixed; top:22vh; width:20vw; height:80vh">
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="300px" Height="480px" />
+     </div>
 
+     <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
+            <asp:Image ID="Image2" runat="server"  Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
+     </div>
 
-            <asp:Image ID="Image2" runat="server"  Width="400px" Height="500px" ImageUrl="~/Images/PA_Kids.png" />
-
-               <a href="Main.aspx" style="position:fixed; left:60%; top:700px">Back to main page</a>
-
-
-        </div>
+           <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
    
     </form>
 </body>

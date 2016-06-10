@@ -21,6 +21,7 @@ public partial class Forum : System.Web.UI.Page
         DateTime dateTime = DateTime.Now;
         PostForum.insertForum(ctitleId, question, posterName, dateTime);
         GridView1.DataBind();
+        txbQuestion.Text = "";
 
     }
 
