@@ -76,4 +76,23 @@ public class PhysicalActivity
         return rowsAffected;
     }
 
+    //get last time in date column for a specific user in the date of today
+    public static DateTime getLastTimeInserted(int userId)
+    {
+        DateTime lastTime;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //select the last time in date column that match the user id and in the date of today
+            string checkLastTime = "select Max(DateAndTime) from PhysicalActivityData where UserID= '" + userId + "' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+            SqlCommand command1 = new SqlCommand(checkLastTime, connection);
+            lastTime = Convert.ToDateTime(command1.ExecuteScalar());
+            connection.Close();
+
+        }
+
+        return lastTime;
+
+    }
+
 }

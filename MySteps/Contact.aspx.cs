@@ -5,11 +5,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
+using System.Web.UI.HtmlControls;
 
 public partial class Contact : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //changer the header div background
+        ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#80FF80");
+
 
     }
     protected void btnSubmit_Click(object sender, EventArgs e)

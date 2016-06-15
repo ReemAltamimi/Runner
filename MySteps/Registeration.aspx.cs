@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web.UI.HtmlControls;
 
 public partial class Registeration : System.Web.UI.Page
 {
@@ -18,6 +19,9 @@ public partial class Registeration : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //changer the header div background
+        ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#AD5BFF");
+
 
     }
     protected void btnRegister_Click(object sender, EventArgs e)
@@ -95,83 +99,6 @@ public partial class Registeration : System.Web.UI.Page
         {
             Label2.Text = "Error :" + ex.ToString();
         }
-
-
-        //==================================================================
-        /*try
-        {
-            //check if the user is already exists, it will worn the user
-            SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-            conn.Open();
-
-            //check if the user is already exists, it will worn the user
-            string checkUser = "select count(*) from UserData where Email= '" + txbEmail.Text + "'";
-            SqlCommand command = new SqlCommand(checkUser, conn);
-            int temp = Convert.ToInt32(command.ExecuteScalar().ToString());
-            if (temp == 1)
-            {
-                txbUserName.Text = "";
-                txbEmail.Text = "";
-                txbCodeBand.Text = "";
-                Label2.Text = "User already exists";
-            }
-            else
-            {
-                //check if the user is one of the experiment participants (Not allow the public to register)
-                //Check if the band code is correct.
-                isParticipant = checkParticipants(txbCodeBand.Text.Trim());
-                if(isParticipant)
-                {
-                    //Check if this band code has not used before (Allow one user with one band)
-                    string checkBandCode = "select count(*) from UserData where BandCode= '" + txbCodeBand.Text + "'";
-                    SqlCommand command2 = new SqlCommand(checkBandCode, conn);
-                    int temp1 = Convert.ToInt32(command2.ExecuteScalar().ToString());
-                    if (temp1 == 1)
-                    {
-                        txbUserName.Text = "";
-                        txbEmail.Text = "";
-                        txbCodeBand.Text = "";
-                        Label2.Text = "Your band code has already been used";
-                    }
-
-                    //The user has not registered before
-                    //The user is one of the participants
-                    //The user has his/her band code which has not used before.
-                    else
-                    {
-                        //add user data entered in registeration page into UserData table
-                        string insertQuery = "insert into UserData (UserName,Email,Password,BandCode) values (@Uname, @email, @password, @bandcode)";
-                        SqlCommand command1 = new SqlCommand(insertQuery, conn);
-                        command1.Parameters.AddWithValue("@Uname", txbUserName.Text);
-                        command1.Parameters.AddWithValue("@email", txbEmail.Text);
-                        command1.Parameters.AddWithValue("@password", txbPassword.Text);
-                        command1.Parameters.AddWithValue("@bandcode", txbCodeBand.Text);
-
-                        command1.ExecuteNonQuery();
-
-                        txbUserName.Text = "";
-                        txbEmail.Text = "";
-                        txbCodeBand.Text = "";
-                        Label2.Text = "Registeration is successfully completed";
-                    }
-
-                }
-                //The band code is not correct and the user is not one of the participants
-                else
-                {
-                    txbUserName.Text = "";
-                    txbEmail.Text = "";
-                    txbCodeBand.Text = "";
-                    Label2.Text = "You are not one of the participants, check your band code";
-
-                }              
-            }
-            conn.Close();          
-        }
-        catch(Exception ex)
-        {
-            Label2.Text="Error :"+ex.ToString();
-        }*/
 
     }
 

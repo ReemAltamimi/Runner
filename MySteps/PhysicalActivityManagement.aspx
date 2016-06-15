@@ -1,31 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PhysicalActivityManagement.aspx.cs" Inherits="MySteps.PhysicalActivityManagement" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="PhysicalActivityManagement.aspx.cs" Inherits="MySteps.PhysicalActivityManagement" MasterPageFile="~/Master Page/MasterPage.master" Title="Physical Activity Management Page" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Physical Activity Management</title>
-    <style type="text/css">
-        /*Title banner style*/
-        .style1 {
-            width: 100vw;
-            height: 20vh;
-            position:fixed;
-            background-color:#adaaaa;
-        }
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
-        }
-        /*Middle div style*/
-        .style3 {
-             width: 50vw;
-            height: 70vh;
-            position: fixed;
-            top: 22vh;
-            left:24vw;   
-            background:#adaaaa;
-        }
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+     <style type="text/css">
+     
         /*Chart Div Style*/
         .style5 {
             position:fixed;
@@ -33,16 +11,15 @@
         }
 
      </style>
-</head>
-<body class="style2">
-    <form id="form1" runat="server">
-        <div class="style1">
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style=" text-align:center; position:fixed; left:20vw; top:5vh" />
+   </asp:Content>
 
-    </div>
-        <div class="style3">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+    </asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
+
+    
+        <div>
             <asp:Label ID="Label1" runat="server" Text="Physical Activity Statistics" Font-Bold ="True"
                  Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
             
@@ -63,7 +40,24 @@
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
                                 style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
 
+             <asp:Button ID="btnSync" runat="server" Width="150" Text="Start Sync"
+                             BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
+                                style="position:fixed; left:45vw; top:84vh" OnClick="btnSync_Click" />
+
+
+
+                  <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
+                              ForeColor="#ff0066" Font-Size="Small" 
+                style ="position:fixed; left: 25vw; top:62vh" ></asp:Label>
+
         </div>
+      <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
+   
+
+     </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+
+    
    
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:RegisterationConnectionString %>" 
             SelectCommand="SELECT * FROM [PhysicalActivityData] WHERE (([UserID] = @UserID) AND ([DateAndTime] = @DateAndTime))">
@@ -97,21 +91,7 @@
                 </Legends>
         </asp:Chart>
 
-            <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
-                              ForeColor="#ff0066" Font-Size="Small" 
-                style ="position:fixed; left: 25vw; top:62vh" ></asp:Label>
-
-            </div> 
-     <div style="position:fixed; top:22vh; width:20vw; height:80vh">
-        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="300px" Height="480px" />
-     </div>
-
-     <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
-            <asp:Image ID="Image2" runat="server"  Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
-     </div>
-
-           <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
-   
-    </form>
-</body>
-</html>
+  </div> 
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>

@@ -63,7 +63,8 @@ public partial class Default2 : System.Web.UI.Page
 
         if (Session["Steps"] == null)
         {
-            //need to show pop up window to inform th user
+            //show pop up window to inform the users that they need to sync their steps 
+            //and redirect them to Physical Activity page
             string message = "You need to sync your steps first";
             string url = "/PhysicalActivityManagement.aspx";
             string script = "window.onload = function(){ alert('";
@@ -88,11 +89,10 @@ public partial class Default2 : System.Web.UI.Page
             Game.insertGameData(userId, DateTime.Today, unlockedLevels, Game.DEFAULT_TIME);
         }
 
-
         // get time remaining from DB
         timeRemaining = Game.getTimeOfPlay(userId, DateTime.Now);
         
-        // TODO: get unlocked hearts from DB
+        // get unlocked hearts from DB
         unlockedHearts = UserLevels.getHearts(userId);
         
     }

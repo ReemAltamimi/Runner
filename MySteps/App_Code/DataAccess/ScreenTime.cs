@@ -65,4 +65,41 @@ public class ScreenTime
 
         return rowsAffected;
     }
+
+    //check if the user has entered his/her screen time amount for today
+    public static int screenTimeIsEntered(int userId)
+    {
+        int temp = 1;
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //Check if the user has inserted his/her data for today
+            string check = "select count(*) from ScreenTimeData where UserID= '" + userId + "' AND Date>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND Date < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+            SqlCommand command1 = new SqlCommand(check, connection);
+            temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
+            //if the number of rows that found in the table is zero
+            //this means that the user has not yet entered the amount 
+            //of screen time of today 
+            connection.Close();
+        }
+        return temp; 
+    }
+
+    //get last time in date column for a specific user in the date of today
+    public static DateTime getLastTimeInserted(int userId)
+    {
+        DateTime lastTime;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //select the last time in date column that match the user id and in the date of today
+            string checkLastTime = "select Max(Date) from ScreenTimeData where UserID= '" + userId + "' AND Date>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND Date < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+            SqlCommand command1 = new SqlCommand(checkLastTime, connection);
+            lastTime = Convert.ToDateTime(command1.ExecuteScalar());
+            connection.Close();
+
+        }
+
+        return lastTime;
+
+    }
 }
