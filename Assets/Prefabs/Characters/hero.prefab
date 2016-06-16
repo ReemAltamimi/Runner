@@ -597,6 +597,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4baef03e1cc8f4ab69708f3aedbce21c, type: 3}
   hurtForce: 100
   damageAmount: 10
+  hurtColor: {r: 1, g: 0, b: 0, a: 1}
+  hurtTime: 0.4
+  bodyRenderer: {fileID: 21200022}
 --- !u!114 &11444594
 MonoBehaviour:
   m_ObjectHideFlags: 1

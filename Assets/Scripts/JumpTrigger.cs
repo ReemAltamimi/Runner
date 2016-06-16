@@ -12,14 +12,7 @@ public class JumpTrigger : MonoBehaviour {
         var player = col.GetComponent<PlayerControl>();
         if (player != null && coolDown <= 0)
         {
-            var playerRig = player.GetComponent<Rigidbody2D>();
-            Assert.IsNotNull(playerRig);
-
-            Vector2 velocity = playerRig.velocity;
-
-            velocity.y = jumpPower;
-            playerRig.velocity = velocity;
-
+            player.DoJump(jumpPower);
             var audioSource = GetComponent<AudioSource>();
             if (audioSource != null)
             {

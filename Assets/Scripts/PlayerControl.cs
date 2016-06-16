@@ -267,9 +267,21 @@ public class PlayerControl : MonoBehaviour
 			jump = false;
 		}
 	}
-	
-	
-	void Flip ()
+
+
+    public void DoJump(float power)
+    {
+        jumpLevel++;
+        var rigidbody = GetComponent<Rigidbody2D>();
+        Vector2 velocity = rigidbody.velocity;
+
+        velocity.y = power;
+        rigidbody.velocity = velocity;
+
+    }
+
+
+    void Flip ()
 	{
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;

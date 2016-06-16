@@ -7986,6 +7986,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fc29693e8c7a554bb171adf0086c7bd, type: 2}
   m_IsPrefabParent: 0
+--- !u!212 &1017271721 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 21200022, guid: 6aa187bc6339843479c03fdfd71404a3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1820024163}
 --- !u!1001 &1028404151
 Prefab:
   m_ObjectHideFlags: 0
@@ -15234,6 +15239,14 @@ Prefab:
       propertyPath: threeStars
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8200002, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: spreadCustomCurve.m_RotationOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
+      propertyPath: bodyRenderer
+      value: 
+      objectReference: {fileID: 1017271721}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
   m_IsPrefabParent: 0

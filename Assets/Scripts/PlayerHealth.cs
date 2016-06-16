@@ -8,13 +8,15 @@ public class PlayerHealth : MonoBehaviour
 	public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
 	public float damageAmount = 10f;			// The amount of damage to take when enemies touch the player
-
-	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
+    public Color hurtColor = Color.red;                     // sprite hurt color
+    public float hurtTime = 0.4f;                      // hurt time
+    public SpriteRenderer bodyRenderer;
+    private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
 	private Vector3 healthScale;				// The local scale of the health bar initially (with full health).
 	private PlayerControl playerControl;		// Reference to the PlayerControl script.
 	private Animator anim;						// Reference to the Animator on the player
-
+    private float hurtTimer = 0;
 
 	void Awake ()
 	{
@@ -74,6 +76,19 @@ public class PlayerHealth : MonoBehaviour
 	}
 
 
+    void Update()
+    {
+        if (hurtTimer > 0)
+        {
+            hurtTimer -= Time.deltaTime;
+        }
+        else
+        {
+            bodyRenderer.color = Color.white;
+        }
+    }
+
+
 	void TakeDamage (Transform enemy)
 	{
 		// Make sure the player can't jump.
@@ -101,6 +116,8 @@ public class PlayerHealth : MonoBehaviour
 		// Play a random clip of the player getting hurt.
 		int i = Random.Range (0, ouchClips.Length);
 		AudioSource.PlayClipAtPoint(ouchClips[i], transform.position);
+        hurtTimer = hurtTime;
+        bodyRenderer.color = hurtColor;
 	}
 
 
