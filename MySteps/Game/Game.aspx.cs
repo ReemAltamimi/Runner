@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 
 
+
 public partial class Default2 : System.Web.UI.Page
 {
     int userId;
@@ -58,7 +59,23 @@ public partial class Default2 : System.Web.UI.Page
         userId = (int)Session["UserId"];
         Session["DateTime"] = DateTime.Now;
 
-        // TODO: make sure that steps is set on login or query fitbit here...
+        // make sure that steps is set on login or query fitbit here...
+
+        if (Session["Steps"] == null)
+        {
+            //show pop up window to inform the users that they need to sync their steps 
+            //and redirect them to Physical Activity page
+            string message = "You need to sync your steps first";
+            string url = "/PhysicalActivityManagement.aspx";
+            string script = "window.onload = function(){ alert('";
+            script += message;
+            script += "');";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }       
+
         steps = Convert.ToInt32(Session["Steps"]);
 #if BEN_IS_LAZY
         steps = 10000;
@@ -72,11 +89,10 @@ public partial class Default2 : System.Web.UI.Page
             Game.insertGameData(userId, DateTime.Today, unlockedLevels, Game.DEFAULT_TIME);
         }
 
-
         // get time remaining from DB
         timeRemaining = Game.getTimeOfPlay(userId, DateTime.Now);
         
-        // TODO: get unlocked hearts from DB
+        // get unlocked hearts from DB
         unlockedHearts = UserLevels.getHearts(userId);
         
     }

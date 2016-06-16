@@ -1,15 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Leaderboard.aspx.cs" Inherits="Leaderboard" MasterPageFile="~/MasterPage1.master" Title="Leaderboard Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Leaderboard.aspx.cs" Inherits="Leaderboard" MasterPageFile="~/Master Page/MasterPage.master" Title="Leaderboard Page" %>
 
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="style1" style="background:#80FF80">
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    </div>
-
-    <style type="text/css">
+      <style type="text/css">
         .TableCSS
         {
             border-style:none;
@@ -74,9 +68,16 @@
             }                                         
     </style>
 
-       <div class="style2">
+      </asp:Content>
 
-           <asp:Label ID="lblAbout" runat="server" Text="Check the list below to see your friends and their numbers of steps" 
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
+
+       <div>
+
+           <asp:Label ID="lblAbout" runat="server" Text="Check the list below to see your friends and their numbers of steps today" 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
                 position:fixed; left: 25vw; top:30vh" ></asp:Label>
 
@@ -144,7 +145,15 @@
                 </tr>                
             </ItemTemplate>
            </asp:ListView>
-                       <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+                       <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
         </div>
 
-</asp:Content> 
+
+
+    </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
+
+

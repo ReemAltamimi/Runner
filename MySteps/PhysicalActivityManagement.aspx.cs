@@ -17,13 +17,13 @@ namespace MySteps
 {
     public partial class PhysicalActivityManagement : System.Web.UI.Page
     {
+        String userId;
 
         protected XmlDocument Doc { get; private set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //variables declaration
-            string token, refreshToken;
+         
 
             //check if the user is login in the system
             if (Session["UserId"] == null)
@@ -32,8 +32,17 @@ namespace MySteps
                               return;
             }
 
-            String userId = Session["UserId"].ToString();
+            userId = Session["UserId"].ToString();
             Session["DateTime"] = DateTime.Now;
+
+         
+        }
+        
+      
+        protected void btnSync_Click(object sender, EventArgs e)
+        {
+            //variables declaration
+            string token, refreshToken;
 
             //"local-fitbit-example-client-application-id";
             //"227L5Z"
@@ -42,7 +51,7 @@ namespace MySteps
             //"your.secret.key.from.dev.fitbit.com";
             //"26fed8d066abe1bb28e98260f7d4578c"
             const string FitbitSecret = "26fed8d066abe1bb28e98260f7d4578c";
-            
+
             // API call path to get temporary credentials (request token)
             Uri fitBitRequestTokenUrl = new Uri("https://api.fitbit.com/oauth2/token");
 
@@ -54,14 +63,14 @@ namespace MySteps
             //string sDay = Convert.ToString(dt.Day);
             //string sMonth = Convert.ToString(dt.Month);
             //string sYear = Convert.ToString(dt.Year);
-            
+
 
             //string strFitBit = "http://api.fitbit.com/1/user/-/activities/date/" + sYear + "-" + sMonth + "-" + sDay + ".xml";
 
             //string ApiCallUrl = strFitBit;
 
 
-            
+
 
             var authorizationServer = new AuthorizationServerDescription
             {
@@ -88,23 +97,9 @@ namespace MySteps
 
                 token = authorizationState.AccessToken.ToString();
                 refreshToken = authorizationState.RefreshToken.ToString();
-    
+
                 if (!IsPostBack)
                 {
-                    /*try
-                    {
-                        //add token and refresh token into UserData table
-                        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-                        conn.Open();
-                        string insertQuery = "UPDATE UserData SET Token = @token, RefreshToken = @refreshToken WHERE(Id = @userId)";
-                        SqlCommand command = new SqlCommand(insertQuery, conn);
-                        command.Parameters.AddWithValue("@token", token);
-                        command.Parameters.AddWithValue("@refreshToken", refreshToken);
-                        command.Parameters.AddWithValue("@userId", Convert.ToInt32(userId));
-
-                        command.ExecuteNonQuery();
-                        conn.Close();
-                    }*/
                     try
                     {
                         //add token and refresh token into UserData table
@@ -157,7 +152,7 @@ namespace MySteps
                 httpwebStreamReader.Close();
             }
 
-            
+
 
             // Assign the workouts to their values
             steps = Convert.ToInt32(getNumberFromString(workouts[0, 1]));
@@ -173,52 +168,7 @@ namespace MySteps
 
             // Insert data to database
             //add Physical activity data into PhysicalActivityData table
-            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, steps,Convert.ToSingle(distance),minSed,minLActive,minFActive,minVActive);
-
-           
-            
-            
-            /*Check if the user has already insert his/her data for today
-            SqlConnection conn1 = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-            conn1.Open();
-
-            string checkUserId = "select count(*) from PhysicalActivityData where UserID= '" + userId + "' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
-            SqlCommand command1 = new SqlCommand(checkUserId, conn1);
-            int temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
-            if (temp == 1)
-            {
-                    string updateQuery = "UPDATE PhysicalActivityData SET DateAndTime = @dateTime, DailySteps = @steps, DistanceWalkedMile = @distance, SedentaryMinutes = @sedMin, LightActiveMinutes = @lightMin, FairlyActiveMinutes = @fairlyMin, VeryActiveMinutes = @veryMin  WHERE UserID = '" + userId + "' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
-
-                    SqlCommand command3 = new SqlCommand(updateQuery, conn1);
-
-                    command3.Parameters.AddWithValue("@dateTime", Session["DateTime"]);
-                    command3.Parameters.AddWithValue("@steps", steps);
-                    command3.Parameters.AddWithValue("@distance", distance);
-                    command3.Parameters.AddWithValue("@sedMin", minSed);
-                    command3.Parameters.AddWithValue("@lightMin", minLActive);
-                    command3.Parameters.AddWithValue("@fairlyMin", minFActive);
-                    command3.Parameters.AddWithValue("@veryMin", minVActive);
-                    command3.ExecuteNonQuery();
-             }
-             else
-             {
-                    string insertQuery1 = "insert into PhysicalActivityData (UserID,DateAndTime,DailySteps,DistanceWalkedMile,SedentaryMinutes,LightActiveMinutes,FairlyActiveMinutes,VeryActiveMinutes) values (@id, @dateTime, @steps, @distance, @sedMin, @lightMin, @fairlyMin, @veryMin)";
-                    SqlCommand command4 = new SqlCommand(insertQuery1, conn1);
-
-
-                    command4.Parameters.AddWithValue("@id", Convert.ToInt32(userId));
-                    command4.Parameters.AddWithValue("@dateTime", Session["DateTime"]);
-                    command4.Parameters.AddWithValue("@steps", steps);
-                    command4.Parameters.AddWithValue("@distance", distance);
-                    command4.Parameters.AddWithValue("@sedMin", minSed);
-                    command4.Parameters.AddWithValue("@lightMin", minLActive);
-                    command4.Parameters.AddWithValue("@fairlyMin", minFActive);
-                    command4.Parameters.AddWithValue("@veryMin", minVActive);
-
-                    command4.ExecuteNonQuery();
-                }
-
-                conn1.Close();*/
+            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, steps, Convert.ToSingle(distance), minSed, minLActive, minFActive, minVActive);
 
             //print the fitbit results on screen
             Label2.Text = "<br />";
@@ -229,23 +179,22 @@ namespace MySteps
             Label2.Text += "Fairly Active Minutes = " + minFActive + "<br />";
             Label2.Text += "Very Active Minutes = " + minVActive + "<br />";
 
-        }
-        
-        //This Function extract the value numbers from a string
-        //This function is used to extract the workout values from fitbit responses
-        private string getNumberFromString(string str)
-        {
-            string strNumber;
-            
-            str = Regex.Replace(str, @"\d{4}-\d{2}-\d{2}",String.Empty);
-            strNumber = Regex.Match(str, @"\d+").Value;
-            return strNumber;
+
+
         }
 
 
 
         protected void btnViewChart_Click(object sender, EventArgs e)
         {
+
+            DateTime lastTime = PhysicalActivity.getLastTimeInserted(Convert.ToInt32(userId));
+
+            //set the last time for chart data customization
+            Session["LastTime"] = lastTime;
+
+
+
             double startDate = DateTime.Now.AddDays(-1).ToOADate();
             double endDate = DateTime.Now.AddDays(1).ToOADate();
 
@@ -264,8 +213,20 @@ namespace MySteps
             //show the chart
             PhysicalActivityChart.Visible = true;
 
-            Label3.Text = "Last updated of Physical Activity" + Session["DateTime"].ToString();
+            Label3.Text = "Last updated of Physical Activity" + lastTime.ToString();
 
         }
+
+        //This Function extract the value numbers from a string
+        //This function is used to extract the workout values from fitbit responses
+        private string getNumberFromString(string str)
+        {
+            string strNumber;
+
+            str = Regex.Replace(str, @"\d{4}-\d{2}-\d{2}", String.Empty);
+            strNumber = Regex.Match(str, @"\d+").Value;
+            return strNumber;
+        }
+
     }
 }

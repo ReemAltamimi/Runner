@@ -1,16 +1,38 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LoginPage.aspx.cs" Inherits="LoginPage" MasterPageFile="~/MasterPage1.master" Title="Login Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="LoginPage.aspx.cs" Inherits="LoginPage" MasterPageFile="~/Master Page/MasterPage.master" Title="Login Page" %>
 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+     <style type="text/css">
+       
+         /*table style in login page style*/
+         .auto-style1 {
+            width: 40vw;
+            height: 30vh;
+            position:fixed;
+            top: 40vh;
+            left:25vw;
+        }
+          .auto-style2 {
+            font-family:Cambria;
+        }
+          .auto-style3 {
+            width: 211px;
+        }
+        .auto-style4 {
+            text-align: left;
+        }
+         .auto-style6 {
+            font-family: Comic Sans MS;
+            width: 127px;
+            color:#ffccff;
+            font-weight:bold;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
 
-
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <div style="background-color:#FF8080" class="style1"  >
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="white" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
-
-    </div>
-       <div class="style2">
+       <div>
 
             <asp:Label ID="Label1" runat="server" Text="Please enter your login details below :" Font-Bold ="True"
                  Font-Names="Comic Sans MS" ForeColor="#ffccff" Font-Underline="true" style ="position:fixed; left: 25vw; top:30vh"></asp:Label>
@@ -50,18 +72,12 @@
 
            <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
 
-
-
         </div>
-   </asp:Content>     
-<asp:Content ID="Content2" runat="server" contentplaceholderid="head">
-    <style type="text/css">
-        .auto-style6 {
-            font-family: Comic Sans MS;
-            width: 127px;
-            color:#ffccff;
-            font-weight:bold;
-        }
-    </style>
+
+    </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
 </asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
+
      

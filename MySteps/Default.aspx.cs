@@ -31,6 +31,7 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void imgBtnHelp_Click(object sender, ImageClickEventArgs e)
     {
+        //navigate to Contact page
         Response.Redirect("~/Contact.aspx");
     }
 }

@@ -1,18 +1,15 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" MasterPageFile="~/MasterPage1.master" Title="About Page" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="About.aspx.cs" Inherits="About" MasterPageFile="~/Master Page/MasterPage.master" Title="About Page" %>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="style1" style="background:#FFFF80">
-
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
-
-    </div>
-       <div class="style2">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphContent" Runat="Server">
+    <div>
 
             <asp:Label ID="lblAbout" runat="server" Text="Mysteps is a new research initiative focussing on the integration 
                 and use of Information and Communication Technologies for fostering Active Lifestyles for Youths. Through this
-                website parents and caregivers can track the levels of physical activity and screen time of their kids. " 
+                website you can track your levels of physical activity and screen time. " 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
                 position:fixed; left: 25vw; top:25vh" ></asp:Label>
 
@@ -22,8 +19,7 @@
 
            <asp:Label ID="lblAbout3" runat="server" Text="After login to this website and choosing the physical activity management,
                you will be redirected to the fitbit website in order to authorize our website to get your physical activity data. 
-               Therefore, you will see your kid's physical workout throughout the day which will help you know the levels of his/her
-               physical activity and motivate him/her to be active." 
+               Therefore, you will see your physical workout throughout the day which may motivate you to be more active." 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
                 position:fixed; left: 25vw; top:45vh" ></asp:Label>
 
@@ -42,6 +38,17 @@
             
 
         </div>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphRight" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
 
-</asp:Content> 
+
+
+
+   
+       
+
+
     

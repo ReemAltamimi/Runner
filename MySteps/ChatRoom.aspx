@@ -1,45 +1,30 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChatRoom.aspx.cs" Inherits="ChatRoom" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ChatRoom.aspx.cs" Inherits="ChatRoom" MasterPageFile="~/Master Page/MasterPage.master" Title="Chat Room" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Chat Room</title>
-    <style type="text/css">
+     <style type="text/css">
         .container {
             background-color: #99CCFF;
             border: thick solid #808080;
             /*padding: 20px;
             margin: 20px;*/
              width: 50vw;
-            height: 70vh;
+            height: 65vh;
             position: fixed;
-            top: 22vh;
-            left:24vw;  
-        }
-         /*Title banner style*/
-        .style1 {
-            width: 100vw;
-            height: 20vh;
-            position:fixed;
-            background-color:#adaaaa;
-        }
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
+            top: 23vh;
+            left:25vw;  
         }
       
     </style>
-</head>
-<body class="style2">
 
-    <div class="style1">
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
+   </asp:Content>
 
-    </div>
-    <div class="container">   
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
+
+      <div class="container">   
         <input type="text" id="message" style="position: fixed; top: 25vh; left:26vw;" onkeypress="return EnterEvent(event)" />
         <input type="button" id="sendmessage" value="Send" style="position: fixed; top: 30vh; left:26vw;" />
         <input type="hidden" id="displayname" style="position: fixed; top: 35vh; left:26vw;" />
@@ -89,21 +74,9 @@
             });
         });
     </script>
-     <div style="position:fixed; top:22vh; width:20vw; height:80vh">
 
-
-            <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" Width="300px" Height="480px" />
-
-
-        </div>
-
-        <div style="position:fixed; left:76vw; top:22vh;  width:20vw; height:80vh">
-
-
-            <asp:Image ID="Image2" runat="server"   Width="300px" Height="480px" ImageUrl="~/Images/ScreenTime1.png" />
-
-
-        </div>
-
-</body>
-</html>
+    </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>

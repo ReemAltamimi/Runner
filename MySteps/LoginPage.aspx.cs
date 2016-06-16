@@ -18,6 +18,9 @@ public partial class LoginPage : System.Web.UI.Page
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        //changer the header div background
+        ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#FF8080");
+
         //Place the cursor in username textbox
         txbUserName.Focus();       
 
@@ -27,56 +30,24 @@ public partial class LoginPage : System.Web.UI.Page
     {
         int userId;
 
+        //call checkLogin function in UserData class to check if the user name and password is correct
+        //and return the user id
         userId = UserData.checkLogin(txbUserName.Text, txbPassword.Text);
 
+        //user name or password are incorrect
         if (userId == 0)
         {
             Label2.Text = "Error: User name or password is not correct ..";
             txbUserName.Text = "";
             txbPassword.Text = "";
         }
+        //user name and password are correct
         else
         {
-            Session["New"] = txbUserName.Text;
+            Session["New"] = txbUserName.Text.Trim();
             Session["UserId"] = userId;
             Response.Redirect("~/Main.aspx");
-
         }
                 
-        //==================================================================================
-        /*SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-        conn.Open();
-        string checkUser = "select count(*) from UserData where UserName= '" + txbUserName.Text + "'";
-        SqlCommand command1 = new SqlCommand(checkUser, conn);
-        int temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
-        if (temp == 1)
-        {
-            string checkPassword = "select Password from UserData where UserName= '" + txbUserName.Text + "'";
-            SqlCommand command2 = new SqlCommand(checkPassword, conn);
-            string password = command2.ExecuteScalar().ToString().Replace(" ","");
-            if (password == txbPassword.Text)
-            {
-                Session["New"] = txbUserName.Text;
-                //get the user id
-                string userIdQuery = "select Id from UserData where UserName= '" + Session["New"].ToString() + "' and Password= '" +password.ToString()+"'";
-                SqlCommand command3 = new SqlCommand(userIdQuery, conn);
-                string userId = command3.ExecuteScalar().ToString();
-                Session["UserId"] = userId;
-                Response.Redirect("~/Main.aspx");
-
-            }
-            else
-            {
-                Label2.Text = "Error: Password is not correct ..";
-                txbUserName.Text = "";
-            }
-        }
-        else
-        {
-            Label2.Text = "Error: User name is not correct ..";
-            txbUserName.Text = "";
-        }
-        conn.Close(); */
-
     }
 }
