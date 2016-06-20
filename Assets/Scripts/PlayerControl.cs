@@ -153,7 +153,7 @@ public class PlayerControl : MonoBehaviour
         var rigidBody = GetComponent<Rigidbody2D>();
         
         // The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        grounded = Physics2D.CircleCast(transform.position, 0.54f, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         if (grounded && Mathf.Abs(rigidBody.velocity.y) < 0.1f)
         {
             jumpLevel = 0;
@@ -217,6 +217,7 @@ public class PlayerControl : MonoBehaviour
             // Cache the horizontal input.
             direction = Mathf.Sign(Input.GetAxis("Horizontal"));
         }
+        grounded = Physics2D.CircleCast(transform.position, 0.54f,  groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         float h = direction * 0.4f;
 
@@ -228,12 +229,14 @@ public class PlayerControl : MonoBehaviour
         }
 
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-		if(h * rigidBody.velocity.x < maxSpeed)
-			// ... add a force to the player.
-			rigidBody.AddForce(Vector2.right * h * moveForce);
+		if(grounded && h * rigidBody.velocity.x < maxSpeed)
+        {
+            // ... add a force to the player.
+            rigidBody.AddForce(Vector2.right * h * moveForce);
+        }
 
-		// If the player's horizontal velocity is greater than the maxSpeed...
-		if(Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+        // If the player's horizontal velocity is greater than the maxSpeed...
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
 			// ... set the player's velocity to the maxSpeed in the x axis.
 			GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
