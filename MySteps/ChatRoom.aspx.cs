@@ -14,20 +14,13 @@ public partial class ChatRoom : System.Web.UI.Page
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#99CCFF");
 
-
+        
         //check if the user is login in the system
         if (Session["New"] == null)
             Response.Redirect("~/LoginPage.aspx");
         else
             Session["UserName"] = Session["New"];
 
-        //this.Form.DefaultButton = "sendmessage";
-
-    }
-
-    private void OnKeyDownHandler(object sender, EventArgs e)
-    {
-      
     }
 
 

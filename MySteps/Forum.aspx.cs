@@ -4,11 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+
 
 public partial class Forum : System.Web.UI.Page
 {
+    string userId, username;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //check if the user is login in the system
+        if (Session["UserId"] == null)
+        {
+            Response.Redirect("~/Default.aspx");
+            return;
+        }
+
+        userId = Session["UserId"].ToString();
+        username = Session["New"].ToString();
+        txbName.Text = username;
+
+        //changer the header div background
+        ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#ff3377");
 
     }
 

@@ -1,30 +1,27 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Forum.aspx.cs" Inherits="Forum" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Forum.aspx.cs" Inherits="Forum" MasterPageFile="~/Master Page/MasterPage.master" Title="Discussion Board" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Discussion Board</title>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
      <style type="text/css">
-        /*Title banner style*/
-        .style1 {
-           width: 100vw;
-            height: 20vh;
-            position:fixed;
-            background-color: #FFFF80;
-        }
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
-        }
+
+      
+     #rightSidePanel
+    {
+        display:none;
+    }
+      #leftSidePanel
+    {
+        display:none;
+    }
+
         /*div1 style*/
         .style3 {
           width: 70vw;
-            height: 70vh;
-            position: fixed;
-            top: 22vh;
-            background:#adaaaa;
+          height: 70vh;
+          position: fixed;
+          left:1vw;
+          top: 22vh;
+          background:#adaaaa;
         }
           /*div2 style*/
         .style4 {
@@ -36,20 +33,16 @@
             background:#adaaaa;
         }
          </style>
-  
 
-</head>
-<body class="style2">
-    <form id="form1" runat="server">
+    </asp:Content>
 
-      <div class="style1">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
 
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
 
-    </div>
 
+    
     <div class="style3">
 
         <asp:Label ID="Label1" runat="server" Text="My question is about " Font-Bold="True" 
@@ -113,10 +106,15 @@
             <asp:Button ID="btnPost" runat="server" OnClick="btnPost_Click" 
                 BackColor="#006666" Font-Names="Cooper Black" ForeColor="white" Text="Post"
                 style="position:fixed; left:80vw; top:75vh" Width="140" Height="50px"  />
+
+           <a href="Main.aspx" style="position:fixed; left:81vw; top:85vh">Back to Main page</a>
+        
         
 
         </div>
-       
-    </form>
-</body>
-</html>
+
+      </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>

@@ -1,28 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Thread.aspx.cs" Inherits="Thread" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Thread.aspx.cs" Inherits="Thread"  MasterPageFile="~/Master Page/MasterPage.master" Title="Thread Page" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Thread Page</title>
+     <style type="text/css">
 
-    <style type="text/css">
-        /*Title banner style*/
-        .style1 {
-           width: 100vw;
-            height: 20vh;
-            position:fixed;
-            background-color: #00cccc;
-        }
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
-        }
+       #rightSidePanel
+    {
+        display:none;
+    }
+      #leftSidePanel
+    {
+        display:none;
+    }
+
         /*div1 style*/
         .style3 {
           width: 70vw;
             height: 70vh;
             position: fixed;
+             left:1vw;
             top: 22vh;
             background:#adaaaa;
         }
@@ -37,18 +33,15 @@
         }
          </style>
 
-</head>
-<body class="style2">
-    <form id="form1" runat="server">
+ </asp:Content>
 
-         <div class="style1">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+</asp:Content>
 
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:20vw; top:5vh" />
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
 
-    </div>
 
+    
     <div class="style3">
         <asp:Label ID="Label3" runat="server" Text="Answer of " Font-Bold="True" style="text-align:center"
             Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="Maroon" Height="50px"></asp:Label>
@@ -94,9 +87,12 @@
                 BackColor="#006666" Font-Names="Cooper Black" ForeColor="white" Text="Post Comment"
                 style="position:fixed; left:80vw; top:75vh" Width="140" Height="50px"  />
         
-
+             <a href="Forum.aspx" style="position:fixed; left:79vw; top:85vh">Back to Discussion page</a>
+        
         </div>
- 
-    </form>
-</body>
-</html>
+
+      </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>

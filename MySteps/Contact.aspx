@@ -35,6 +35,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
 
     <div>
+        <asp:Panel ID="Panel1" runat="server" DefaultButton="btnSubmit">
 
             <asp:Label ID="lblAbout" runat="server" Text="If you experience any technical issue or have 
                 any enquiries regarding this website please contact us via email by filling the boxes below:" 
@@ -47,33 +48,44 @@
                 <tr>
                     <td class="auto-style2">Name</td>
                     <td class="auto-style3"> <asp:TextBox ID="txbUserName" runat="server" Width="200px"></asp:TextBox></td>
+                    <td>  <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*"
+            ControlToValidate="txbUserName" ValidationGroup="save" /></td>
                 </tr>
                 <tr>
                     <td class="auto-style2">Email Address</td>
                     <td class="auto-style3"><asp:TextBox ID="txbEmail" runat="server" Width="200px"></asp:TextBox></td>
+                    <td>  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*"
+            ControlToValidate="txbEmail" ValidationGroup="save" /></td>
+                    <td>  <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator23"
+            SetFocusOnError="true" Text="Example: username@gmail.com" ControlToValidate="txbEmail"
+            ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic"
+            ValidationGroup="save" /></td>
                 </tr>
                 <tr>
                     <td class="auto-style2">Subject</td>
                     <td class="auto-style3"><asp:TextBox ID="txbSubject" runat="server" Width="200px"></asp:TextBox></td>
+                    <td> <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*"
+            ControlToValidate="txbSubject" ValidationGroup="save" /></td>
                 </tr>
                 <tr>
                     <td class="auto-style2">Your enquiry</td>
                     <td class="auto-style3"><asp:TextBox ID="txbText" runat="server" Width="200px" Rows="5" TextMode="MultiLine"></asp:TextBox></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td class="auto-style4" colspan="3">
-                        <asp:Label ID="lblError" runat="server" ForeColor="#FFCCCC" Font-Underline="True"></asp:Label>
-                    </td>
+                    <td> <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*"
+            ControlToValidate="txbText" ValidationGroup="save" /></td>
                 </tr>
             </table>
 
+             <asp:Label ID="lblError" runat="server" ForeColor="#FFCCCC" Font-Underline="True"
+                style="position:fixed; left:25vw; top:85vh" ></asp:Label>
+                   
+
        <asp:Button ID="btnSubmit" runat="server" Text="Submit" BackColor="#80FF80" Font-Bold="true"
-           style="position:fixed; left:44vw; top:83vh" Font-Names="Cambria" ForeColor="#004080" 
-           Width="140" Height="40px" Font-Size="Medium" OnClick="btnSubmit_Click" />
+           style="position:fixed; left:55vw; top:83vh" Font-Names="Cambria" ForeColor="#004080" 
+           Width="140" Height="40px" Font-Size="Medium" OnClick="btnSubmit_Click" ValidationGroup="save" />
                     
 
-           <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+           <a href="Default.aspx" style="position:fixed; left:68vw; top:85vh">Back to home page</a>
+            </asp:Panel>
 
         </div>
     

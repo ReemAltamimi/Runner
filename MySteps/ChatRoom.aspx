@@ -9,7 +9,7 @@
             /*padding: 20px;
             margin: 20px;*/
              width: 50vw;
-            height: 65vh;
+            height: 63vh;
             position: fixed;
             top: 23vh;
             left:25vw;  
@@ -23,9 +23,8 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
-
       <div class="container">   
-        <input type="text" id="message" style="position: fixed; top: 25vh; left:26vw;" onkeypress="return EnterEvent(event)" />
+        <input type="text" id="message" style="position: fixed; top: 25vh; left:26vw;"/>
         <input type="button" id="sendmessage" value="Send" style="position: fixed; top: 30vh; left:26vw;" />
         <input type="hidden" id="displayname" style="position: fixed; top: 35vh; left:26vw;" />
         <ul id="discussion" style="position: fixed; top: 35vh; left:26vw;">
@@ -41,12 +40,14 @@
     <!--Add script to update the page and send messages.--> 
     <script type="text/javascript">
 
-        function EnterEvent(e) {
-            if (e.keyCode == 13) {
-                document.getElementById("sendmessage").click();
-            }
-        }
-
+        $(function () {
+            $('input').keydown(function (e) {
+                if (e.keyCode == 13) {
+                    $("input[value='Send']").focus().click();
+                    return false;
+                }
+            });
+        });
         $(function () {
             // Declare a proxy to reference the hub. 
             var chat = $.connection.chatHub;
@@ -74,6 +75,9 @@
             });
         });
     </script>
+
+      <a href="Main.aspx" style="position:fixed; left:66vw; top:88vh">Back to Main page</a>
+           
 
     </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">

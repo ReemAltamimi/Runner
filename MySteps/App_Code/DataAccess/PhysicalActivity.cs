@@ -95,4 +95,40 @@ public class PhysicalActivity
 
     }
 
+
+    //get the number of steps of a specific date 
+    public static int getSteps(DateTime dt, int userId)
+    {
+        int steps = 0;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //select the last time in date column that match the user id and in the date of today
+            string str = "select DailySteps from PhysicalActivityData where UserID= '" + userId + "' AND CAST([DateAndTime] AS DATE) = '" + dt + "'";
+            SqlCommand command1 = new SqlCommand(str, connection);
+            steps = Convert.ToInt32(command1.ExecuteScalar());
+            connection.Close();
+        }
+
+        return steps;
+
+    }
+
+    //check if the user has sync his/her steps today
+    public static int physicalActivityIsEntered(int userId)
+    {
+        int temp = 1;
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //Check if the user sync his/her data today
+            string check = "select count(*) from PhysicalActivityData where UserID= '" + userId + "' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+            SqlCommand command1 = new SqlCommand(check, connection);
+            temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
+            //if the number of rows that found in the table is zero
+            //this means that the user has not yet sync his PA data 
+            connection.Close();
+        }
+        return temp;
+    }
+
 }

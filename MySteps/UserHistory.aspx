@@ -1,115 +1,88 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserHistory.aspx.cs" Inherits="UserHistory" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserHistory.aspx.cs" Inherits="UserHistory" MasterPageFile="~/Master Page/MasterPage.master" Title="User History" %>
 
-<!DOCTYPE html>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>User History</title>
+    
     <style type="text/css">
-        /*Title banner style*/
-        .style1 {
-            width: 100%;
-            height: 200px;
-            position:fixed;
-            background-color:#adaaaa;
-        }
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
-        }
-        /*Middle div style*/
-        .style3 {
-             width: 600px;
-            height: 100%;
-            position: fixed;
-            top: 220px;
-            left:30%;
-            background:#adaaaa;
-        }
+     
         /*Chart1 Div Style*/
         .style5 {
-            position:fixed;
-            top:220px;
-        }
-         /*Chart2 Div Style*/
-        .style6 {
-            position:fixed;
-            top:220px;
-            left:1050px;
+             position:fixed;
+           top:22vh;
+           left:54vw;
         }
          /*label1 Style*/
         .style7 {
             position:fixed;
-            top:270px;
-            left:33%;
+            top:23vh;
+            left:23vw;
 
         }
           /*label2 Style*/
         .style8{
             position:fixed;
-            top:340px;
-            left:34%;
+            top:28vh;
+            left:23vw;
+            align-content:center;
+            
+        }
+        .wrap {
+            white-space: normal;
         }
        
        
      </style>
-</head>
-<body class="style2">
-    <form id="form1" runat="server">
-    <div class="style1">
-        <asp:Label ID="PageTitle" runat="server" Text="MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics" 
-            ForeColor="#004080" Font-Names="Gill Sans Ultra Bold" Font-Size="XX-Large" Font-Bold="true" 
-            style="text-align:center; position:fixed; left:4%; top:80px" />   
-    </div>
 
-        <div class="style3">
+         </asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
+
+
+
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
+
+
+    
+        <div>
 
             
 
-            <asp:Button ID="btnPA" runat="server" Width="200" Height="80" Text="Physical Activity History"
-                             BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:35%; top:550px" OnClick="btnPA_Click"/>
+            <asp:Button ID="btnPA" runat="server" Width="150" Height="50" Text="Physical Activity History"
+                             BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Smaller"
+                                style="position:fixed; left:32vw; top:75vh" OnClick="btnPA_Click" CssClass="wrap"/>
 
-            <asp:Button ID="btnST" runat="server" Width="200" Height="80" Text="Screen Time History"
-                             BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:52%; top:550px" OnClick="btnST_Click"/>
+            <asp:Button ID="btnST" runat="server" Width="150" Height="50" Text="Screen Time History"
+                             BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Smaller"
+                                style="position:fixed; left:32vw; top:65vh" OnClick="btnST_Click"/>
             
 
 
             <asp:Label ID="Label1" runat="server" Text="" CssClass="style7" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" Font-Underline="true" Font-Size="Large" ></asp:Label>
+                 Font-Names="Comic Sans MS" Font-Underline="true" Font-Size="Medium" ></asp:Label>
             <asp:Label ID="Label2" runat="server" Text="" CssClass="style8" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="#004080"></asp:Label>
+                 Font-Names="Comic Sans MS" Font-Size="Small" ForeColor="#004080" Height="200px" 
+                Width="400px" BorderColor="#FFCCFF" BackColor="#FFCCFF"></asp:Label>
             
 
 
             </div>
 
-         <div class="style5">
+    
 
-             <asp:Chart ID="ScreenTimeChart" runat="server" Visible="False" Width="420" Height="500" BackColor="#ffff99">
-                 <Series>
-                     <asp:Series Name="UserScreenTime"  XValueType="Date" YValueType="Int32"
-                        Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
-                     </asp:Series>
-                     <asp:Series Name="ScreenTimeLimit"   Color="Green" 
-                        Legend="Legend1" LegendText="Screen Time Limit">
-                     </asp:Series>
-                 </Series>
-                 <ChartAreas>
-                     <asp:ChartArea Name="ChartArea1">
-                         <AxisX IntervalOffsetType="Days" IntervalType="Days" Interval="1"></AxisX>
-                     </asp:ChartArea>
-                 </ChartAreas>
-                 
-             </asp:Chart>
+      
+       
+         <a href="Main.aspx" style="position:fixed; left:33vw; top:85vh">Back to Main page</a>
+  
 
-             
+     </asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
 
-             </div>
-        <div class="style6">
+     <div class="style5">
 
-                <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="400" Height="500" BackColor="#ffcccc">
+                <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="630" Height="450" BackColor="#ffcccc">
                  <Series>
                      <asp:Series Name="UserPhysicalSteps"  XValueType="DateTime" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Physical Steps" IsValueShownAsLabel="True" Label="#VAL Steps">
@@ -130,7 +103,36 @@
              </asp:Chart>
 
         </div>
-         <a href="Main.aspx" style="position:fixed; left:60%; top:700px">Back to main page</a>
-    </form>
-</body>
-</html>
+
+
+     <div class="style5">
+
+             <asp:Chart ID="ScreenTimeChart" runat="server" Visible="False" Width="630" Height="450" BackColor="#ffff99">
+                 <Series>
+                     <asp:Series Name="UserScreenTime"  XValueType="Date" YValueType="Int32"
+                        Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
+                     </asp:Series>
+                     <asp:Series Name="ScreenTimeLimit"   Color="Green" 
+                        Legend="Legend1" LegendText="Screen Time Limit">
+                     </asp:Series>
+                 </Series>
+                 <ChartAreas>
+                     <asp:ChartArea Name="ChartArea1">
+                         <AxisX IntervalOffsetType="Days" IntervalType="Days" Interval="1"></AxisX>
+                     </asp:ChartArea>
+                 </ChartAreas>
+                 
+             </asp:Chart>
+
+             
+
+             </div>
+
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
+
+
+
+
+

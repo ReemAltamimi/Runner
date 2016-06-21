@@ -7,13 +7,22 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Web.UI.DataVisualization.Charting;
+using System.Web.UI.HtmlControls;
 
 public partial class UserHistory : System.Web.UI.Page
 {
     string userId;
+   
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //changer the header div background
+        ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#AD5BFF");
+
+       
+
+        //check if the user is login in the system
+
         if (Session["New"] == null)
             Response.Redirect("~/LoginPage.aspx");
 
@@ -26,52 +35,31 @@ public partial class UserHistory : System.Web.UI.Page
     protected void btnST_Click(object sender, EventArgs e)
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffff99");
-        Label1.Text = "Your Screen Time Statistics in the last few days";
+        Label1.Text = "Your Screen Time Statistics in the last five days";
         Label2.Text = "";
 
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-        conn.Open();
-        DateTime lastTime;
-        string strSTAmount;
-        int ST_Amount=0;
-        DateTime currentDate = DateTime.Today.AddDays(-5);
-        
-        DateTime currentDate2 = DateTime.Today.AddDays(-5).AddHours(23).AddMinutes(59);
-        
-        string checkLastTime;
+        DateTime date1 = DateTime.Today.Date;
+        //DateTime date2 = DateTime.Today.AddDays(-5);
+        int st = 0;
+
         for (int i = 1; i <= 5; i++)
         {
-            //select the last time in date column that match the current session user id and a specific date
-            checkLastTime = "select Max(Date) from ScreenTimeData where UserID= '"+ userId+"' AND Date between CONVERT(datetime,'"+currentDate+"',103) AND CONVERT(datetime,'"+currentDate2+"',103)";
+            //get the screen time amount of a specific date
+            st = ScreenTime.getScreenTime(date1, Convert.ToInt32(userId));
 
-            SqlCommand command1 = new SqlCommand(checkLastTime, conn);
-            
-            if ((command1.ExecuteScalar() != DBNull.Value))
+            if(st!=0)
             {
-                SqlCommand tempCommand = new SqlCommand(checkLastTime, conn);
-                lastTime = Convert.ToDateTime(tempCommand.ExecuteScalar());
-
-                //get the screen time amount of the last update
-                string checkScreenTime = "select UserScreenDailyAmnt from ScreenTimeData where UserID = '" + userId + "' AND Date > Convert(datetime,'" + lastTime + "',103) AND Date <= DATEADD(s,1, Convert(datetime,'" + lastTime + "',103))";
-                SqlCommand command2 = new SqlCommand(checkScreenTime, conn);
-                strSTAmount = command2.ExecuteScalar().ToString().Replace(" ","");
-                ST_Amount = Convert.ToInt32(strSTAmount);
-
                 //add data to chart
-                ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(lastTime.Date,ST_Amount);
-                ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(lastTime.Date, 3);
-              
+                ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(date1.Date, st);
+                ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(date1.Date, 3);
+
             }
+            //print amount and date on screen
+            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + " your screen time amount was " + st + " hours" + "<br/>";
+            st = 0;
+            date1 = date1.AddDays(-1);
 
-            Label2.Text= Label2.Text+"<br/>"+"On "+currentDate.ToShortDateString()+" your screen time amount was "+ ST_Amount+" hours";
-            ST_Amount = 0;
-            currentDate = currentDate.AddDays(1);
-            currentDate2 = currentDate.AddHours(23).AddMinutes(59);
-        
         }
-        
-
-        conn.Close();
 
         double startDate = DateTime.Today.AddDays(-5).ToOADate();
         double endDate = DateTime.Today.ToOADate();
@@ -94,54 +82,30 @@ public partial class UserHistory : System.Web.UI.Page
     protected void btnPA_Click(object sender, EventArgs e)
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffcccc");
-        Label1.Text = "Your Exercise Performance Statistics in the last few days";
+        Label1.Text = "Your Steps in the last five days";
         Label2.Text = "";
-        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
-        conn.Open();
-        DateTime lastTime;
-        string strDailySteps;
-        int dailySteps=0;
-        DateTime currentDate = DateTime.Today.AddDays(-5);
+      
 
-        DateTime currentDate2 = DateTime.Today.AddDays(-5).AddHours(23).AddMinutes(59);
+        DateTime date1 = DateTime.Today.Date;
+        //DateTime date2 = DateTime.Today.AddDays(-5);
+        int steps = 0;
 
-        string checkLastTime;
         for (int i = 1; i <= 5; i++)
         {
-            //select the last time in date column that match the current session user id and a specific date
-            checkLastTime = "select Max(DateAndTime) from PhysicalActivityData where UserID= '" + userId + "' AND DateAndTime between CONVERT(datetime,'" + currentDate + "',103) AND CONVERT(datetime,'" + currentDate2 + "',103)";
+            //get the screen time amount of a specific date
+            steps = PhysicalActivity.getSteps(date1, Convert.ToInt32(userId));
 
-            SqlCommand command1 = new SqlCommand(checkLastTime, conn);
-
-            if ((command1.ExecuteScalar() != DBNull.Value))
-            {
-               // SqlCommand tempCommand = new SqlCommand(checkLastTime, conn);
-                //lastTime = Convert.ToDateTime(tempCommand.ExecuteScalar());
-                lastTime = Convert.ToDateTime(command1.ExecuteScalar());
-
-                //get the last updated number of steps 
-                string checkDailySteps = "select DailySteps from PhysicalActivityData where UserID = '" + userId + "' AND DateAndTime > Convert(datetime,'" + lastTime + "',103) AND DateAndTime <= DATEADD(s,1, Convert(datetime,'" + lastTime + "',103))";
-                SqlCommand command2 = new SqlCommand(checkDailySteps, conn);
-                strDailySteps = command2.ExecuteScalar().ToString().Replace(" ", "");
-                dailySteps = Convert.ToInt32(strDailySteps);
-
+            
                 //add data to chart
-                PhysicalActivityChart.Series["UserPhysicalSteps"].Points.AddXY(lastTime.Date, dailySteps);
-                PhysicalActivityChart.Series["RecommendedStepsBoys"].Points.AddXY(lastTime.Date, 13000);
-                PhysicalActivityChart.Series["RecommendedStepsGirls"].Points.AddXY(lastTime.Date, 11000);
-                
-            }
-
-            Label2.Text = Label2.Text + "<br/>" + "On " + currentDate.ToShortDateString() + " your steps amount was " + dailySteps + " steps";
-            dailySteps = 0;
-
-            currentDate = currentDate.AddDays(1);
-            currentDate2 = currentDate.AddHours(23).AddMinutes(59);
+                PhysicalActivityChart.Series["UserPhysicalSteps"].Points.AddXY(date1.Date, steps);
+                PhysicalActivityChart.Series["RecommendedStepsBoys"].Points.AddXY(date1.Date, 13000);
+                PhysicalActivityChart.Series["RecommendedStepsGirls"].Points.AddXY(date1.Date, 11000);
+            //print amount and date on screen
+            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " hours" + "<br/>";
+            steps = 0;
+            date1 = date1.AddDays(-1);
 
         }
-
-
-        conn.Close();
 
         double startDate = DateTime.Today.AddDays(-5).ToOADate();
         double endDate = DateTime.Today.ToOADate();

@@ -63,6 +63,11 @@ public partial class Default2 : System.Web.UI.Page
 
         if (Session["Steps"] == null)
         {
+
+
+
+
+
             //show pop up window to inform the users that they need to sync their steps 
             //and redirect them to Physical Activity page
             string message = "You need to sync your steps first";

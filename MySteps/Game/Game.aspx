@@ -4,12 +4,7 @@
 <html lang="en-us">
 
     <head>
-       <style type="text/css">
-        /*Page style*/
-        .style2 {
-            background-color:#004080;
-        }
-           </style>
+      
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | _2D v3</title>
@@ -18,7 +13,7 @@
     <script src="TemplateData/UnityProgress.js"></script>
     <script src="/Scripts/jquery-2.2.3.min.js"></script>
   </head>
-  <body class="template">
+  <body class="template" style="background-color:#004080">
     <p class="header"><span>Unity WebGL Player | </span>_2D v3</p>
     <div class="template-wrap clear">
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
