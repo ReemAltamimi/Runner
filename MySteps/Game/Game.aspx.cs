@@ -64,22 +64,22 @@ public partial class Default2 : System.Web.UI.Page
         if (Session["Steps"] == null)
         {
 
-
-
-
-
             //show pop up window to inform the users that they need to sync their steps 
             //and redirect them to Physical Activity page
-            string message = "You need to sync your steps first";
+            string message = "Do You want to sync your steps first";
             string url = "/PhysicalActivityManagement.aspx";
-            string script = "window.onload = function(){ alert('";
+            string script = "window.onload = function(){ var answer=confirm('";
             script += message;
             script += "');";
+            script += "if (answer){";
             script += "window.location = '";
             script += url;
             script += "'; }";
+            script += "else{";
+            script += " alert(\"you responded CANCEL\");"; //here I should call the 'getLasUpdatedSteps' funtion that get the last updated steps number from db
+            script += "}}";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-        }       
+        }
 
         steps = Convert.ToInt32(Session["Steps"]);
 #if BEN_IS_LAZY
@@ -145,5 +145,13 @@ public partial class Default2 : System.Web.UI.Page
         }
 
     }
-  
+
+    public int getLasUpdatedSteps(int userId)
+    {
+        int steps = 0;
+        steps = PhysicalActivity.getSteps(DateTime.Today.Date, userId);
+        return steps;
+    }
+
+
 }

@@ -9,6 +9,25 @@ public partial class test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["Steps"] == null)
+        {
+
+            //show pop up window to inform the users that they need to sync their steps 
+            //and redirect them to Physical Activity page
+            string message = "Do You want to sync your steps first";
+            string url = "/PhysicalActivityManagement.aspx";
+            string script = "window.onload = function(){ var answer=confirm('";
+            script += message;
+            script += "');";
+            script += "if (answer){";
+            script += "window.location = '";
+            script += url;
+            script += "'; }";
+            script += "else{";
+            script += " alert(\"you responded CANCEL\");"; //here I should call the 'getLasUpdatedSteps' funtion that get the last updated steps number from db
+            script += "}}";
+            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+        }
 
         /*String jsScript = "";
         jsScript += "var answer=confirm(\'Unable to locate your search item. Do you want to search the closest match from your item?\');\n";
@@ -21,17 +40,17 @@ public partial class test : System.Web.UI.Page
 
         ScriptManager.RegisterStartupScript(this, this.GetType(), "script", jsScript, true);*/
 
-       /*string confirmValue = Request.Form["confirm_value"];
-        if (confirmValue == "Yes")
-        {
-            //Your logic for OK button
-            Label1.Text = "Yes";
-        }
-        else
-        {
-            //Your logic for cancel button
-            Label1.Text = "No";
-        }*/
+        /*string confirmValue = Request.Form["confirm_value"];
+         if (confirmValue == "Yes")
+         {
+             //Your logic for OK button
+             Label1.Text = "Yes";
+         }
+         else
+         {
+             //Your logic for cancel button
+             Label1.Text = "No";
+         }*/
 
     }
 
@@ -76,23 +95,14 @@ public partial class test : System.Web.UI.Page
 
 
     }
-    public void OnConfirm(object sender, EventArgs e)
+
+    public int getLasUpdatedSteps(int userId)
     {
-        string confirmValue = Request.Form["confirm_value"];
-        if (confirmValue == "Yes")
-        {
-            //Your logic for OK button
-            Label1.Text = "Yes";
-        }
-        else
-        {
-            //Your logic for cancel button
-            Label1.Text = "No";
-        }
+        int steps = 0;
+        steps = PhysicalActivity.getSteps(DateTime.Today.Date, userId);
+        return steps;
     }
 
-    protected void btnSample_Click(object sender, EventArgs e)
-    {
-        Label1.Text = "Yes";
-    }
+
+  
 }
