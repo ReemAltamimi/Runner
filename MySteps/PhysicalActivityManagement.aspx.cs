@@ -98,6 +98,17 @@ namespace MySteps
 
         }
 
+
+        protected void resetToken(object sender, EventArgs e)
+        {
+            connection.RevokeToken();
+        }
+
+
+        protected void refreshToken(object sender, EventArgs e)
+        {
+            connection.RefreshToken();
+        }
         //This Function extract the value numbers from a string
         //This function is used to extract the workout values from fitbit responses
         /*private string getNumberFromString(string str)

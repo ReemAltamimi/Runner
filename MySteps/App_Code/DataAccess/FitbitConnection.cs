@@ -109,7 +109,9 @@ public class FitbitConnection
             stream.Flush();
             stream.Close();
             WebResponse response = request.GetResponse();
-            string values = response.GetResponseStream().ToString();
+            StreamReader reader = new StreamReader(response.GetResponseStream());
+            String values = reader.ReadToEnd();
+
             var obj = JsonConvert.DeserializeObject<RefreshTokenResponse>(values);
             UserData.insertTokens(userId, obj.access_token, obj.refresh_token);
             token = obj.access_token;
