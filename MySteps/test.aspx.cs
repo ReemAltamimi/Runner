@@ -9,7 +9,7 @@ public partial class test : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Steps"] == null)
+        /*if (Session["Steps"] == null)
         {
 
             //show pop up window to inform the users that they need to sync their steps 
@@ -27,7 +27,7 @@ public partial class test : System.Web.UI.Page
             script += " alert(\"you responded CANCEL\");"; //here I should call the 'getLasUpdatedSteps' funtion that get the last updated steps number from db
             script += "}}";
             ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
-        }
+        }*/
 
         /*String jsScript = "";
         jsScript += "var answer=confirm(\'Unable to locate your search item. Do you want to search the closest match from your item?\');\n";
@@ -59,6 +59,13 @@ public partial class test : System.Web.UI.Page
         int userid = Convert.ToInt32(Session["UserId"]);
         DateTime d = DateTime.Now.Date;
 
+        string token = UserData.getToken(17);
+        string rftoken = UserData.getRefToken(17);
+        Label1.Text = token;
+        Label1.Text = Label1.Text + "\n" + rftoken;
+        //int steps = getLasUpdatedSteps(userid);
+        //Label1.Text = steps.ToString();
+
         //=============================================================
         //test insertgamedata function
         // Game.insertGameData(userid, d, 4, 4);
@@ -76,8 +83,8 @@ public partial class test : System.Web.UI.Page
         //Label1.Text = level.ToString();
 
         //test getTimeOfPlay function
-        float time = Game.getTimeOfPlay(16, DateTime.Now);
-        Label1.Text = time.ToString();
+        //float time = Game.getTimeOfPlay(16, DateTime.Now);
+        //Label1.Text = time.ToString();
         //==================================================================
 
         //test 

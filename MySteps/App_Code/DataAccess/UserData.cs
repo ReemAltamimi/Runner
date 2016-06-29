@@ -70,6 +70,36 @@ public class UserData
         return rowsAffected;
     }
 
+    //get token for a specific user.
+    public static string getToken(int userid)
+    {
+        string token;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string str = "select Token from UserData where Id= '" + userid + "'";
+            SqlCommand command = new SqlCommand(str, connection);
+            token = command.ExecuteScalar().ToString();
+            connection.Close();
+        }
+        return token;
+    }
+
+    //get refresh token for a specific user.
+    public static string getRefToken(int userid)
+    {
+        string reftoken;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string str = "select RefreshToken from UserData where Id= '" + userid + "'";
+            SqlCommand command = new SqlCommand(str, connection);
+            reftoken = command.ExecuteScalar().ToString();
+            connection.Close();
+        }
+        return reftoken;
+    }
+
     //This function if the user is already exists in the database by checking the email address
     // as the email address is a unique value for each user.
     //It returns 1 in case the user is existed in the db

@@ -44,6 +44,7 @@ namespace MySteps
             //variables declaration
             string token, refreshToken;
 
+
             //"local-fitbit-example-client-application-id";
             //"227L5Z"
             const string FitbitClientId = "227L5Z";
@@ -69,53 +70,52 @@ namespace MySteps
 
             //string ApiCallUrl = strFitBit;
 
-
-
-
-            var authorizationServer = new AuthorizationServerDescription
-            {
-                AuthorizationEndpoint = authorizationUri,
-                TokenEndpoint = fitBitRequestTokenUrl
-
-            };
-
-            try
-            {
-                WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
-
-                var authorizationState = client.ProcessUserAuthorization();
-                if (authorizationState == null)
+                var authorizationServer = new AuthorizationServerDescription
                 {
-                    var userAuthorization = client.PrepareRequestUserAuthorization(new[] { "activity" });
-                    userAuthorization.Send(Context);
-                }
-                else
-                {
-                    Session["access_token"] = authorizationState.AccessToken;
-                    Session["refresh_token"] = authorizationState.RefreshToken;
-                }
+                    AuthorizationEndpoint = authorizationUri,
+                    TokenEndpoint = fitBitRequestTokenUrl
 
-                token = authorizationState.AccessToken.ToString();
-                refreshToken = authorizationState.RefreshToken.ToString();
+                };
 
-                if (!IsPostBack)
+                try
                 {
-                    try
+                    WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
+
+                    var authorizationState = client.ProcessUserAuthorization();
+                    if (authorizationState == null)
                     {
-                        //add token and refresh token into UserData table
-                        UserData.insertTokens(Convert.ToInt32(userId), token, refreshToken);
+                        var userAuthorization = client.PrepareRequestUserAuthorization(new[] { "activity" });
+                        userAuthorization.Send(Context);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Label2.Text = "Error :" + ex.ToString();
+                        Session["access_token"] = authorizationState.AccessToken;
+                        Session["refresh_token"] = authorizationState.RefreshToken;
+                    }
+
+                    token = authorizationState.AccessToken.ToString();
+                    refreshToken = authorizationState.RefreshToken.ToString();
+
+                    if (!IsPostBack)
+                    {
+                        try
+                        {
+                            //add token and refresh token into UserData table
+                            UserData.insertTokens(Convert.ToInt32(userId), token, refreshToken);
+                        }
+                        catch (Exception ex)
+                        {
+                            Label2.Text = "Error :" + ex.ToString();
+                        }
                     }
                 }
-            }
-            catch (WebException ex)
-            {
-                Response.Write(ex.Message);
-                Response.Close();
-            }
+                catch (WebException ex)
+                {
+                    Response.Write(ex.Message);
+                    Response.Close();
+                }
+
+          
 
 
 
