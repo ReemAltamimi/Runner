@@ -48,6 +48,25 @@ public class UserData
     }
 
 
+    public static bool getTokens(int userId, out string token, out string refreshToken)
+    {
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string query = "select [Token],[RefreshToken] from UserData where Id=@userId";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@userId", userId);
+            var reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                token = reader["Token"].ToString();
+                refreshToken = reader["RefreshToken"].ToString();
+                return token != "";
+            }
+        }
+        token = "";
+        refreshToken = "";
+        return false;
+    }
     //This function add token and referesh token data into UserData table
     public static int insertTokens(int userId, string token, string refreshToken)
     {
