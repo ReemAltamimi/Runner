@@ -45,7 +45,28 @@ public class FitbitConnection
     public void Connect(int userId, HttpContext context)
     {
         //variables declaration
-        if (!UserData.getTokens(userId, out token, out refreshtoken))
+        if (UserData.getTokens(userId, out token, out refreshtoken))
+        {
+            // try to use the token 
+            try
+            {
+                string activityUrl = baseActivityUrl + "-/activities/steps/date/"+DateTime.Today.ToString("yyyy-MM-dd") +"/1d.json";
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(activityUrl);
+                request.Method = "GET";
+                request.Headers["Authorization"] = "Bearer " + token;
+                request.Accept = "application/json";
+                WebResponse response = request.GetResponse();
+            }
+            catch (System.Net.WebException)
+            {
+                RefreshToken();
+            }
+        }
+
+
+
+        if (String.IsNullOrEmpty(token))
         {
             string refreshToken = null;
             this.userId = userId;
@@ -69,30 +90,40 @@ public class FitbitConnection
 
     public void RefreshToken()
     {
-        string refreshAuth = FitbitClientId + ":" + FitbitSecret;
-        var authBytes = Encoding.UTF8.GetBytes(refreshAuth);
-        UriBuilder uri = new UriBuilder(authorizationServer.TokenEndpoint);
-        
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri.Uri);
-        request.ContentType = "application/x-www-form-urlencoded";
-        request.Method = "POST";
-        request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(authBytes);
-        request.Accept = "application/x-www-form-urlencoded";
-        string postData = "grant_type=refresh_token&refresh_token=" + refreshtoken;
-        byte[] bodyBytes = Encoding.UTF8.GetBytes(postData);
-        request.ContentLength = bodyBytes.Length;
-        var stream = request.GetRequestStream();
-        stream.Write(bodyBytes, 0, bodyBytes.Length);
-        stream.Flush();
-        stream.Close();
-        
+        try
+        {
+            string refreshAuth = FitbitClientId + ":" + FitbitSecret;
+            var authBytes = Encoding.UTF8.GetBytes(refreshAuth);
+            UriBuilder uri = new UriBuilder(authorizationServer.TokenEndpoint);
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri.Uri);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.Method = "POST";
+            request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(authBytes);
+            request.Accept = "application/x-www-form-urlencoded";
+            string postData = "grant_type=refresh_token&refresh_token=" + refreshtoken;
+            byte[] bodyBytes = Encoding.UTF8.GetBytes(postData);
+            request.ContentLength = bodyBytes.Length;
+            var stream = request.GetRequestStream();
+            stream.Write(bodyBytes, 0, bodyBytes.Length);
+            stream.Flush();
+            stream.Close();
 
 
-        WebResponse response = request.GetResponse();
-        string values = response.GetResponseStream().ToString();
-        var obj = JsonConvert.DeserializeObject<RefreshTokenResponse>(values);
-        UserData.insertTokens(userId, obj.access_token, obj.refresh_token);
-        System.Diagnostics.Debug.Write(response.GetResponseStream());
+
+            WebResponse response = request.GetResponse();
+            string values = response.GetResponseStream().ToString();
+            var obj = JsonConvert.DeserializeObject<RefreshTokenResponse>(values);
+            UserData.insertTokens(userId, obj.access_token, obj.refresh_token);
+            token = obj.access_token;
+            refreshtoken = obj.refresh_token;
+        }
+        catch (System.Net.WebException)
+        {
+            UserData.insertTokens(userId, "", "");
+            token = null;
+            refreshtoken = null;
+        }
     }
 
 
@@ -142,24 +173,20 @@ public class FitbitConnection
         string activityDate = date.ToString("yyyy-MM-dd");
         string activityStr = activity.ToString();
         string activityUrl = baseActivityUrl + "-/activities/" + activityStr + "/date/" + activityDate + "/1d.json";
-        try {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(activityUrl);
-            request.Method = "GET";
-            request.Headers["Authorization"] = "Bearer " + token;
-            request.Accept = "application/json";
-            WebResponse response = request.GetResponse();
-            StreamReader httpwebStreamReader = new StreamReader(response.GetResponseStream());
-            value = httpwebStreamReader.ReadToEnd();
-            response.Close();
-            httpwebStreamReader.Close();
+        
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(activityUrl);
+        request.Method = "GET";
+        request.Headers["Authorization"] = "Bearer " + token;
+        request.Accept = "application/json";
+        WebResponse response = request.GetResponse();
+        StreamReader httpwebStreamReader = new StreamReader(response.GetResponseStream());
+        value = httpwebStreamReader.ReadToEnd();
+        response.Close();
+        httpwebStreamReader.Close();
             
-            float.TryParse(value, out retVal);
+        float.TryParse(value, out retVal);
            
-        }
-        catch (Exception e)
-        {
-            System.Diagnostics.Debug.Write(e.Message);
-        }
+      
         return retVal;
     }
 
