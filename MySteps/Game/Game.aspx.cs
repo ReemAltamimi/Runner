@@ -19,6 +19,10 @@ public partial class Default2 : System.Web.UI.Page
     float timeRemaining;
     List<int> unlockedHearts = new List<int>();
     List<int> stars = new List<int>();
+    FitbitConnection connection = new FitbitConnection();
+
+
+
     public int Steps{
         get { return steps; }
     }
@@ -63,22 +67,21 @@ public partial class Default2 : System.Web.UI.Page
 
         if (Session["Steps"] == null)
         {
+            connection.Connect(userId, Context);
+            //Get the date of today
+            var activityDate = DateTime.Now;
 
-            //show pop up window to inform the users that they need to sync their steps 
-            //and redirect them to Physical Activity page
-            string message = "Do You want to sync your steps first";
-            string url = "/PhysicalActivityManagement.aspx";
-            string script = "window.onload = function(){ var answer=confirm('";
-            script += message;
-            script += "');";
-            script += "if (answer){";
-            script += "window.location = '";
-            script += url;
-            script += "'; }";
-            script += "else{";
-            script += " alert(\"you responded CANCEL\");"; //here I should call the 'getLasUpdatedSteps' funtion that get the last updated steps number from db
-            script += "}}";
-            ClientScript.RegisterStartupScript(this.GetType(), "Redirect", script, true);
+            var stepsNo = connection.GetActivityByDate(FitbitConnection.Activity.steps, activityDate);
+            var distance = connection.GetActivityByDate(FitbitConnection.Activity.distance, activityDate);
+            var minSed = connection.GetActivityByDate(FitbitConnection.Activity.minutesSedentary, activityDate);
+            var minLActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesLightlyActive, activityDate);
+            var minFActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesFairlyActive, activityDate);
+            var minVActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesVeryActive, activityDate);
+            //add Physical activity data into PhysicalActivityData table
+            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)stepsNo, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
+
+            Session["Steps"] = stepsNo;
+            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showAlert(" + Session["Steps"] + ");", true);
         }
 
         steps = Convert.ToInt32(Session["Steps"]);

@@ -63,7 +63,7 @@
             SelectCommand="SELECT * FROM [PhysicalActivityData] WHERE (([UserID] = @UserID) AND ([DateAndTime] = @DateAndTime))">
             <SelectParameters>
                 <asp:SessionParameter Name="UserID" SessionField="UserId" Type="Int32" />
-                <asp:SessionParameter Name="DateAndTime" SessionField="DateTime" Type="DateTime" />
+                <asp:SessionParameter Name="DateAndTime" SessionField="LastTime" Type="DateTime" />
             </SelectParameters>
         </asp:SqlDataSource>
  

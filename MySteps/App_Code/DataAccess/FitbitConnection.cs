@@ -108,9 +108,6 @@ public class FitbitConnection
             stream.Write(bodyBytes, 0, bodyBytes.Length);
             stream.Flush();
             stream.Close();
-
-
-
             WebResponse response = request.GetResponse();
             string values = response.GetResponseStream().ToString();
             var obj = JsonConvert.DeserializeObject<RefreshTokenResponse>(values);

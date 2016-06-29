@@ -21,6 +21,7 @@ namespace MySteps
 
         protected XmlDocument Doc { get; private set; }
         FitbitConnection connection = new FitbitConnection();
+
         protected void Page_Load(object sender, EventArgs e)
         { 
            
@@ -99,14 +100,14 @@ namespace MySteps
 
         //This Function extract the value numbers from a string
         //This function is used to extract the workout values from fitbit responses
-        private string getNumberFromString(string str)
+        /*private string getNumberFromString(string str)
         {
             string strNumber;
 
             str = Regex.Replace(str, @"\d{4}-\d{2}-\d{2}", String.Empty);
             strNumber = Regex.Match(str, @"\d+").Value;
             return strNumber;
-        }
+        }*/
 
     }
 }
