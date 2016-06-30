@@ -16,6 +16,7 @@ public partial class Main : System.Web.UI.Page
     protected void btnHome_Click(object sender, EventArgs e)
     {
         Session["New"] = null;
+        Session["Steps"] = null;
         Response.Redirect("~/Default.aspx");
     }
     protected void btnScreenTime_Click(object sender, EventArgs e)

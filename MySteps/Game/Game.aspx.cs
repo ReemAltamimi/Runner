@@ -19,6 +19,7 @@ public partial class Default2 : System.Web.UI.Page
     float timeRemaining;
     List<int> unlockedHearts = new List<int>();
     List<int> stars = new List<int>();
+
     FitbitConnection connection = new FitbitConnection();
 
 
@@ -81,7 +82,9 @@ public partial class Default2 : System.Web.UI.Page
             PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)stepsNo, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
 
             Session["Steps"] = stepsNo;
-            ClientScript.RegisterStartupScript(this.GetType(), "alert", "showAlert(" + Session["Steps"] + ");", true);
+            Response.Write("<script language='javascript'>alert('Your number of steps today is:" + Session["Steps"].ToString() + "')</script>");
+
+
         }
 
         steps = Convert.ToInt32(Session["Steps"]);

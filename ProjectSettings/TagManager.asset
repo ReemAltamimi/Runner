@@ -28,7 +28,7 @@ TagManager:
   - Pickups
   - Ground
   - FlyingEnemies
-  - 
+  - Particles
   - 
   - 
   - 
@@ -64,4 +64,7 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 149272721
+    locked: 0
+  - name: Particles
+    uniqueID: 2592326359
     locked: 0
