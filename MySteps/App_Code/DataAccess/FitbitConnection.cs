@@ -1,5 +1,6 @@
 ﻿using DotNetOpenAuth.OAuth2;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -108,6 +109,7 @@ public class FitbitConnection
             stream.Write(bodyBytes, 0, bodyBytes.Length);
             stream.Flush();
             stream.Close();
+
             WebResponse response = request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             String values = reader.ReadToEnd();
@@ -165,10 +167,15 @@ public class FitbitConnection
     };
     public const string baseActivityUrl = "https://api.fitbit.com/1/user/";
 
+    struct ActivityByDateResponse
+    {
+        public DateTime date { get; set; }
+        public float value { get; set; }
+    }
+
     public float GetActivityByDate(Activity activity, DateTime date)
     {
         float retVal = 0;
-        string value = "";
         string activityDate = date.ToString("yyyy-MM-dd");
         string activityStr = activity.ToString();
         string activityUrl = baseActivityUrl + "-/activities/" + activityStr + "/date/" + activityDate + "/1d.json";
@@ -179,13 +186,14 @@ public class FitbitConnection
         request.Accept = "application/json";
         WebResponse response = request.GetResponse();
         StreamReader httpwebStreamReader = new StreamReader(response.GetResponseStream());
-        value = httpwebStreamReader.ReadToEnd();
+        string responseStr = httpwebStreamReader.ReadToEnd();
         response.Close();
         httpwebStreamReader.Close();
-            
+        var jsonObj = JObject.Parse(responseStr);
+        var activityResp = jsonObj["activities-" + activityStr];
+        var value = activityResp[0]["value"].ToString();
         float.TryParse(value, out retVal);
-           
-      
+
         return retVal;
     }
 
