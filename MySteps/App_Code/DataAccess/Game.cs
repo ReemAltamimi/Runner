@@ -16,7 +16,7 @@ using System.Data.SqlClient;
 /// </summary>
 public class Game
 {
-    public const float DEFAULT_TIME = 3600;
+    public const float DEFAULT_TIME = 600;
 
     public Game()
     {

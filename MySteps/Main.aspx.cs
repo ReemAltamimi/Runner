@@ -7,10 +7,44 @@ using System.Web.UI.WebControls;
 
 public partial class Main : System.Web.UI.Page
 {
+    FitbitConnection connection = new FitbitConnection();
+    int userId;
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["New"] == null)
             Response.Redirect("~/LoginPage.aspx");
+
+
+        userId = (int)Session["UserId"];
+        connection.Connect(userId, Context);
+
+        if(Session["Steps"] == null)
+        {
+            //Get the date of today
+            var activityDate = DateTime.Now;
+
+            var steps = connection.GetActivityByDate(FitbitConnection.Activity.steps, activityDate);
+            var distance = connection.GetActivityByDate(FitbitConnection.Activity.distance, activityDate);
+            var minSed = connection.GetActivityByDate(FitbitConnection.Activity.minutesSedentary, activityDate);
+            var minLActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesLightlyActive, activityDate);
+            var minFActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesFairlyActive, activityDate);
+            var minVActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesVeryActive, activityDate);
+            //add Physical activity data into PhysicalActivityData table
+            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)steps, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
+
+            Session["ActivityDate"] = activityDate;
+            Session["Steps"] = steps;
+            Session["Distance"] = distance;
+            Session["MinSed"] = minSed;
+            Session["MinLActive"] = minLActive;
+            Session["MinFActive"] = minFActive;
+            Session["MinVActive"] = minVActive;
+
+        }
+
+
 
     }
     protected void btnHome_Click(object sender, EventArgs e)

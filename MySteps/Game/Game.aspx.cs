@@ -20,8 +20,7 @@ public partial class Default2 : System.Web.UI.Page
     List<int> unlockedHearts = new List<int>();
     List<int> stars = new List<int>();
 
-    FitbitConnection connection = new FitbitConnection();
-
+    
 
 
     public int Steps{
@@ -68,26 +67,12 @@ public partial class Default2 : System.Web.UI.Page
 
         if (Session["Steps"] == null)
         {
-            connection.Connect(userId, Context);
-            //Get the date of today
-            var activityDate = DateTime.Now;
-
-            var stepsNo = connection.GetActivityByDate(FitbitConnection.Activity.steps, activityDate);
-            var distance = connection.GetActivityByDate(FitbitConnection.Activity.distance, activityDate);
-            var minSed = connection.GetActivityByDate(FitbitConnection.Activity.minutesSedentary, activityDate);
-            var minLActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesLightlyActive, activityDate);
-            var minFActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesFairlyActive, activityDate);
-            var minVActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesVeryActive, activityDate);
-            //add Physical activity data into PhysicalActivityData table
-            PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)stepsNo, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
-
-            Session["Steps"] = stepsNo;
-            Response.Write("<script language='javascript'>alert('Your number of steps today is:" + Session["Steps"].ToString() + "')</script>");
-
-
+            Response.Redirect("~/Main.aspx");
         }
 
         steps = Convert.ToInt32(Session["Steps"]);
+        Response.Write("<script language='javascript'>alert('Your number of steps today is:" + Session["Steps"].ToString() + "')</script>");
+
 #if BEN_IS_LAZY
         steps = 10000;
 #endif
@@ -113,11 +98,11 @@ public partial class Default2 : System.Web.UI.Page
     {
         // TODO: get number of steps from user object or DB or session
         //int steps = 10000; // Session[Steps]
-        if (steps >= 10000)
+        if (steps >= 15000)
         {
             return "Fast";
         }
-        if (steps >= 5000)
+        if (steps >= 10000)
         {
             return "Medium";
         }
