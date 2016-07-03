@@ -10,7 +10,7 @@
             left:25vw;
         }
         .auto-style2 {
-            font-family: Cooper Black;
+            font-family:Cambria;
             width: 142px;
             height: 50px;
             color: #FFFF99;
@@ -94,6 +94,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="auto-style2">Share my name, number of steps and game progress with others</td>
+                    <td class="auto-style3">
+                        <asp:DropDownList ID="drpListShare" runat="server" Width="200px">
+                            <asp:ListItem Text="Y" Value ="0"></asp:ListItem>
+                            <asp:ListItem Text="N" Value ="1"></asp:ListItem>
+                        </asp:DropDownList>
+                    </td>
+                     <td class="auto-style4">
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="txbCodeBand" ErrorMessage="* Field is required" ForeColor="#FF99CC" Font-Underline="True"></asp:RequiredFieldValidator>
+                    </td>
+                </tr>
+                <tr>
                     <td class="auto-style5" colspan="3">
                         <asp:Label ID="Label2" runat="server" ForeColor="#FFCCCC" Font-Underline="True" Font-Bold="true"></asp:Label>
                       
@@ -103,9 +115,9 @@
 
             <asp:Button ID="btnRegister" runat="server" Text="Register" BackColor="#AD5BFF"
                 Font-Names="Cooper Black" ForeColor="white"
-                style="position:fixed; left:38vw; top:82vh"  Width="140" Height="50px" OnClick="btnRegister_Click" Font-Size="Medium" />
+                style="position:fixed; left:53vw; top:85vh"  Width="140" Height="30px" OnClick="btnRegister_Click" Font-Size="Small" />
 
-            <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+            <a href="Default.aspx" style="position:fixed; left:66vw; top:85vh">Back to home page</a>
         </div>
 
    

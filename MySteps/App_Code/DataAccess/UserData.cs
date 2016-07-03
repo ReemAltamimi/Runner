@@ -25,19 +25,20 @@ public class UserData
 
 
     //This function add user data into UserData table including user name, email, password and band code
-    public static int insertUserData(string userName, string email, string password, string bandCode)
+    public static int insertUserData(string userName, string email, string password, string bandCode, char share)
     {
         int rowsAffected = 0;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string insertQuery = "insert into UserData (UserName,Email,Password,BandCode) values (@Uname, @email, @password, @bandcode)";
+            string insertQuery = "insert into UserData (UserName,Email,Password,BandCode,Share) values (@Uname, @email, @password, @bandcode,@share)";
             SqlCommand command = new SqlCommand(insertQuery, connection);
 
             command.Parameters.Add("@Uname", SqlDbType.NChar).Value = userName;
             command.Parameters.Add("@email", SqlDbType.NChar).Value = email;
             command.Parameters.Add("@password", SqlDbType.NChar).Value = password;
             command.Parameters.Add("@bandcode", SqlDbType.NChar).Value = bandCode;
+            command.Parameters.Add("@share", SqlDbType.Char).Value = share;
 
             rowsAffected = command.ExecuteNonQuery();
 

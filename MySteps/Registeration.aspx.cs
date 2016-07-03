@@ -67,7 +67,7 @@ public partial class Registeration : System.Web.UI.Page
                     else
                     {
                         //add user data entered in registeration page into UserData table
-                        int inserted = UserData.insertUserData(txbUserName.Text.Trim(), txbEmail.Text.Trim(), txbPassword.Text.Trim(), txbCodeBand.Text.Trim());
+                        int inserted = UserData.insertUserData(txbUserName.Text.Trim(), txbEmail.Text.Trim(), txbPassword.Text.Trim(), txbCodeBand.Text.Trim(), Convert.ToChar(drpListShare.SelectedItem.Text));
                         if (inserted == 1)
                         {
                             txbUserName.Text = "";

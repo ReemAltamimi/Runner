@@ -28,7 +28,7 @@
                   style="position:fixed; left: 25vw; top:42vh">
                   </asp:Label>
 
-              <asp:Label ID="Label2" runat="server" Text="Your Fitbit Data" Font-Names="Comic Sans MS" 
+              <asp:Label ID="Label2" runat="server" Text="" Font-Names="Comic Sans MS" 
                             Font-Bold="True" ForeColor="#004080"
                   style="position:fixed; left: 25vw; top:45vh">
 
@@ -40,7 +40,7 @@
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
                                 style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
 
-             <asp:Button ID="btnSync" runat="server" Width="150" Text="Start Sync"
+             <asp:Button ID="btnSync" runat="server" Width="150" Text="My Physical Workout"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
                                 style="position:fixed; left:45vw; top:84vh" OnClick="btnSync_Click" />
             <!--

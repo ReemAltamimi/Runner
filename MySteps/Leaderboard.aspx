@@ -92,6 +92,7 @@
                     <tr runat="server" class="TableHeader">
                         <td runat="server">User</td>
                         <td runat="server">Steps</td>
+                        <td runat="server">Game Level</td>
                     </tr>
                     <tr id="ItemPlaceholder" runat="server">
                     </tr>
@@ -139,6 +140,14 @@
                             ID="Label2"
                             runat="server"
                             Text='<%# Eval("DailySteps")%>'
+                            >
+                        </asp:Label>
+                    </td>
+                    <td align="center">
+                        <asp:Label 
+                            ID="Label3"
+                            runat="server"
+                            Text='<%# Eval("UnLockedLevel")%>'
                             >
                         </asp:Label>
                     </td>

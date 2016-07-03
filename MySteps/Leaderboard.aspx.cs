@@ -30,7 +30,7 @@ public partial class Leaderboard : System.Web.UI.Page
         Session["today"] = DateTime.Today.Date;
 
         //fill the list view with all users'names and their steps of today
-        string str = "SELECT DailySteps, UserData.UserName From PhysicalActivityData INNER JOIN UserData ON PhysicalActivityData.UserID = UserData.Id where DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE()))";
+        string str = "SELECT DailySteps, UserData.UserName, MAX(GameData.UnLockedLevel) as UnLockedLevel From PhysicalActivityData INNER JOIN UserData ON PhysicalActivityData.UserID = UserData.Id INNER JOIN GameData ON PhysicalActivityData.UserID = GameData.UserID where UserData.Share = 'Y' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE())) Group by PhysicalActivityData.DailySteps, UserData.UserName";
 
         SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
         SqlDataAdapter sda = new SqlDataAdapter(str,conn);

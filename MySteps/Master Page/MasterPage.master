@@ -16,7 +16,7 @@
 
         <div id="header" runat="server">          
 
-        <p>MYSTEPS <br/> Managing Youth Screen Time and Exercise Performance Statistics</p>
+        <p>MYSTEPS <br/> Managing Your Screen Time and Exercise Performance Statistics</p>
         
         <div class="circle" style="position:absolute; top:0; left:0; background:#FFFF80"></div>
         <div class="circle" style="position:absolute; bottom:0; left:0; background:#AD5BFF"></div>

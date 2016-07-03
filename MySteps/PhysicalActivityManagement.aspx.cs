@@ -66,7 +66,7 @@ namespace MySteps
             //  PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)steps, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
 
             // Session["Steps"] = steps;
-            if(Session["Steps"]==null)
+            if(Session["Steps"]== null)
             {
                 Response.Redirect("~/Main.aspx");
             }
