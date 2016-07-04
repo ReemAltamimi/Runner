@@ -59,8 +59,7 @@ public partial class PA_Vs_ST : System.Web.UI.Page
             PA_Versus_ST.Series["UserScreenAmount"]["PixelPointWidth"] = "100";
             PA_Versus_ST.Series["RecommendedScreenAmount"]["PixelPointWidth"] = "100";
             PA_Versus_ST.Series["UserPhysicalSteps"]["PixelPointWidth"] = "100";
-            PA_Versus_ST.Series["RecommendedStepsBoys"]["PixelPointWidth"] = "100";
-            PA_Versus_ST.Series["RecommendedStepsGirls"]["PixelPointWidth"] = "100";
+            PA_Versus_ST.Series["RecommendedSteps"]["PixelPointWidth"] = "100";
 
             //Place Axis titles
             PA_Versus_ST.ChartAreas[0].AxisX.Title = "Date";

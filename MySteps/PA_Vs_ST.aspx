@@ -32,8 +32,7 @@
                 ConnectionString="<%$ ConnectionStrings:RegisterationConnectionString %>" 
                 SelectCommand="SELECT CAST(PhysicalActivityData.DateAndTime AS DATE) as DateAndTime, 
                 ROUND(cast(DailySteps as decimal(10,1))/1000,2) as DailySteps,
-                ROUND(cast(RecomStepsBoys as decimal(10,1))/1000,2) as RecomStepsBoys,
-                ROUND(cast(RecomStepsGirls as decimal(10,1))/1000,2) as RecomStepsGirls,
+                ROUND(cast(RecomSteps as decimal(10,1))/1000,2) as RecomSteps,
                 ScreenTimeData.UserScreenDailyAmnt, ScreenTimeData.ScreenDailyLimit
                 From PhysicalActivityData
                 INNER JOIN ScreenTimeData ON PhysicalActivityData.UserID = ScreenTimeData.UserID
@@ -55,7 +54,7 @@
         <asp:Chart ID="PA_Versus_ST" runat="server" DataSourceID="SqlDataSource1" Width="700px" Height="350px" BackColor="255, 255, 153">
                 <Series>
                     <asp:Series Name="UserScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Int32"
-                        Color="#66ff33" Legend="Legend1" LegendText="Your Screen Time Amount" IsValueShownAsLabel="True" Label="#VAL hours" Font="Andalus, 8.25pt, style=Bold">
+                        Color="#cc0000" Legend="Legend1" LegendText="Your Screen Time Amount" IsValueShownAsLabel="True" Label="#VAL hours" Font="Andalus, 8.25pt, style=Bold">
                     </asp:Series>
                     <asp:Series Name="RecommendedScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="ScreenDailyLimit" XValueType="DateTime" YValueType="Int32" Color="Green" 
                         Legend="Legend1" LegendText="Recommended Screen Time" Font="Andalus, 8.25pt, style=Bold" IsValueShownAsLabel="True" Label="#VAL hours" >
@@ -63,11 +62,8 @@
                     <asp:Series Name="UserPhysicalSteps" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="DailySteps" XValueType="DateTime" YValueType="Int32"
                         Color="#ff0000" Legend="Legend1" LegendText="Your Physical Steps" Font="Andalus, 8.25pt, style=Bold" IsValueShownAsLabel="True" Label="#VAL thousand Steps">
                     </asp:Series>
-                    <asp:Series Name="RecommendedStepsBoys" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="RecomStepsBoys" YValueType="Int32" Color="#cc0000" 
-                        Legend="Legend1" LegendText="Recommended Steps for Boys" Font="Andalus, 8.25pt, style=Bold" IsValueShownAsLabel="True" Label="#VAL thousand Steps" >
-                    </asp:Series>
-                <asp:Series Name="RecommendedStepsGirls" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="RecomStepsGirls" YValueType="Int32" Color="#800000" 
-                        Legend="Legend1" LegendText="Recommended Steps for Girls" Font="Andalus, 8.25pt, style=Bold" IsValueShownAsLabel="True" Label="#VAL thousand Steps" >
+                    <asp:Series Name="RecommendedSteps" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="RecomSteps" YValueType="Int32" Color="#66ff33" 
+                        Legend="Legend1" LegendText="Recommended Steps for Adults" Font="Andalus, 8.25pt, style=Bold" IsValueShownAsLabel="True" Label="#VAL thousand Steps" >
                     </asp:Series>
                 </Series>
                 <ChartAreas>

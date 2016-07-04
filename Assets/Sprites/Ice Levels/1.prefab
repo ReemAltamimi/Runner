@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &126918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 456892}
+  - 61: {fileID: 6185268}
+  m_Layer: 0
+  m_Name: IceBlockEdge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &157544
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,6 +33,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &456892
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126918}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.680008, y: 3.309906, z: 5}
+  m_LocalScale: {x: 1.1116586, y: 0.70330286, z: 1}
+  m_Children: []
+  m_Father: {fileID: 496150}
+  m_RootOrder: 0
 --- !u!4 &496150
 Transform:
   m_ObjectHideFlags: 1
@@ -24,9 +52,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157544}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.315765, y: -1.0929823, z: 0}
+  m_LocalPosition: {x: -128.4, y: -22.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 456892}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!61 &6182172
@@ -40,9 +69,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.1796112, y: 0}
   serializedVersion: 2
-  m_Size: {x: 8.533334, y: 8.533334}
+  m_Size: {x: 8.174078, y: 8.533334}
+--- !u!61 &6185268
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 126918}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1debb068374764196a01e1c69c1f413f, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0.06801306, y: -4.9038963}
+  serializedVersion: 2
+  m_Size: {x: 1.1360283, y: 12.407781}
 --- !u!212 &21274312
 SpriteRenderer:
   m_ObjectHideFlags: 1

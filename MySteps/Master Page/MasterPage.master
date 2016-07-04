@@ -57,7 +57,7 @@
                     
         <div id="footer">
 
-            <p>Common Footer Content</p>
+            <p>IT Research Project - Evaluation of the Impact of On-Screen Entertainment with Off-Screen Physical Activity on Active Living - 2016</p>
 
             <asp:ContentPlaceHolder ID="cphFooter" runat="server">
 

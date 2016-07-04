@@ -87,11 +87,8 @@
                      <asp:Series Name="UserPhysicalSteps"  XValueType="DateTime" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Physical Steps" IsValueShownAsLabel="True" Label="#VAL Steps">
                     </asp:Series>
-                    <asp:Series Name="RecommendedStepsBoys"  YValueType="Int32" Color="Green" 
-                        Legend="Legend1" LegendText="Recommended Steps for Boys" IsValueShownAsLabel="True" Label="#VAL Steps" >
-                    </asp:Series>
-                <asp:Series Name="RecommendedStepsGirls" YValueType="Int32" Color="Yellow" 
-                        Legend="Legend1" LegendText="Recommended Steps for Girls" IsValueShownAsLabel="True" Label="#VAL Steps" >
+                    <asp:Series Name="RecommendedSteps"  YValueType="Int32" Color="Green" 
+                        Legend="Legend1" LegendText="Recommended Steps for Adults" IsValueShownAsLabel="True" Label="#VAL Steps" >
                     </asp:Series>
                  </Series>
                  <ChartAreas>

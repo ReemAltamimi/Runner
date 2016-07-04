@@ -98,8 +98,8 @@ public partial class UserHistory : System.Web.UI.Page
             
                 //add data to chart
                 PhysicalActivityChart.Series["UserPhysicalSteps"].Points.AddXY(date1.Date, steps);
-                PhysicalActivityChart.Series["RecommendedStepsBoys"].Points.AddXY(date1.Date, 13000);
-                PhysicalActivityChart.Series["RecommendedStepsGirls"].Points.AddXY(date1.Date, 11000);
+                PhysicalActivityChart.Series["RecommendedSteps"].Points.AddXY(date1.Date, 10000);
+        
             //print amount and date on screen
             Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " hours" + "<br/>";
             steps = 0;
@@ -119,8 +119,7 @@ public partial class UserHistory : System.Web.UI.Page
         PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
         //set the width of series column in the char
         PhysicalActivityChart.Series["UserPhysicalSteps"]["PixelPointWidth"] = "25";
-        PhysicalActivityChart.Series["RecommendedStepsBoys"]["PixelPointWidth"] = "25";
-        PhysicalActivityChart.Series["RecommendedStepsGirls"]["PixelPointWidth"] = "25";
+        PhysicalActivityChart.Series["RecommendedSteps"]["PixelPointWidth"] = "25";
 
         //show the chart
         PhysicalActivityChart.Visible = true;

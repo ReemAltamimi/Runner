@@ -40,9 +40,9 @@
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
                                 style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
 
-             <asp:Button ID="btnSync" runat="server" Width="150" Text="My Physical Workout"
+             <asp:Button ID="btnSync" runat="server" Width="200" Text="My Physical Workout"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:45vw; top:84vh" OnClick="btnSync_Click" />
+                                style="position:fixed; left:42vw; top:84vh" OnClick="btnSync_Click" />
             <!--
                      <asp:Button ID="Button1" runat="server" Width="150" Text="ResetToken"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
@@ -53,8 +53,8 @@
                                 style="position:fixed; left:30vw; top:44vh" OnClick="refreshToken" />
                 -->
                   <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
-                              ForeColor="#ff0066" Font-Size="Small" 
-                style ="position:fixed; left: 25vw; top:62vh" ></asp:Label>
+                              ForeColor="#FFCCCC" Font-Size="Small" 
+                style ="position:fixed; left: 25vw; top:75vh" ></asp:Label>
 
         </div>
       <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
@@ -80,11 +80,8 @@
                 <asp:Series Name="UserPhysicalSteps" XValueMember="DateAndTime" YValueMembers="DailySteps" XValueType="DateTime" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Physical Steps" IsValueShownAsLabel="True" Label="#VAL Steps">
                     </asp:Series>
-                    <asp:Series Name="RecommendedStepsBoys" XValueMember="DateAndTime" YValueMembers="RecomStepsBoys" YValueType="Int32" Color="Green" 
-                        Legend="Legend1" LegendText="Recommended Steps for Boys" IsValueShownAsLabel="True" Label="#VAL Steps" >
-                    </asp:Series>
-                <asp:Series Name="RecommendedStepsGirls" XValueMember="DateAndTime" YValueMembers="RecomStepsGirls" YValueType="Int32" Color="Yellow" 
-                        Legend="Legend1" LegendText="Recommended Steps for Girls" IsValueShownAsLabel="True" Label="#VAL Steps" >
+                    <asp:Series Name="RecommendedSteps" XValueMember="DateAndTime" YValueMembers="RecomSteps" YValueType="Int32" Color="Green" 
+                        Legend="Legend1" LegendText="Recommended Steps for Adults" IsValueShownAsLabel="True" Label="#VAL Steps" >
                     </asp:Series>
             </Series>
             <ChartAreas>

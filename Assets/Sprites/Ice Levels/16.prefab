@@ -17,6 +17,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &194132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 402150}
+  - 61: {fileID: 6113526}
+  m_Layer: 0
+  m_Name: IceSmallBlockEdge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &402150
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194132}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.9300017, y: 0.85990524, z: 5}
+  m_LocalScale: {x: 1.1116586, y: 0.70330286, z: 1}
+  m_Children: []
+  m_Father: {fileID: 461478}
+  m_RootOrder: 0
 --- !u!4 &461478
 Transform:
   m_ObjectHideFlags: 1
@@ -24,11 +52,26 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 107.113655, y: 14.476901, z: 0}
+  m_LocalPosition: {x: -0.6, y: -32.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 402150}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!61 &6113526
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194132}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1debb068374764196a01e1c69c1f413f, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.08405206, y: 0.68091774}
+  serializedVersion: 2
+  m_Size: {x: 0.74352235, y: 4.875595}
 --- !u!61 &6165250
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -40,9 +83,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 1.6547899}
+  m_Offset: {x: -0.21545255, y: 1.654789}
   serializedVersion: 2
-  m_Size: {x: 8.533334, y: 2.8904223}
+  m_Size: {x: 8.102419, y: 2.8904223}
 --- !u!212 &21201634
 SpriteRenderer:
   m_ObjectHideFlags: 1

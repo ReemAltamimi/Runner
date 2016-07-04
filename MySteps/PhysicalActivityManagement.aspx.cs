@@ -106,8 +106,7 @@ namespace MySteps
             PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
             //set the width of series column in the chart
             PhysicalActivityChart.Series["UserPhysicalSteps"]["PixelPointWidth"] = "100";
-            PhysicalActivityChart.Series["RecommendedStepsBoys"]["PixelPointWidth"] = "100";
-            PhysicalActivityChart.Series["RecommendedStepsGirls"]["PixelPointWidth"] = "100";
+            PhysicalActivityChart.Series["RecommendedSteps"]["PixelPointWidth"] = "100";
 
             //show the chart
             PhysicalActivityChart.Visible = true;

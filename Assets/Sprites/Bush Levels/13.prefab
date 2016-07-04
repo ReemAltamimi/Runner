@@ -17,6 +17,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &191790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 434736}
+  - 61: {fileID: 6100656}
+  m_Layer: 0
+  m_Name: SmallBlockEdge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &410314
 Transform:
   m_ObjectHideFlags: 1
@@ -24,11 +40,38 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 119380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 102.83, y: -17.8, z: 0}
+  m_LocalPosition: {x: 2.8, y: -10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 434736}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &434736
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191790}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.6299999, y: 1.3400002, z: 5}
+  m_LocalScale: {x: 1.1116586, y: 0.70330286, z: 1}
+  m_Children: []
+  m_Father: {fileID: 410314}
+  m_RootOrder: 0
+--- !u!61 &6100656
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191790}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 1debb068374764196a01e1c69c1f413f, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: -0.042442963, y: -0.22844292}
+  serializedVersion: 2
+  m_Size: {x: 0.82674354, y: 3.0568738}
 --- !u!61 &6185976
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -40,9 +83,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 1.4289513}
+  m_Offset: {x: 0.14735246, y: 1.4289513}
   serializedVersion: 2
-  m_Size: {x: 6.4, y: 1.7920976}
+  m_Size: {x: 6.1053, y: 1.7920976}
 --- !u!212 &21238248
 SpriteRenderer:
   m_ObjectHideFlags: 1
