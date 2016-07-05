@@ -82,7 +82,7 @@
 
      <div class="style5">
 
-                <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="630" Height="450" BackColor="#ffcccc">
+                <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="630" Height="470" BackColor="#ffcccc">
                  <Series>
                      <asp:Series Name="UserPhysicalSteps"  XValueType="DateTime" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Physical Steps" IsValueShownAsLabel="True" Label="#VAL Steps">
@@ -104,7 +104,7 @@
 
      <div class="style5">
 
-             <asp:Chart ID="ScreenTimeChart" runat="server" Visible="False" Width="630" Height="450" BackColor="#ffff99">
+             <asp:Chart ID="ScreenTimeChart" runat="server" Visible="False" Width="630" Height="470" BackColor="#ffff99">
                  <Series>
                      <asp:Series Name="UserScreenTime"  XValueType="Date" YValueType="Int32"
                         Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">

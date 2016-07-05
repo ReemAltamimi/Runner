@@ -101,7 +101,7 @@ public partial class UserHistory : System.Web.UI.Page
                 PhysicalActivityChart.Series["RecommendedSteps"].Points.AddXY(date1.Date, 10000);
         
             //print amount and date on screen
-            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " hours" + "<br/>";
+            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " Steps" + "<br/>";
             steps = 0;
             date1 = date1.AddDays(-1);
 

@@ -1,4 +1,4 @@
-﻿#define BEN_IS_LAZY
+﻿//#define BEN_IS_LAZY
 
 using System;
 using System.Collections.Generic;
@@ -72,11 +72,11 @@ public partial class Default2 : System.Web.UI.Page
 
         steps = Convert.ToInt32(Session["Steps"]);
         Response.Write("<script language='javascript'>alert('Your number of steps today is:" + Session["Steps"].ToString() + "')</script>");
-
+/*
 #if BEN_IS_LAZY
         steps = 10000;
 #endif
-
+*/
         // get unlocked levels from DB
         unlockedLevels = Game.getUnLockedLevel(userId);
 
