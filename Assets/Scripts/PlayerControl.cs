@@ -210,7 +210,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         Vector2 raycast = groundCheck.localPosition;
-        grounded = Physics2D.CircleCast(transform.position, 0.70f,  raycast.normalized, raycast.magnitude,  1 << LayerMask.NameToLayer("Ground"));
+        grounded = Physics2D.CircleCast(transform.position, 0.76f,  raycast.normalized, raycast.magnitude,  1 << LayerMask.NameToLayer("Ground"));
 
         float h = direction * 0.4f;
 
