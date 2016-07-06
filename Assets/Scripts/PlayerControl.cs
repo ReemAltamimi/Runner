@@ -152,16 +152,7 @@ public class PlayerControl : MonoBehaviour
 	{
         var rigidBody = GetComponent<Rigidbody2D>();
         
-        // The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-        grounded = Physics2D.CircleCast(transform.position, 0.54f, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
-        if (grounded && Mathf.Abs(rigidBody.velocity.y) < 0.1f)
-        {
-            jumpLevel = 0;
-            
-        }
         
-        Debug.DrawLine(transform.position, groundCheck.position, jumpLevel == 0 ? Color.green : Color.red);
-
         // If the jump button is pressed and the player is grounded then the player should jump.
         if (Input.GetButtonDown("Jump") && jumpLevel < maxJump)
         {
@@ -217,7 +208,9 @@ public class PlayerControl : MonoBehaviour
             // Cache the horizontal input.
             direction = Mathf.Sign(Input.GetAxis("Horizontal"));
         }
-        grounded = Physics2D.CircleCast(transform.position, 0.54f,  groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        Vector2 raycast = groundCheck.localPosition;
+        grounded = Physics2D.CircleCast(transform.position, 0.54f,  raycast.normalized, raycast.magnitude,  1 << LayerMask.NameToLayer("Ground"));
 
         float h = direction * 0.4f;
 
@@ -227,6 +220,10 @@ public class PlayerControl : MonoBehaviour
         if (Mathf.Sign(direction) != Mathf.Sign(rigidBody.velocity.x)){
             rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
         }
+
+        
+        Debug.DrawLine(transform.position, groundCheck.position, grounded ? Color.green : Color.red);
+
 
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
 		if(grounded && h * rigidBody.velocity.x < maxSpeed)
@@ -269,7 +266,15 @@ public class PlayerControl : MonoBehaviour
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
-	}
+        else
+        {
+            if (grounded && Mathf.Abs(rigidBody.velocity.y) < 0.1f)
+            {
+                jumpLevel = 0;
+            }
+
+        }
+    }
 
 
     public void DoJump(float power)
@@ -277,7 +282,7 @@ public class PlayerControl : MonoBehaviour
         jumpLevel++;
         var rigidbody = GetComponent<Rigidbody2D>();
         Vector2 velocity = rigidbody.velocity;
-
+       
         velocity.y = power;
         rigidbody.velocity = velocity;
 
