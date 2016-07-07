@@ -26,10 +26,11 @@ public class Hearts : MonoBehaviour {
     public static int GetHeartCount()
     {
         int heartCount = 0;
-        while (heartCount < ms_thressholds.Length && ms_thressholds[heartCount] < total)
+        while (heartCount < ms_thressholds.Length && ms_thressholds[heartCount] <= total)
         {
             heartCount++;
         }
+        Debug.Log("hearts" + heartCount);
         return heartCount;
     }
 

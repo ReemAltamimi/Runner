@@ -218,7 +218,7 @@ public class PlayerControl : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(h));
 
         if (Mathf.Sign(direction) != Mathf.Sign(rigidBody.velocity.x)){
-            rigidBody.velocity = new Vector2(-rigidBody.velocity.x, rigidBody.velocity.y);
+            rigidBody.velocity = new Vector2(Mathf.Sign(direction) * maxSpeed, rigidBody.velocity.y);
         }
 
         
@@ -259,7 +259,9 @@ public class PlayerControl : MonoBehaviour
             // Add a vertical force to the player.
             float force = (jumpLevel < jumpForce.Length) ? jumpForce[jumpLevel] : 0;
             var rigidbody = GetComponent<Rigidbody2D>();
-            rigidbody.velocity = Vector3.zero;
+            Vector2 velocity = rigidbody.velocity;
+            velocity.y = 0;
+            rigidbody.velocity = velocity;
             rigidbody.AddForce(new Vector2(0f, force), ForceMode2D.Impulse);
             jumpLevel++;
 
@@ -279,7 +281,10 @@ public class PlayerControl : MonoBehaviour
 
     public void DoJump(float power)
     {
-        jumpLevel++;
+        if (jumpLevel == 0)
+        {
+            jumpLevel++;
+        }
         var rigidbody = GetComponent<Rigidbody2D>();
         Vector2 velocity = rigidbody.velocity;
        
