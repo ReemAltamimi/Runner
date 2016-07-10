@@ -39,10 +39,17 @@ public partial class Thread : System.Web.UI.Page
         string name = txbName.Text;
         DateTime date = DateTime.Now;
 
-        PostThread.insertThread(cforumId, comment, name, date);
-        GridView1.DataBind();
-        txbComment.Text = "";
-               
+        try
+        {
+            PostThread.insertThread(cforumId, comment, name, date);
+            GridView1.DataBind();
+            txbComment.Text = "";
+        }
+        catch (Exception exp)
+        {
+            Response.Output.Write("{0} Exception caught.", exp);
+        }
+
 
     }
 }

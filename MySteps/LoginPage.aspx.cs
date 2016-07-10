@@ -14,8 +14,7 @@ using System.Configuration;
 
 public partial class LoginPage : System.Web.UI.Page
 {
-
-    
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         //changer the header div background
@@ -30,23 +29,30 @@ public partial class LoginPage : System.Web.UI.Page
     {
         int userId;
 
-        //call checkLogin function in UserData class to check if the user name and password is correct
-        //and return the user id
-        userId = UserData.checkLogin(txbUserName.Text, txbPassword.Text);
+        try
+        {
+            //call checkLogin function in UserData class to check if the user name and password is correct
+            //and return the user id
+            userId = UserData.checkLogin(txbUserName.Text, txbPassword.Text);
 
-        //user name or password are incorrect
-        if (userId == 0)
-        {
-            Label2.Text = "Error: User name or password is not correct ..";
-            txbUserName.Text = "";
-            txbPassword.Text = "";
+            //user name or password are incorrect
+            if (userId == 0)
+            {
+                Label2.Text = "Error: User name or password is not correct ..";
+                txbUserName.Text = "";
+                txbPassword.Text = "";
+            }
+            //user name and password are correct
+            else
+            {
+                Session["New"] = txbUserName.Text.Trim();
+                Session["UserId"] = userId;
+                Response.Redirect("~/Main.aspx");
+            }
         }
-        //user name and password are correct
-        else
+        catch (Exception exp)
         {
-            Session["New"] = txbUserName.Text.Trim();
-            Session["UserId"] = userId;
-            Response.Redirect("~/Main.aspx");
+            Console.WriteLine("{0} Exception caught.", exp);
         }
                 
     }

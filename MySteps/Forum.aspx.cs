@@ -35,9 +35,19 @@ public partial class Forum : System.Web.UI.Page
         string question = txbQuestion.Text;
         string posterName = txbName.Text;
         DateTime dateTime = DateTime.Now;
-        PostForum.insertForum(ctitleId, question, posterName, dateTime);
-        GridView1.DataBind();
-        txbQuestion.Text = "";
+
+        try
+        {
+            PostForum.insertForum(ctitleId, question, posterName, dateTime);
+            GridView1.DataBind();
+            txbQuestion.Text = "";
+        }
+        catch(Exception exp)
+        {
+            Response.Output.Write("{0} Exception caught.", exp);
+        }
+       
+       
 
     }
 

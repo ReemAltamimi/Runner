@@ -76,7 +76,7 @@
            
 
             <asp:Label ID="Label3" runat="server" Text="" Font-Bold ="true" ForeColor="red"
-                 Font-Names="Cambria" style ="position:fixed; left: 25vw; top:62vh" Width="500"
+                 Font-Names="Cambria" style ="position:fixed; left: 25vw; top:62vh" Width="650"
                  BackColor="White"></asp:Label>
 
         </div>

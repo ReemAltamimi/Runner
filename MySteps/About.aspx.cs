@@ -24,17 +24,25 @@ public partial class About : System.Web.UI.Page
 
         Byte[] FileBuffer = User.DownloadData(FilePath);
 
-        if (FileBuffer != null)
-
+        try
         {
+            if (FileBuffer != null)
 
-            Response.ContentType = "application/pdf";
+            {
 
-            Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                Response.ContentType = "application/pdf";
 
-            Response.BinaryWrite(FileBuffer);
+                Response.AddHeader("content-length", FileBuffer.Length.ToString());
 
+                Response.BinaryWrite(FileBuffer);
+
+            }
         }
+        catch (Exception exp)
+        {
+            Console.WriteLine("{0} Exception caught.", exp);
+        }
+
 
     }
     protected void btnManul_Click(object sender, EventArgs e)
@@ -45,16 +53,23 @@ public partial class About : System.Web.UI.Page
 
         Byte[] FileBuffer = User.DownloadData(FilePath);
 
-        if (FileBuffer != null)
-
+        try
         {
+            if (FileBuffer != null)
 
-            Response.ContentType = "application/pdf";
+            {
 
-            Response.AddHeader("content-length", FileBuffer.Length.ToString());
+                Response.ContentType = "application/pdf";
 
-            Response.BinaryWrite(FileBuffer);
+                Response.AddHeader("content-length", FileBuffer.Length.ToString());
 
+                Response.BinaryWrite(FileBuffer);
+
+            }
+        }
+        catch (Exception exp)
+        {
+            Console.WriteLine("{0} Exception caught.", exp);
         }
 
     }

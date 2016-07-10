@@ -14,8 +14,6 @@ public partial class Contact : System.Web.UI.Page
     {
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#80FF80");
-
-
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
@@ -35,31 +33,6 @@ public partial class Contact : System.Web.UI.Page
             lblError.Text = "**Error: Your enquiry has not sent";
         }
 
-
-
-        /*try
-        {
-            MailMessage emailMsg = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-
-            emailMsg.From = new MailAddress(txbEmail.Text);
-            emailMsg.To.Add(new MailAddress("mystepsnewcastle@gmail.com"));
-            emailMsg.Subject = txbSubject.Text;
-            emailMsg.Body = txbText.Text;
-            emailMsg.Priority = MailPriority.Normal;
-
-            SmtpServer.Port = 587;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("mystepsnewcastle@gmail.com", "Reem123456");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.Send(emailMsg);
-
-            lblError.Text="Your enquiry has been sent";
-
-        }
-        catch
-        {
-            lblError.Text = "**Your enquiry has not sent";
-        }*/
     }
 
     protected void SendMail()

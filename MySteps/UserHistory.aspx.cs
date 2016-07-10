@@ -19,8 +19,6 @@ public partial class UserHistory : System.Web.UI.Page
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#AD5BFF");
 
-       
-
         //check if the user is login in the system
 
         if (Session["New"] == null)
@@ -32,6 +30,7 @@ public partial class UserHistory : System.Web.UI.Page
         Session["Date2"] = DateTime.Today.AddDays(-7).ToShortDateString();
 
     }
+
     protected void btnST_Click(object sender, EventArgs e)
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffff99");
@@ -39,46 +38,56 @@ public partial class UserHistory : System.Web.UI.Page
         Label2.Text = "";
 
         DateTime date1 = DateTime.Today.Date;
-        //DateTime date2 = DateTime.Today.AddDays(-5);
+        
         int st = 0;
 
-        for (int i = 1; i <= 5; i++)
+        try
         {
-            //get the screen time amount of a specific date
-            st = ScreenTime.getScreenTime(date1, Convert.ToInt32(userId));
-
-            if(st!=0)
+            for (int i = 1; i <= 5; i++)
             {
-                //add data to chart
-                ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(date1.Date, st);
-                ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(date1.Date, 3);
+                //get the screen time amount of a specific date
+                st = ScreenTime.getScreenTime(date1, Convert.ToInt32(userId));
+
+                if (st != 0)
+                {
+                    //add data to chart
+                    ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(date1.Date, st);
+                    ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(date1.Date, 3);
+
+                }
+                //print amount and date on screen
+                Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + " your screen time amount was " + st + " hours" + "<br/>";
+                st = 0;
+                date1 = date1.AddDays(-1);
 
             }
-            //print amount and date on screen
-            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + " your screen time amount was " + st + " hours" + "<br/>";
-            st = 0;
-            date1 = date1.AddDays(-1);
 
+            double startDate = DateTime.Today.AddDays(-5).ToOADate();
+            double endDate = DateTime.Today.ToOADate();
+
+            //limit the values that appear in x axis 
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Maximum = endDate;
+            //to show each single day in x axis
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            //to show the x axis labels vertically
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
+            //set the width of series column in the char
+            ScreenTimeChart.Series["ScreenTimeLimit"]["PixelPointWidth"] = "25";
+            ScreenTimeChart.Series["UserScreenTime"]["PixelPointWidth"] = "25";
+
+            //show the chart
+            ScreenTimeChart.Visible = true;
+        }
+        catch (Exception exp)
+        {
+            Label2.Text = "Exception caught: " + exp;
         }
 
-        double startDate = DateTime.Today.AddDays(-5).ToOADate();
-        double endDate = DateTime.Today.ToOADate();
+
         
-        //limit the values that appear in x axis 
-        ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
-        ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Maximum = endDate;
-        //to show each single day in x axis
-        ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-        //to show the x axis labels vertically
-        ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
-        //set the width of series column in the char
-        ScreenTimeChart.Series["ScreenTimeLimit"]["PixelPointWidth"] = "25";
-        ScreenTimeChart.Series["UserScreenTime"]["PixelPointWidth"] = "25";
-
-        //show the chart
-        ScreenTimeChart.Visible = true;
-
     }
+
     protected void btnPA_Click(object sender, EventArgs e)
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffcccc");
@@ -87,42 +96,49 @@ public partial class UserHistory : System.Web.UI.Page
       
 
         DateTime date1 = DateTime.Today.Date;
-        //DateTime date2 = DateTime.Today.AddDays(-5);
+        
         int steps = 0;
 
-        for (int i = 1; i <= 5; i++)
+        try
         {
-            //get the screen time amount of a specific date
-            steps = PhysicalActivity.getSteps(date1, Convert.ToInt32(userId));
+            for (int i = 1; i <= 5; i++)
+            {
+                //get the screen time amount of a specific date
+                steps = PhysicalActivity.getSteps(date1, Convert.ToInt32(userId));
 
-            
+
                 //add data to chart
                 PhysicalActivityChart.Series["UserPhysicalSteps"].Points.AddXY(date1.Date, steps);
                 PhysicalActivityChart.Series["RecommendedSteps"].Points.AddXY(date1.Date, 10000);
-        
-            //print amount and date on screen
-            Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " Steps" + "<br/>";
-            steps = 0;
-            date1 = date1.AddDays(-1);
+
+                //print amount and date on screen
+                Label2.Text = Label2.Text + "On " + date1.ToShortDateString() + "  your steps amount was  " + steps + " Steps" + "<br/>";
+                steps = 0;
+                date1 = date1.AddDays(-1);
+
+            }
+
+            double startDate = DateTime.Today.AddDays(-5).ToOADate();
+            double endDate = DateTime.Today.ToOADate();
+
+            //limit the values that appear in x axis 
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Maximum = endDate;
+            //to show each single day in x axis
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
+            //to show the x axis labels vertically
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
+            //set the width of series column in the char
+            PhysicalActivityChart.Series["UserPhysicalSteps"]["PixelPointWidth"] = "25";
+            PhysicalActivityChart.Series["RecommendedSteps"]["PixelPointWidth"] = "25";
+
+            //show the chart
+            PhysicalActivityChart.Visible = true;
 
         }
-
-        double startDate = DateTime.Today.AddDays(-5).ToOADate();
-        double endDate = DateTime.Today.ToOADate();
-
-        //limit the values that appear in x axis 
-        PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
-        PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Maximum = endDate;
-        //to show each single day in x axis
-        PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-        //to show the x axis labels vertically
-        PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.LabelStyle.Angle = 90;
-        //set the width of series column in the char
-        PhysicalActivityChart.Series["UserPhysicalSteps"]["PixelPointWidth"] = "25";
-        PhysicalActivityChart.Series["RecommendedSteps"]["PixelPointWidth"] = "25";
-
-        //show the chart
-        PhysicalActivityChart.Visible = true;
-
+        catch (Exception exp)
+        {
+            Label2.Text = "Exception caught: " + exp;
+        }    
     }
 }

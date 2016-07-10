@@ -12,7 +12,7 @@ public partial class Registeration : System.Web.UI.Page
 {
     //create a string of band codes for the first group.
     string[] participantsCodes = new string[] { "G1B1", "G1B2", "G1B3", "G1B4", "G1B5",
-    "G1B6", "G1B7", "G1B8", "G1B9", "G1B10"};
+    "G1B6", "G1B7", "G1B8", "G1B9", "G1B10", "Admin"};
 
     bool isParticipant = false;
 
@@ -21,7 +21,6 @@ public partial class Registeration : System.Web.UI.Page
     {
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#AD5BFF");
-
 
     }
     protected void btnRegister_Click(object sender, EventArgs e)
