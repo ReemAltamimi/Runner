@@ -53,7 +53,7 @@
 
         <asp:Chart ID="PA_Versus_ST" runat="server" DataSourceID="SqlDataSource1" Width="700px" Height="350px" BackColor="255, 255, 153">
                 <Series>
-                    <asp:Series Name="UserScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Int32"
+                    <asp:Series Name="UserScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Single"
                         Color="#cc0000" Legend="Legend1" LegendText="Your Screen Time Amount" IsValueShownAsLabel="True" Label="#VAL hours" Font="Andalus, 8.25pt, style=Bold">
                     </asp:Series>
                     <asp:Series Name="RecommendedScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="ScreenDailyLimit" XValueType="DateTime" YValueType="Int32" Color="Green" 

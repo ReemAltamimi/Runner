@@ -24,7 +24,7 @@
                  Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
             
              <asp:Label ID="Label4" runat="server" Text="Based on your Fitbit data" Font-Names="Comic Sans MS" 
-                            Font-Bold="True" ForeColor="#004080" Font-Underline="true"
+                            Font-Bold="True" ForeColor="#004080" Font-Underline="true" Visible="false"
                   style="position:fixed; left: 25vw; top:42vh">
                   </asp:Label>
 

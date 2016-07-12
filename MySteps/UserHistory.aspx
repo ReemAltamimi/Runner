@@ -106,7 +106,7 @@
 
              <asp:Chart ID="ScreenTimeChart" runat="server" Visible="False" Width="630" Height="470" BackColor="#ffff99">
                  <Series>
-                     <asp:Series Name="UserScreenTime"  XValueType="Date" YValueType="Int32"
+                     <asp:Series Name="UserScreenTime"  XValueType="Date" YValueType="Single"
                         Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
                      </asp:Series>
                      <asp:Series Name="ScreenTimeLimit"   Color="Green" 

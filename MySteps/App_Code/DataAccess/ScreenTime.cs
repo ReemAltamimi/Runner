@@ -23,7 +23,7 @@ public class ScreenTime
         //
     }
 
-    public static int insertSTData(int userId, DateTime dateTim, int screenTime)
+    public static int insertSTData(int userId, DateTime dateTim, float screenTime)
     {
         int rowsAffected = 0;
 
@@ -104,16 +104,16 @@ public class ScreenTime
     }
 
     //get the screen time amount of a specific date 
-    public static int getScreenTime(DateTime dt, int userId)
+    public static float getScreenTime(DateTime dt, int userId)
     {
-        int screenTime = 0;
+        float screenTime = 0;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
             //select the last time in date column that match the user id and in the date of today
             string str = "select UserScreenDailyAmnt from ScreenTimeData where UserID= '" + userId + "' AND CAST([Date] AS DATE) = '" + dt + "'";
             SqlCommand command1 = new SqlCommand(str, connection);
-            screenTime = Convert.ToInt32(command1.ExecuteScalar());
+            screenTime = Convert.ToSingle(command1.ExecuteScalar());
             connection.Close();
         }
 

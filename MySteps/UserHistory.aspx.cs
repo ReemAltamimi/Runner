@@ -39,7 +39,7 @@ public partial class UserHistory : System.Web.UI.Page
 
         DateTime date1 = DateTime.Today.Date;
         
-        int st = 0;
+        float st = 0;
 
         try
         {

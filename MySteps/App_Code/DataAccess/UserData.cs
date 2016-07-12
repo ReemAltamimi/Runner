@@ -177,5 +177,33 @@ public class UserData
     }
 
 
+    //get BandCode for a specific user.
+    public static string getBandCode(int userid)
+    {
+        string bandCode;
 
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string str = "select BandCode from UserData where Id= '" + userid + "'";
+            SqlCommand command = new SqlCommand(str, connection);
+            bandCode = command.ExecuteScalar().ToString();
+            connection.Close();
+        }
+        return bandCode;
+    }
+
+    //get share authorization for a specific user.
+    public static string getShareAuth(int userid)
+    {
+        string share;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string str = "select Share from UserData where Id= '" + userid + "'";
+            SqlCommand command = new SqlCommand(str, connection);
+            share = command.ExecuteScalar().ToString();
+            connection.Close();
+        }
+        return share;
+    }
 }

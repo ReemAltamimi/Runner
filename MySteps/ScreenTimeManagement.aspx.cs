@@ -36,10 +36,10 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
             }
             else
             {
-                if (Convert.ToInt32(txbScreenUnits.Text) != 0)
+                if (float.Parse(txbScreenUnits.Text) != 0.0)
                 {
                     //add screen time data into ScreenTimeData table
-                    ScreenTime.insertSTData(Convert.ToInt32(userId), DateTime.Now, Convert.ToInt32(txbScreenUnits.Text));
+                    ScreenTime.insertSTData(Convert.ToInt32(userId), DateTime.Now, float.Parse(txbScreenUnits.Text.Trim()));
                     //show successful message
                     Label3.ForeColor = System.Drawing.Color.Green;
                     Label3.Text = "Your Screen Time has been added <br> Click on View Chart button ";
@@ -55,11 +55,11 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
             }
             
         }
-        catch (Exception exp)
+        catch (Exception)
         {
-            //Label3.ForeColor = System.Drawing.Color.Red;
-            //Label3.Text = "You have not yet entered a correct value above, <br> Please enter the screen time amount and then click submit button";
-            Label3.Text = "Exception caught." + exp;
+            Label3.ForeColor = System.Drawing.Color.Red;
+            Label3.Text = "You have not yet entered a correct value above, <br> Please enter the screen time amount and then click submit button";
+            //Label3.Text = "Exception caught." + exp;
            // Response.Output.Write("<p>{0} Exception caught.</p>", exp);
         }
 

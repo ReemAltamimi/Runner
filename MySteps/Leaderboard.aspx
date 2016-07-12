@@ -154,6 +154,71 @@
                 </tr>                
             </ItemTemplate>
            </asp:ListView>
+
+
+              <asp:ListView ID="ListView2" runat="server">
+               
+
+
+              <LayoutTemplate>
+                <table runat="server" class="TableCSS">
+                    <tr runat="server" class="TableHeader">
+                        <td runat="server">User</td>
+                        <td runat="server">Steps</td>
+                    </tr>
+                    <tr id="ItemPlaceholder" runat="server">
+                    </tr>
+                    <tr runat="server" class="TablePager">
+                        <td runat="server" colspan="2">
+                            <asp:DataPager ID="DataPager1" runat="server">
+                                <Fields>
+                                    <asp:NextPreviousPagerField 
+                                        ButtonType="Button" 
+                                        ShowFirstPageButton="true"
+                                        ShowPreviousPageButton="false"
+                                        ShowNextPageButton="true"
+                                        ButtonCssClass="PagerButtonCSS"
+                                        />
+                                    <asp:NumericPagerField 
+                                        NumericButtonCssClass="NumericButtonCSS"
+                                        NextPreviousButtonCssClass="NextPreviousButtonCSS"
+                                        CurrentPageLabelCssClass="CurrentPageLabelCSS"
+                                        />
+                                    <asp:NextPreviousPagerField 
+                                        ButtonType="Button"
+                                        ShowNextPageButton="false"
+                                        ShowLastPageButton="true"
+                                        ButtonCssClass="PagerButtonCSS"
+                                        />
+                                </Fields>
+                            </asp:DataPager>
+                        </td>
+                    </tr>
+                </table>
+            </LayoutTemplate>
+
+               <ItemTemplate>
+                <tr class="TableData">
+                    <td align="center">
+                        <asp:Label 
+                            ID="Label1"
+                            runat="server"
+                            Text='<%# Eval("UserName")%>'
+                            >
+                        </asp:Label>
+                    </td>
+                    <td align="center">
+                        <asp:Label 
+                            ID="Label2"
+                            runat="server"
+                            Text='<%# Eval("DailySteps")%>'
+                            >
+                        </asp:Label>
+                    </td>
+                </tr>                
+            </ItemTemplate>
+           </asp:ListView>
+
                        <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
         </div>
 

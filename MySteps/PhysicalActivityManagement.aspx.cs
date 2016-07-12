@@ -48,6 +48,7 @@ namespace MySteps
                 }
                 else
                 {
+                    Label4.Visible = true;
                     Label2.Text = "<br />";
                     Label2.Text += "Number of Steps = " + Session["Steps"] + "<br />";
                     Label2.Text += "The distance you have walked = " + Session["Distance"] + "<br />";

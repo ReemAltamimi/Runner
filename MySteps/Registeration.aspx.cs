@@ -12,7 +12,7 @@ public partial class Registeration : System.Web.UI.Page
 {
     //create a string of band codes for the first group.
     string[] participantsCodes = new string[] { "G1B1", "G1B2", "G1B3", "G1B4", "G1B5",
-    "G1B6", "G1B7", "G1B8", "G1B9", "G1B10", "Admin"};
+    "G1B6", "G1B7", "G1B8", "G1B9", "G1B10", "CAdmin", "EAdmin"};
 
     bool isParticipant = false;
 

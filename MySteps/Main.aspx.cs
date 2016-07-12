@@ -45,6 +45,18 @@ public partial class Main : System.Web.UI.Page
                 Session["MinFActive"] = minFActive;
                 Session["MinVActive"] = minVActive;
             }
+            //assign Session["YesterdaySteps"] for game play
+            if (Session["YesterdaySteps"] == null)
+            {
+                Session["YesterdaySteps"] = PhysicalActivity.getSteps(DateTime.Now.AddDays(-1).Date, userId);
+                
+                //In case of first day login
+                if (Convert.ToInt32(Session["YesterdaySteps"]) == 0)
+                {
+                    Session["YesterdaySteps"] = 10000;
+                }
+
+            }
         }
         catch(Exception exp)
         {
@@ -76,7 +88,8 @@ public partial class Main : System.Web.UI.Page
 
     protected void btnGame_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Game/Game.aspx");
+        if(Session["GroupName"].ToString().Trim().Equals("Experiment"))
+            Response.Redirect("~/Game/Game.aspx");
     }
 
     protected void btnLeaderboard_Click(object sender, EventArgs e)

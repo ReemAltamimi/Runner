@@ -28,7 +28,7 @@
        <div class="style5">
             <asp:Chart ID="ScreenTimeChart" runat="server" DataSourceID="SqlDataSource1" Visible="False"  Width="300px" Height="480px" BackColor="#ffff99">
                 <series>
-                    <asp:Series Name="UserScreenAmount" XValueMember="Date" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Int32"
+                    <asp:Series Name="UserScreenAmount" XValueMember="Date" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Single"
                         Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
                     </asp:Series>
                     <asp:Series Name="ScreenLimit" XValueMember="Date" YValueMembers="ScreenDailyLimit" XValueType="DateTime" YValueType="Int32" Color="Green" 
@@ -66,6 +66,10 @@
                  Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:42vh" Font-Underline="True"></asp:Label>
 
             <asp:TextBox ID="txbScreenUnits" runat="server" Width="200px" CssClass="style4" ></asp:TextBox>
+
+             <asp:Label ID="Label4" runat="server" Text="Hours ( In Total )" Font-Bold ="True"
+                 Font-Names="Comic Sans MS" style ="position:fixed; left: 42vw; top:52vh" Font-Underline="True" ForeColor="Maroon"></asp:Label>
+
 
             <asp:Button ID="btnSubmit" runat="server" Width="120" Text="Submit"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"

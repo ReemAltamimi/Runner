@@ -69,9 +69,14 @@ public partial class Default2 : System.Web.UI.Page
         {
             Response.Redirect("~/Main.aspx");
         }
+        if (Session["YesterdaySteps"] == null)
+        {
+            Response.Redirect("~/Main.aspx");
+        }
 
-        steps = Convert.ToInt32(Session["Steps"]);
-        Response.Write("<script language='javascript'>alert('Your number of steps today is:" + Session["Steps"].ToString() + "')</script>");
+        //get steps of yesterday
+        steps = Convert.ToInt32(Session["YesterdaySteps"]);
+        Response.Write("<script language='javascript'>alert('Your number of steps yesterday is:" + Session["YesterdaySteps"].ToString() + "')</script>");
 /*
 #if BEN_IS_LAZY
         steps = 10000;

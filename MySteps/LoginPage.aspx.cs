@@ -14,7 +14,14 @@ using System.Configuration;
 
 public partial class LoginPage : System.Web.UI.Page
 {
-   
+    //create a string of control group participants.
+    string[] controlGroup = new string[] { "G1B1", "G1B2", "G1B3", "G1B4", "G1B5", "CAdmin" };
+    //create a string of experiment group participants.
+    string[] experimentGroup = new string[] {"G1B6", "G1B7", "G1B8", "G1B9", "G1B10", "EAdmin" };
+
+    string groupName;
+
+
     protected void Page_Load(object sender, EventArgs e)
     {
         //changer the header div background
@@ -45,8 +52,15 @@ public partial class LoginPage : System.Web.UI.Page
             //user name and password are correct
             else
             {
+                string bandCode = UserData.getBandCode(userId);
+                string shareAuth = UserData.getShareAuth(userId).Trim();
+
+                groupName = checkGroup(bandCode.Trim());
+
                 Session["New"] = txbUserName.Text.Trim();
                 Session["UserId"] = userId;
+                Session["GroupName"] = groupName.Trim();
+                Session["ShareAuth"] = shareAuth;
                 Response.Redirect("~/Main.aspx");
             }
         }
@@ -56,4 +70,21 @@ public partial class LoginPage : System.Web.UI.Page
         }
                 
     }
+
+    //Function to check the group name of the participant
+
+    private string checkGroup(string user)
+    {
+        string group;
+
+        bool found = controlGroup.Contains(user);
+
+        if (found)
+            group = "Control";
+        else
+            group = "Experiment";
+
+        return group;
+    }
+
 }
