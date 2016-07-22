@@ -87,4 +87,22 @@ public partial class LoginPage : System.Web.UI.Page
         return group;
     }
 
+
+    protected void btnAdmin_Click(object sender, EventArgs e)
+    {
+        int emailExist = UserData.checkUser(txbUserName.Text.Trim());
+        if (emailExist == 1)
+        {
+            if (txbPassword.Text.Trim() == "Reem1403")
+            {
+                Session["Admin"] = "Yes";
+                Response.Redirect("~/Admin.aspx");
+            }
+                
+            else
+                Label2.Text = "Sorry! you are not the admin";
+        }
+        else
+            Label2.Text = "Sorry! you are not the admin";
+    }
 }

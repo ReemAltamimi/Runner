@@ -67,8 +67,12 @@
 
             <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="#FF8080"
                 Font-Names="Comic Sans MS" Font-Bold="True" ForeColor="White"
-                style="position:fixed; left:45vw; top:75vh"  Width="140" Height="50px" 
+                style="position:fixed; left:35vw; top:75vh"  Width="140" Height="50px" 
                 OnClick="btnLogin_Click" BorderStyle="Outset" Font-Size="Large" />
+            <asp:Button ID="btnAdmin" runat="server" Text="Admin Login" BackColor="#FF8080"
+                Font-Names="Comic Sans MS" Font-Bold="True" ForeColor="White"
+                style="position:fixed; left:50vw; top:75vh"  Width="140" Height="50px" 
+                OnClick="btnAdmin_Click" BorderStyle="Outset" Font-Size="Large" />
 
            <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
 
