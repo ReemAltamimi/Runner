@@ -90,8 +90,8 @@ public partial class LoginPage : System.Web.UI.Page
 
     protected void btnAdmin_Click(object sender, EventArgs e)
     {
-        int emailExist = UserData.checkUser(txbUserName.Text.Trim());
-        if (emailExist == 1)
+        string adminEmail = "c3107877@uon.edu.au";
+        if (txbUserName.Text.Trim().Equals(adminEmail))
         {
             if (txbPassword.Text.Trim() == "Reem1403")
             {
