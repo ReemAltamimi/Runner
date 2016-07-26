@@ -10,12 +10,12 @@ public partial class DevGame : System.Web.UI.Page
     
 
     public String GetMovement(){
-        int steps = 10000; // Session[Steps]
-        if (steps >= 10000)
+        int steps = Convert.ToInt32(Session["Steps"]);
+        if (steps >= 15000)
         {
             return "Fast";
         }
-        if (steps >= 5000)
+        if (steps >= 10000)
         {
             return "Medium";
         }

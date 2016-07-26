@@ -21,6 +21,8 @@ namespace MySteps
 
         protected XmlDocument Doc { get; private set; }
 
+        FitbitConnection connection = new FitbitConnection();
+
         protected void Page_Load(object sender, EventArgs e)
         { 
             //check if the user is login in the system
@@ -32,6 +34,7 @@ namespace MySteps
            
             userId = (int)Session["UserId"];
             Session["DateTime"] = DateTime.Now;
+            connection.Connect(userId, Context);
         }
         
       
@@ -42,22 +45,27 @@ namespace MySteps
 
             try
             {
-                if (Session["Steps"] == null)
-                {
-                    Response.Redirect("~/Main.aspx");
-                }
-                else
-                {
-                    Label4.Visible = true;
-                    Label2.Text = "<br />";
-                    Label2.Text += "Number of Steps = " + Session["Steps"] + "<br />";
-                    Label2.Text += "The distance you have walked = " + Session["Distance"] + "<br />";
-                    Label2.Text += "Sedentary time in minutes = " + Session["MinSed"] + "<br />";
-                    Label2.Text += "Lightly Active Minutes= " + Session["MinLActive"] + "<br />";
-                    Label2.Text += "Fairly Active Minutes = " + Session["MinFActive"] + "<br />";
-                    Label2.Text += "Very Active Minutes = " + Session["MinVActive"] + "<br />";
+                var steps = connection.GetActivityByDate(FitbitConnection.Activity.steps, activityDate);
+                var distance = connection.GetActivityByDate(FitbitConnection.Activity.distance, activityDate);
+                var minSed = connection.GetActivityByDate(FitbitConnection.Activity.minutesSedentary, activityDate);
+                var minLActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesLightlyActive, activityDate);
+                var minFActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesFairlyActive, activityDate);
+                var minVActive = connection.GetActivityByDate(FitbitConnection.Activity.minutesVeryActive, activityDate);
 
-                }
+                //add Physical activity data into PhysicalActivityData table
+                PhysicalActivity.insertPAData(Convert.ToInt32(userId), DateTime.Now, (int)steps, Convert.ToSingle(distance), (int)minSed, (int)minLActive, (int)minFActive, (int)minVActive);
+
+                Session["ActivityDate"] = activityDate;
+                Session["Steps"] = steps;
+
+                Label4.Visible = true;
+                    Label2.Text = "<br />";
+                    Label2.Text += "Number of Steps = " + (int)steps + "<br />";
+                    Label2.Text += "The distance you have walked = " + Convert.ToSingle(distance) + "<br />";
+                    Label2.Text += "Sedentary time in minutes = " + (int)minSed + "<br />";
+                    Label2.Text += "Lightly Active Minutes= " + (int)minLActive + "<br />";
+                    Label2.Text += "Fairly Active Minutes = " + (int)minFActive + "<br />";
+                    Label2.Text += "Very Active Minutes = " + (int)minVActive + "<br />";              
             }
             catch(Exception exp)
             {

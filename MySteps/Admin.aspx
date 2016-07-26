@@ -14,7 +14,7 @@
         .buttonDiv
         {
              width: 100vw;
-             height: 20vh;
+             height: 30vh;
              background-color:#adaaaa;
              position:fixed;
              left: 0vw;
@@ -25,10 +25,10 @@
         {
             
            position: fixed;
-           top: 22vh;
+           top: 32vh;
           left:0vw;
           width: 100vw;
-           height: 70vh;
+           height: 60vh;
            overflow-x:scroll; 
            overflow-y:scroll;
           
@@ -60,12 +60,26 @@
         <asp:Button ID="btnThread" runat="server" Text="Show Thread Data" OnClick="btnThread_Click" Height="40px" />
     
         <asp:Button ID="btnReminder" runat="server" Text="Send a Reminder" OnClick="btnReminder_Click" Height="40px" />
+         
+    
     
           <asp:Label ID="lblUserID" runat="server" Text="Enter User Id: " style="position:fixed; top:15vh; left:0vw;" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium" ></asp:Label>
        
          <asp:TextBox ID="txbUserId" runat="server" style="position:fixed; top:15vh; left:10vw;"></asp:TextBox>
 
           <asp:Label ID="lblError" runat="server" Text="Hi" style="position:fixed; top:15vh; left:30vw;" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium" ForeColor="Maroon" ></asp:Label>
+
+        <asp:Label ID="lblUserEmail" runat="server" Text="Enter User Email: " style="position:fixed; top:20vh; left:0vw;" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium" ></asp:Label>
+       
+         <asp:TextBox ID="txbUserEmail" runat="server" style="position:fixed; top:20vh; left:10vw;"></asp:TextBox>
+         <asp:TextBox ID="txbText" runat="server" Width="600px" Rows="4" TextMode="MultiLine"
+             style="position:fixed; top:20vh; left:30vw;"></asp:TextBox>
+              
+        <asp:Button ID="btnEmail" runat="server" Text="Reply to an enquiry" Height="40px" OnClick="btnEmail_Click"
+            style="position:fixed; top:20vh; left:80vw;" />
+                
+         <a href="LoginPage.aspx" style="position:fixed; left:80vw; top:15vh">Back to Login page</a>
+        
     
     </div>
     

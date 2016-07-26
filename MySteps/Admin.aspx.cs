@@ -119,50 +119,17 @@ public partial class Admin : System.Web.UI.Page
 
     protected void btnReminder_Click(object sender, EventArgs e)
     {
-        /*try
-        {
-            // Gmail Address from where you send the mail
-            var fromAddress = "mystepsnewcastle@gmail.com";
-            // any address where the email will be sending
-            var toAddress = "c3107877@uon.edu.au, " + getUsersEmails();
-            //Password of your gmail address
-            const string fromPassword = "Reem123456";
-            // Passing the values and make a email formate to display
-            string subject = "Reminder";
-            string body = "Hi, Have you visit Mysteps website today";
-            // smtp settings
-            var smtp = new System.Net.Mail.SmtpClient();
-            {
-                smtp.Host = "smtp.gmail.com";
-                smtp.Port = 587;
-                smtp.EnableSsl = true;
-                smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
-                smtp.Timeout = 20000;
-            }
-            // Passing values to smtp object
-            smtp.Send(fromAddress, toAddress, subject, body);
-            lblError.Text = "Reminders were sent";
-        }
-        catch(Exception)
-        {
-            lblError.Text = "Error Caught";
-        }*/
-
-
-
         // Gmail Address from where you send the mail
         var fromAddress = "mystepsnewcastle@gmail.com";
         //Password of your gmail address
         const string fromPassword = "Reem123456";
 
         MailAddress from = new MailAddress("mystepsnewcastle@gmail.com");
-        MailAddress to = new MailAddress("c3107877@uon.edu.au");
+        MailAddress to = new MailAddress("Reem.Altamimi@uon.edu.au");
         MailMessage message = new MailMessage(from, to);
         // message.Subject = "Using the SmtpClient class.";
         message.Subject = "Reminder";
-        message.Body = @"Hi, Have you visit Mysteps website today";
+        message.Body = @"Hi, Have you visited MySteps website today! ";
         // Add a carbon copy recipient.
         MailAddress copy = new MailAddress(getUsersEmails()+"topof2007@hotmail.com");
         message.Bcc.Add(copy);
@@ -188,6 +155,54 @@ public partial class Admin : System.Web.UI.Page
         {
             lblError.Text = "Error Caught" + ex.ToString();
         }
+
+    }
+
+    protected void btnEmail_Click(object sender, EventArgs e)
+    {
+        if(txbUserEmail.Text.Equals(""))
+        {
+            lblError.Text = "Enter the email address";
+        }
+        else if(txbText.Text.Equals(""))
+        {
+            lblError.Text = "There is no context in the email body to send";
+        }
+        else
+        {
+            try
+            {
+                // Gmail Address from where you send the mail
+                var fromAddress = "mystepsnewcastle@gmail.com";
+                // any address where the email will be sending
+                var toAddress = txbUserEmail.Text.Trim();
+                //Password of your gmail address
+                const string fromPassword = "Reem123456";
+                // Passing the values and make a email formate to display
+                string subject = "Reply to your enquiry";
+                string body = txbText.Text;
+                // smtp settings
+                var smtp = new System.Net.Mail.SmtpClient();
+                {
+                    smtp.Host = "smtp.gmail.com";
+                    smtp.Port = 587;
+                    smtp.EnableSsl = true;
+                    smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(fromAddress, fromPassword);
+                    smtp.Timeout = 20000;
+                }
+                // Passing values to smtp object
+                smtp.Send(fromAddress, toAddress, subject, body);
+                lblError.Text = "Email was sent";
+            }
+            catch (Exception)
+            {
+                lblError.Text = "Error Caught";
+            }
+        }
+
+       
 
     }
 
@@ -223,4 +238,6 @@ public partial class Admin : System.Web.UI.Page
 
         return emailsList;
     }
+
+    
 }

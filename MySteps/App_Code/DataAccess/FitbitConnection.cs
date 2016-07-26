@@ -28,6 +28,7 @@ public class FitbitConnection
 
     };
 
+    
     static WebServerClient client = new WebServerClient(authorizationServer, FitbitClientId, FitbitSecret);
 
     private int userId;

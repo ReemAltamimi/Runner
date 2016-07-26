@@ -15,7 +15,7 @@ using System.Configuration;
 public partial class LoginPage : System.Web.UI.Page
 {
     //create a string of control group participants.
-    string[] controlGroup = new string[] { "G1B1", "G1B2", "G1B3", "G1B4", "G1B5", "CAdmin" };
+    string[] controlGroup = new string[] {"G1B1", "G1B2", "G1B3", "G1B4", "G1B5", "CAdmin" };
     //create a string of experiment group participants.
     string[] experimentGroup = new string[] {"G1B6", "G1B7", "G1B8", "G1B9", "G1B10", "EAdmin" };
 
@@ -93,7 +93,7 @@ public partial class LoginPage : System.Web.UI.Page
         string adminEmail = "c3107877@uon.edu.au";
         if (txbUserName.Text.Trim().Equals(adminEmail))
         {
-            if (txbPassword.Text.Trim() == "Reem1403")
+            if (txbPassword.Text.Trim() == "Reemj79z0203")
             {
                 Session["Admin"] = "Yes";
                 Response.Redirect("~/Admin.aspx");

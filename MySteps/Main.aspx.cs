@@ -20,6 +20,7 @@ public partial class Main : System.Web.UI.Page
 
         try
         {
+            
             connection.Connect(userId, Context);
 
             if (Session["Steps"] == null)
@@ -39,21 +40,30 @@ public partial class Main : System.Web.UI.Page
 
                 Session["ActivityDate"] = activityDate;
                 Session["Steps"] = steps;
-                Session["Distance"] = distance;
-                Session["MinSed"] = minSed;
-                Session["MinLActive"] = minLActive;
-                Session["MinFActive"] = minFActive;
-                Session["MinVActive"] = minVActive;
+              
             }
             //assign Session["YesterdaySteps"] for game play
             if (Session["YesterdaySteps"] == null)
             {
                 Session["YesterdaySteps"] = PhysicalActivity.getSteps(DateTime.Now.AddDays(-1).Date, userId);
-                
-                //In case of first day login
+
+                int CheckFirstDayAward = UserData.getFisrtDayAward(Convert.ToInt32(userId));
+
+             //In case of zero steps in yesterday
                 if (Convert.ToInt32(Session["YesterdaySteps"]) == 0)
                 {
-                    Session["YesterdaySteps"] = 10000;
+                    //In case of first day login
+                    if (CheckFirstDayAward == 0)
+                    {
+                        Session["YesterdaySteps"] = 10000;
+                        int rows = UserData.SetFisrtDayAwardToTrue(Convert.ToInt32(userId));
+                    }
+                    else
+                    {
+                        Response.Write("<script language='javascript'>alert('Warning: Your number of steps for yesterday is:" + Session["YesterdaySteps"].ToString() + " , so you will be slow at game play')</script>");
+
+                    }
+
                 }
 
             }
@@ -67,6 +77,8 @@ public partial class Main : System.Web.UI.Page
     {
         Session["New"] = null;
         Session["Steps"] = null;
+        Session["YesterdaySteps"] = null;
+        Session["UserId"] = null;
         Response.Redirect("~/Default.aspx");
     }
     protected void btnScreenTime_Click(object sender, EventArgs e)

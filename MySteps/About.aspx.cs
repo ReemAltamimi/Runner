@@ -18,54 +18,24 @@ public partial class About : System.Web.UI.Page
 
     protected void btnChart_Click(object sender, EventArgs e)
     {
-        string FilePath = Server.MapPath("About_Chart.pdf");
-
-        WebClient User = new WebClient();
-
-        Byte[] FileBuffer = User.DownloadData(FilePath);
-
+       
         try
         {
-            if (FileBuffer != null)
-
-            {
-
-                Response.ContentType = "application/pdf";
-
-                Response.AddHeader("content-length", FileBuffer.Length.ToString());
-
-                Response.BinaryWrite(FileBuffer);
-
-            }
+            //Open the About pdf file
+            Response.Redirect("~/About_Chart.pdf");
         }
         catch (Exception exp)
         {
             Console.WriteLine("{0} Exception caught.", exp);
         }
 
-
     }
     protected void btnManul_Click(object sender, EventArgs e)
     {
-        string FilePath = Server.MapPath("manual_charge_en_US.pdf");
-
-        WebClient User = new WebClient();
-
-        Byte[] FileBuffer = User.DownloadData(FilePath);
-
         try
         {
-            if (FileBuffer != null)
-
-            {
-
-                Response.ContentType = "application/pdf";
-
-                Response.AddHeader("content-length", FileBuffer.Length.ToString());
-
-                Response.BinaryWrite(FileBuffer);
-
-            }
+            //Open the Manual pdf file
+            Response.Redirect("~/manual_charge_en_US.pdf");
         }
         catch (Exception exp)
         {

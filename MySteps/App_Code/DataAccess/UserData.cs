@@ -31,7 +31,7 @@ public class UserData
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string insertQuery = "insert into UserData (UserName,Email,Password,BandCode,Share) values (@Uname, @email, @password, @bandcode,@share)";
+            string insertQuery = "insert into UserData (UserName,Email,Password,BandCode,Share,FirstDayAward) values (@Uname, @email, @password, @bandcode,@share,@firstdayaward)";
             SqlCommand command = new SqlCommand(insertQuery, connection);
 
             command.Parameters.Add("@Uname", SqlDbType.NChar).Value = userName;
@@ -39,6 +39,8 @@ public class UserData
             command.Parameters.Add("@password", SqlDbType.NChar).Value = password;
             command.Parameters.Add("@bandcode", SqlDbType.NChar).Value = bandCode;
             command.Parameters.Add("@share", SqlDbType.Char).Value = share;
+            command.Parameters.Add("@firstdayaward", SqlDbType.Bit).Value = 0;
+            
 
             rowsAffected = command.ExecuteNonQuery();
 
@@ -206,4 +208,40 @@ public class UserData
         }
         return share;
     }
+    //get first day award value for a specific user.
+    public static int getFisrtDayAward(int userid)
+    {
+        int firstDayAward;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string str = "select FirstDayAward from UserData where Id= '" + userid + "'";
+            SqlCommand command = new SqlCommand(str, connection);
+            firstDayAward = Convert.ToInt32(command.ExecuteScalar());
+            connection.Close();
+        }
+        return firstDayAward;
+    }
+    //This function set the firstDayAward data in UserData table to true as the user 
+    //got the first day award
+    public static int SetFisrtDayAwardToTrue(int userId)
+    {
+        int rowsAffected = 0;
+
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string insertQuery = "UPDATE UserData SET FirstDayAward = @firstdayaward WHERE(Id = @userId)";
+            SqlCommand command = new SqlCommand(insertQuery, connection);
+
+            command.Parameters.AddWithValue("@userId", userId);
+            command.Parameters.Add("@firstdayaward", SqlDbType.Bit).Value = 1;
+
+            rowsAffected = command.ExecuteNonQuery();
+
+            connection.Close();
+        }
+
+        return rowsAffected;
+    }
+
 }

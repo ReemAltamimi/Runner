@@ -22,7 +22,7 @@ public partial class ScreenTimeManagement : System.Web.UI.Page
 
         userId = Session["UserId"].ToString();
         Session["Date"] = DateTime.Now;
-        
+       
     }
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
