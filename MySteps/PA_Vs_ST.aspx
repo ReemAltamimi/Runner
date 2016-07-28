@@ -7,9 +7,25 @@
       
         /*Chart Div Style*/
         .style5 {
-            position:fixed;
+            /*position:fixed;
             top:28vh;
-            left:24vw;
+            left:24vw;*/
+             position:absolute;
+            top:0;
+            left:2vw; 
+              width:50vw;
+            height:70vh;
+            text-align:center;     
+        }
+         .Chart
+        {
+           /* position:absolute; 
+            top:0; 
+            left:0; */
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            
         }
        
      </style>
@@ -25,7 +41,7 @@
         <div>
 
             <asp:Label ID="Label1" runat="server" Text="Physical Activity Versus Screen Time" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 24vw; top:23vh" Font-Underline="True" ForeColor="#FFFF99"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:absolute; left: 4vw; top:3vh" Font-Underline="True" ForeColor="#FFFF99"></asp:Label>
 
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
@@ -44,14 +60,14 @@
             </asp:SqlDataSource>
 
             <asp:Label ID="Label2" runat="server" Text="" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" Font-Size="Smaller" style ="position:fixed; left: 23vw; top:83vh" ForeColor="#990000"></asp:Label>
+                 Font-Names="Comic Sans MS" Font-Size="Smaller" style ="position:absolute; left: 3vw; top:63vh" ForeColor="#990000"></asp:Label>
 
 
         </div>
 
         <div class="style5">
 
-        <asp:Chart ID="PA_Versus_ST" runat="server" DataSourceID="SqlDataSource1" Width="700px" Height="350px" BackColor="255, 255, 153">
+        <asp:Chart ID="PA_Versus_ST" runat="server" DataSourceID="SqlDataSource1" Width="700px" Height="350px" BackColor="255, 255, 153" CssClass="Chart">
                 <Series>
                     <asp:Series Name="UserScreenAmount" ChartType="Bar" XValueMember="DateAndTime" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Single"
                         Color="#cc0000" Legend="Legend1" LegendText="Your Screen Time Amount" IsValueShownAsLabel="True" Label="#VAL hours" Font="Andalus, 8.25pt, style=Bold">
@@ -76,7 +92,7 @@
                 </Legends>
             </asp:Chart>
 
-            <a href="Main.aspx" style="position:fixed; left:66vw; top:88vh">Back to Main page</a>
+            <a href="Main.aspx" style="position:absolute; left:40vw; top:66vh">Back to Main page</a>
             </div>
 
       </asp:Content>

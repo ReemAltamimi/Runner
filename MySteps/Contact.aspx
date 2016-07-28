@@ -6,9 +6,9 @@
         .auto-style1 {
              width: 40vw;
             height: 30vh;
-            position:fixed;
-            top: 40vh;
-            left:25vw;
+            position:absolute;
+            top: 15vh;
+            left:4vw;
         }
         .auto-style2 {
            font-family: Comic Sans MS;
@@ -40,7 +40,7 @@
             <asp:Label ID="lblAbout" runat="server" Text="If you experience any technical issue or have 
                 any enquiries regarding this website please contact us via email by filling the boxes below:" 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
-                position:fixed; left: 25vw; top:30vh" ></asp:Label>
+                position:absolute; left: 4vw; top:5vh" ></asp:Label>
 
        
 
@@ -76,15 +76,15 @@
             </table>
 
              <asp:Label ID="lblError" runat="server" ForeColor="#FFCCCC" Font-Underline="True"
-                style="position:fixed; left:25vw; top:85vh" ></asp:Label>
+                style="position:absolute; left:4vw; top:60vh" ></asp:Label>
                    
 
        <asp:Button ID="btnSubmit" runat="server" Text="Submit" BackColor="#80FF80" Font-Bold="true"
-           style="position:fixed; left:55vw; top:83vh" Font-Names="Cambria" ForeColor="#004080" 
+           style="position:absolute; left:39.5vw; top:53vh" Font-Names="Cambria" ForeColor="#004080" 
            Width="140" Height="40px" Font-Size="Medium" OnClick="btnSubmit_Click" ValidationGroup="save" />
                     
 
-           <a href="Default.aspx" style="position:fixed; left:68vw; top:85vh">Back to home page</a>
+           <a href="Default.aspx" style="position:absolute; left:40vw; top:64vh">Back to home page</a>
             </asp:Panel>
 
         </div>

@@ -19,6 +19,9 @@ public partial class UserHistory : System.Web.UI.Page
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#AD5BFF");
 
+        //make image in right and left sides invisible
+       ((Image)this.Page.Master.FindControl("Image1")).Visible = false;
+        ((Image)this.Page.Master.FindControl("Image2")).Visible = false;
         //check if the user is login in the system
 
         if (Session["New"] == null)
@@ -35,24 +38,26 @@ public partial class UserHistory : System.Web.UI.Page
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffff99");
         Label1.Text = "Your Screen Time Statistics in the last five days";
-        Label2.Text = "";
+        Label2.Text = "<br/>";
 
         DateTime date1 = DateTime.Today.Date;
-        
-        float st = 0;
+
+        Single st = 0;
 
         try
         {
+          
             for (int i = 1; i <= 5; i++)
             {
+               
                 //get the screen time amount of a specific date
                 st = ScreenTime.getScreenTime(date1, Convert.ToInt32(userId));
 
                 if (st != 0)
                 {
                     //add data to chart
-                    ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(date1.Date, st);
-                    ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(date1.Date, 3);
+                    ScreenTimeChart.Series["UserScreenTime"].Points.AddXY(date1, st);
+                    ScreenTimeChart.Series["ScreenTimeLimit"].Points.AddXY(date1, 3);
 
                 }
                 //print amount and date on screen
@@ -63,7 +68,7 @@ public partial class UserHistory : System.Web.UI.Page
             }
 
             double startDate = DateTime.Today.AddDays(-5).ToOADate();
-            double endDate = DateTime.Today.ToOADate();
+            double endDate = DateTime.Today.AddDays(1).ToOADate();
 
             //limit the values that appear in x axis 
             ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
@@ -76,12 +81,17 @@ public partial class UserHistory : System.Web.UI.Page
             ScreenTimeChart.Series["ScreenTimeLimit"]["PixelPointWidth"] = "25";
             ScreenTimeChart.Series["UserScreenTime"]["PixelPointWidth"] = "25";
 
+            //Place Axis titles
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisX.Title = "Date";
+            ScreenTimeChart.ChartAreas["ChartArea1"].AxisY.Title = "Screen Time (Hours) ";
+
+
             //show the chart
             ScreenTimeChart.Visible = true;
         }
         catch (Exception exp)
         {
-            Label2.Text = "Exception caught: " + exp;
+            Label2.Text = Label2.Text + "Exception caught: " + exp;
         }
 
 
@@ -92,8 +102,8 @@ public partial class UserHistory : System.Web.UI.Page
     {
         Label1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#ffcccc");
         Label1.Text = "Your Steps in the last five days";
-        Label2.Text = "";
-      
+        Label2.Text = "<br/>";
+
 
         DateTime date1 = DateTime.Today.Date;
         
@@ -119,7 +129,7 @@ public partial class UserHistory : System.Web.UI.Page
             }
 
             double startDate = DateTime.Today.AddDays(-5).ToOADate();
-            double endDate = DateTime.Today.ToOADate();
+            double endDate = DateTime.Today.AddDays(1).ToOADate();
 
             //limit the values that appear in x axis 
             PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Minimum = startDate;
@@ -131,6 +141,11 @@ public partial class UserHistory : System.Web.UI.Page
             //set the width of series column in the char
             PhysicalActivityChart.Series["UserPhysicalSteps"]["PixelPointWidth"] = "25";
             PhysicalActivityChart.Series["RecommendedSteps"]["PixelPointWidth"] = "25";
+
+            //Place Axis titles
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisX.Title = "Date";
+            PhysicalActivityChart.ChartAreas["ChartArea1"].AxisY.Title = "Physical Activity (Steps) ";
+
 
             //show the chart
             PhysicalActivityChart.Visible = true;

@@ -6,8 +6,20 @@
      
         /*Chart Div Style*/
         .style5 {
-            position:fixed;
-           top:22vh;
+            position:absolute;
+           top:0;
+           left:0;
+        }
+          .Chart
+        {
+            position:absolute; 
+            top:0; 
+            left:0;   
+            vertical-align: middle;
+            min-height: 70vh; 
+            min-width: 20vw; 
+            max-height: 70vh; 
+            max-width: 20vw; 
         }
 
      </style>
@@ -21,28 +33,31 @@
     
         <div>
             <asp:Label ID="Label1" runat="server" Text="Physical Activity Statistics" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:absolute; left: 2vw; top:3vh" ForeColor="#FFCCCC" Font-Size="XX-Large"></asp:Label>
             
              <asp:Label ID="Label4" runat="server" Text="Based on your Fitbit data" Font-Names="Comic Sans MS" 
                             Font-Bold="True" ForeColor="#004080" Font-Underline="true" Visible="false"
-                  style="position:fixed; left: 25vw; top:42vh">
+                  style="position:absolute; left: 2vw; top:15vh">
                   </asp:Label>
 
               <asp:Label ID="Label2" runat="server" Text="" Font-Names="Comic Sans MS" 
                             Font-Bold="True" ForeColor="#004080"
-                  style="position:fixed; left: 25vw; top:45vh">
+                  style="position:absolute; left: 2vw; top:18vh">
 
               </asp:Label>
 
-     
+        <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
+                              ForeColor="#FFCCCC" Font-Size="Small" 
+                style ="position:absolute; left: 2vw; top:45vh; text-align:center;" ></asp:Label>
+
             
             <asp:Button ID="btnViewChart" runat="server" Width="150" Text="View Chart"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
+                                style="position:absolute; left:25vw; top:55vh" OnClick="btnViewChart_Click" />
 
              <asp:Button ID="btnSync" runat="server" Width="200" Text="My Physical Workout"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:42vw; top:84vh" OnClick="btnSync_Click" />
+                                style="position:absolute; left:8vw; top:55vh" OnClick="btnSync_Click" />
             <!--
                      <asp:Button ID="Button1" runat="server" Width="150" Text="ResetToken"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
@@ -52,12 +67,9 @@
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
                                 style="position:fixed; left:30vw; top:44vh" OnClick="refreshToken" />
                 -->
-                  <asp:Label ID="Label3" runat="server" Text="" Font-Names="Comic Sans MS" 
-                              ForeColor="#FFCCCC" Font-Size="Small" 
-                style ="position:fixed; left: 25vw; top:75vh" ></asp:Label>
-
+               
         </div>
-      <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
+      <a href="Main.aspx" style="position:absolute; left:40vw; top:60vh">Back to Main page</a>
    
 
      </asp:Content>
@@ -74,7 +86,7 @@
         </asp:SqlDataSource>
  
         <div class="style5" >
-        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" Width="300px" Height="480px" 
+        <asp:Chart ID="PhysicalActivityChart" runat="server" Visible="False" CssClass="Chart" 
             DataSourceID="SqlDataSource1" BackColor="#ffcccc">
             <Series>
                 <asp:Series Name="UserPhysicalSteps" XValueMember="DateAndTime" YValueMembers="DailySteps" XValueType="DateTime" YValueType="Int32"

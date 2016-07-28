@@ -11,25 +11,25 @@
                 and use of Information and Communication Technologies for fostering Active Lifestyles. Through this
                 website you can track your levels of physical activity and screen time. " 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
-                position:fixed; left: 25vw; top:25vh" ></asp:Label>
+                line-height: 1.5; position:absolute; left: 2vw; top:4vh" ></asp:Label>
 
          <asp:Label ID="lblAbout2" runat="server" Text="Click the button below to learn more about website pages" Font-Bold ="true" 
                ForeColor="#FFFF80" Font-Underline="true" Font-Names="Cambria" Font-Size="Large" style ="text-align:justify; 
-                position:fixed; left: 25vw; top:40vh" ></asp:Label>
+                position:absolute; left: 2vw; top:18vh" ></asp:Label>
 
         <asp:Button ID="btnChart" runat="server" Width="150" Text="About MySteps"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left: 30vw; top:50vh" OnClick="btnChart_Click" />        
+                                style="position:absolute; left: 3vw; top:28vh" OnClick="btnChart_Click" />        
 
            <asp:Label ID="lblAbout4" runat="server" Text="Click the button below to view the Fitbit Charge Manual " Font-Bold ="true" 
                ForeColor="#FFFF80" Font-Underline="true" Font-Names="Cambria" Font-Size="Large" style ="text-align:justify; 
-                position:fixed; left: 25vw; top:60vh" ></asp:Label>
+                position:absolute; left: 2vw; top:40vh" ></asp:Label>
 
          <asp:Button ID="btnManul" runat="server" Width="150" Text="Fitbit Manual"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left: 30vw; top:70vh" OnClick="btnManul_Click" />
+                                style="position:absolute; left: 3vw; top:50vh" OnClick="btnManul_Click" />
 
-            <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+            <a href="Default.aspx" style="position:absolute; left:40vw; top:60vh">Back to home page</a>
             
         </div>
 </asp:Content>

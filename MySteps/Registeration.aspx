@@ -5,9 +5,9 @@
           .auto-style1{
              width: 40vw;
             height: 30vh;
-            position:fixed;
-            top: 30vh;
-            left:25vw;
+            position:absolute;
+            top: 8vh;
+            left:4vw;
         }
         .auto-style2 {
             font-family:Cambria;
@@ -41,7 +41,7 @@
         <div>
 
             <asp:Label ID="Label1" runat="server" Text="Please enter your details below to be a member:" Font-Bold ="False"
-                 Font-Names="Cooper Black" style ="position:fixed; left: 25vw; top:25vh" ForeColor="#FFFF99"></asp:Label>
+                 Font-Names="Cooper Black" style ="position:absolute; left: 4vw; top:2vh" ForeColor="#FFFF99"></asp:Label>
             
             <table class="auto-style1">
                 <tr>
@@ -115,9 +115,9 @@
 
             <asp:Button ID="btnRegister" runat="server" Text="Register" BackColor="#AD5BFF"
                 Font-Names="Cooper Black" ForeColor="white"
-                style="position:fixed; left:53vw; top:85vh"  Width="140" Height="30px" OnClick="btnRegister_Click" Font-Size="Small" />
+                style="position:absolute; left:32vw; top:62vh"  Width="140" Height="30px" OnClick="btnRegister_Click" Font-Size="Small" />
 
-            <a href="Default.aspx" style="position:fixed; left:66vw; top:85vh">Back to home page</a>
+            <a href="Default.aspx" style="position:absolute; left:44vw; top:62vh">Back to home page</a>
         </div>
 
    

@@ -7,9 +7,9 @@
          .auto-style1 {
             width: 40vw;
             height: 30vh;
-            position:fixed;
-            top: 40vh;
-            left:25vw;
+            position:absolute;
+            top: 10vh;
+            left:4vw;
         }
           .auto-style2 {
             font-family:Cambria;
@@ -35,7 +35,7 @@
        <div>
 
             <asp:Label ID="Label1" runat="server" Text="Please enter your login details below :" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" ForeColor="#ffccff" Font-Underline="true" style ="position:fixed; left: 25vw; top:30vh"></asp:Label>
+                 Font-Names="Comic Sans MS" ForeColor="#ffccff" Font-Underline="true" style ="position:absolute; left: 4vw; top:5vh"></asp:Label>
             
             <table class="auto-style1">
                 <tr>
@@ -67,14 +67,14 @@
 
             <asp:Button ID="btnLogin" runat="server" Text="Login" BackColor="#FF8080"
                 Font-Names="Comic Sans MS" Font-Bold="True" ForeColor="White"
-                style="position:fixed; left:35vw; top:75vh"  Width="140" Height="50px" 
+                style="position:absolute; left:10vw; top:50vh"  Width="140" Height="50px" 
                 OnClick="btnLogin_Click" BorderStyle="Outset" Font-Size="Medium" />
             <asp:Button ID="btnAdmin" runat="server" Text="Admin Login" BackColor="#FF8080"
                 Font-Names="Comic Sans MS" Font-Bold="True" ForeColor="White"
-                style="position:fixed; left:50vw; top:75vh"  Width="140" Height="50px" 
+                style="position:absolute; left:25vw; top:50vh"  Width="140" Height="50px" 
                 OnClick="btnAdmin_Click" BorderStyle="Outset" Font-Size="Medium" />
 
-           <a href="Default.aspx" style="position:fixed; left:60vw; top:85vh">Back to home page</a>
+           <a href="Default.aspx" style="position:absolute; left:40vw; top:60vh">Back to home page</a>
 
         </div>
 

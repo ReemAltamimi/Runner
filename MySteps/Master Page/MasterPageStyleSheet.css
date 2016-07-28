@@ -1,85 +1,73 @@
-﻿
-#container
-
+﻿#header
 {
-    position:fixed;
-    left:0vw;
-    top:0vh;
-    width:100vw;
-    height:100vh;
-    background-color:#004080;
-    border: solid 1px black;
-    /*margin: 0px auto;*/
-}
-
-
-#header
-
-{
-    width: 100vw;
+    width: 97vw;
     height: 20vh;
     background-color:#adaaaa;
-    position:fixed;
-    left: 0vw;
-    top: 0vh;
+    position:relative;
     text-align: center;
     vertical-align: middle;
     color:#004080;
     font-family:Cambria;
     font-size:xx-large;
-    font-weight:600;
+    font-weight:600;  
+    border: solid 4px #004080;
+}
+
+#MiddleContainer
+{
+    position:relative;
+    width:97vw;
+    height:70vh;
+    background-color:#004080;
+    border: solid 4px #004080;
+    vertical-align: middle;
+    align-content:center;
 }
 
 #leftSidePanel
-
 {
-    width: 21vw;
+    width: 20vw;
     height: 70vh;   
     background-color: #778CB3;
     color: #FFFFFF; 
-    position:fixed;
+    position:absolute;
     left: 0vw;
-    top:22vh;
+    top:0vh;    
 }
 
 #content
-
 {
-    position: fixed;
-       top: 22vh;
-       left:22vw;
-       width: 56vw;
-       height: 70vh;
-       background-color: gray;
-       
+    position: absolute;
+     top: 0vh;
+     left:21vw;
+     width: 55vw;
+     height: 70vh;
+     background-color: gray;
 }
 
 #rightSidePanel
-
 {
-    width: 21vw;
+    width: 20vw;
     height: 70vh;  
     background-color: #778CB3;
     color: #FFFFFF;
-    position:fixed;
-    left:79vw;
-    top:22vh; 
+    position:absolute;
+    left:77vw;
+    top:0vh;
 }
 
 #footer
-
 {
     background-color: #F7CB33;
-    padding: 12px;    
-    width: 100vw;
+    width: 97vw;
     height:5vh;
-    position:fixed;
-    left:0vw;
-    top:94vh;
+    position:static;
     color: #000000; 
     font-size: 90%;
+    display:block;
     text-align:center;
-    
+    border: solid 4px #004080;
+  
 }
 .circle
 {

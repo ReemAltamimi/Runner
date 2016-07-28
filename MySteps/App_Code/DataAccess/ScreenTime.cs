@@ -104,14 +104,14 @@ public class ScreenTime
     }
 
     //get the screen time amount of a specific date 
-    public static float getScreenTime(DateTime dt, int userId)
+    public static Single getScreenTime(DateTime dt, int userId)
     {
-        float screenTime = 0;
+        Single screenTime = 0;
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
             //select the last time in date column that match the user id and in the date of today
-            string str = "select UserScreenDailyAmnt from ScreenTimeData where UserID= '" + userId + "' AND CAST([Date] AS DATE) = '" + dt + "'";
+            string str = "select UserScreenDailyAmnt from ScreenTimeData where UserID= '" + userId + "' AND CAST([Date] AS DATE) = '" + String.Format("{0:u}", dt) + "'";
             SqlCommand command1 = new SqlCommand(str, connection);
             screenTime = Convert.ToSingle(command1.ExecuteScalar());
             connection.Close();

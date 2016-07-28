@@ -8,15 +8,26 @@
 
         /*Textbox style*/
         .style4 {
-            position:fixed; 
-           left: 25vw;
-           top:52vh;
+            position:absolute; 
+           left: 2vw;
+           top:25vh;
         }
         /*Chart Div Style*/
         .style5 {
-           position:fixed;
-           top:22vh;
-          /*width:20vw*/ 
+           position:absolute;
+           top:0;
+           left:0;
+        }
+        .Chart
+        {
+            position:absolute; 
+            top:0; 
+            left:0;   
+            vertical-align: middle;
+            min-height: 70vh; 
+            min-width: 20vw; 
+            max-height: 70vh; 
+            max-width: 20vw; 
         }
        
      </style>
@@ -26,7 +37,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
 
        <div class="style5">
-            <asp:Chart ID="ScreenTimeChart" runat="server" DataSourceID="SqlDataSource1" Visible="False"  Width="300px" Height="480px" BackColor="#ffff99">
+            <asp:Chart ID="ScreenTimeChart" runat="server" DataSourceID="SqlDataSource1" Visible="False" 
+                class="Chart" BackColor="#ffff99">
                 <series>
                     <asp:Series Name="UserScreenAmount" XValueMember="Date" YValueMembers="UserScreenDailyAmnt" XValueType="DateTime" YValueType="Single"
                         Color="Red" Legend="Legend1" LegendText="Your Screen Time Amount">
@@ -60,33 +72,34 @@
      <div>
 
             <asp:Label ID="Label1" runat="server" Text="Screen Time Management" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:30vh" ForeColor="#FFFF99" Font-Size="XX-Large"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:absolute; left: 2vw; top:3vh" ForeColor="#FFFF99" Font-Size="XX-Large"></asp:Label>
 
             <asp:Label ID="Label2" runat="server" Text="How many hours you spent today in front of screen:" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 25vw; top:42vh" Font-Underline="True"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:absolute; left: 2vw; top:15vh" Font-Underline="True"></asp:Label>
 
             <asp:TextBox ID="txbScreenUnits" runat="server" Width="200px" CssClass="style4" ></asp:TextBox>
 
              <asp:Label ID="Label4" runat="server" Text="Hours ( In Total )" Font-Bold ="True"
-                 Font-Names="Comic Sans MS" style ="position:fixed; left: 42vw; top:52vh" Font-Underline="True" ForeColor="Maroon"></asp:Label>
+                 Font-Names="Comic Sans MS" style ="position:absolute; left: 22vw; top:25vh" Font-Underline="True" ForeColor="Maroon"></asp:Label>
+
+          <asp:Label ID="Label3" runat="server" Text="" Font-Bold ="true" ForeColor="red"
+                 Font-Names="Cambria" style ="position:absolute; left: 4vw; top:35vh; text-align:center;" Width="650"
+                 BackColor="White"></asp:Label>
 
 
             <asp:Button ID="btnSubmit" runat="server" Width="120" Text="Submit"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:45vw; top:84vh" OnClick="btnSubmit_Click" />
+                                style="position:absolute; left:10vw; top:50vh" OnClick="btnSubmit_Click" />
             <asp:Button ID="btnViewChart" runat="server" Width="120" Text="View Chart"
                              BackColor="#adaaaa" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium"
-                                style="position:fixed; left:30vw; top:84vh" OnClick="btnViewChart_Click" />
+                                style="position:absolute; left:25vw; top:50vh" OnClick="btnViewChart_Click" />
            
 
-            <asp:Label ID="Label3" runat="server" Text="" Font-Bold ="true" ForeColor="red"
-                 Font-Names="Cambria" style ="position:fixed; left: 25vw; top:62vh" Width="650"
-                 BackColor="White"></asp:Label>
-
+           
         </div>
         
      
-          <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
+          <a href="Main.aspx" style="position:absolute; left:40vw; top:60vh">Back to Main page</a>
    
     </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">

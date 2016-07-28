@@ -6,14 +6,24 @@
         .container {
             background-color: #99CCFF;
             border: thick solid #808080;
-            /*padding: 20px;
-            margin: 20px;*/
              width: 50vw;
             height: 63vh;
-            position: fixed;
-            top: 23vh;
-            left:25vw;  
+            position: absolute;
+            top: 1vh;
+            left:2vw;  
         }
+        .discussion
+        {
+           position: absolute; 
+            top: 15vh; 
+            left:6vw; 
+            height:40vh; 
+            max-height:40vh;
+            width:35vw; 
+            max-width:35vw; 
+            overflow:scroll;
+        }
+      
       
     </style>
 
@@ -24,11 +34,11 @@
 
 <asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
       <div class="container">   
-        <input type="text" id="message" style="position: fixed; top: 25vh; left:26vw;"/>
-        <input type="button" id="sendmessage" value="Send" style="position: fixed; top: 30vh; left:26vw;" />
-        <input type="hidden" id="displayname" style="position: fixed; top: 35vh; left:26vw;" />
-        <ul id="discussion" style="position: fixed; top: 35vh; left:26vw;">
-        </ul>
+        <input type="text" id="message" style="position: absolute; top: 5vh; left:6vw;"/>
+        <input type="button" id="sendmessage" value="Send" style="position: absolute; top: 10vh; left:6vw;" />
+        <input type="hidden" id="displayname" style="position: absolute; top: 15vh; left:6vw;" />
+       <ul id="discussion" class="discussion">
+        </ul> 
     </div>
     <!--Script references. -->
     <!--Reference the jQuery library. -->
@@ -40,7 +50,7 @@
     <!--Add script to update the page and send messages.--> 
     <script type="text/javascript">
 
-        $(function () {
+      $(function () {
             $('input').keydown(function (e) {
                 if (e.keyCode == 13) {
                     $("input[value='Send']").focus().click();
@@ -59,7 +69,11 @@
                 // Add the message to the page. 
                 $('#discussion').append('<li><strong>' + encodedName
                     + '</strong>:&nbsp;&nbsp;' + encodedMsg + '</li>');
+                //Move the scrollbar of the discussion window at the bottom
+                $('.discussion').scrollTop($('.discussion')[0].scrollHeight);
             };
+          
+
             // Get the user name and store it to prepend to messages.
             $('#displayname').val('<%=Session["UserName"]%>');
             // Set initial focus to message input box.  
@@ -74,9 +88,12 @@
                 });
             });
         });
+
+       
+
     </script>
 
-      <a href="Main.aspx" style="position:fixed; left:66vw; top:88vh">Back to Main page</a>
+      <a href="Main.aspx" style="position:absolute; left:42vw; top:66vh">Back to Main page</a>
            
 
     </asp:Content>

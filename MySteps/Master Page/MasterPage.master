@@ -10,9 +10,9 @@
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body>
-    <form id="form1" runat="server">
-        <div id="container">
+<body style="background-color:#004080;">
+   
+    <form id="form1" runat="server">       
 
         <div id="header" runat="server">          
 
@@ -26,7 +26,8 @@
    
       </div>
 
-        <div id="leftSidePanel">
+            <div id="MiddleContainer" runat="server">
+        <div id="leftSidePanel" runat="server">
 
        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/PA_Kids.png" class="img" />
            <asp:ContentPlaceHolder ID="cphLeft" runat="server">
@@ -44,7 +45,7 @@
         </div>
                         
 
-        <div id="rightSidePanel">
+        <div id="rightSidePanel" runat="server">
 
            <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/ScreenTime1.png" class="img" />
         
@@ -54,18 +55,20 @@
             </asp:ContentPlaceHolder>
 
         </div>
+                </div>
                     
         <div id="footer">
 
-            <p>IT Research Project - Evaluation of the Impact of On-Screen Entertainment with Off-Screen Physical Activity on Active Living - 2016</p>
+           <p> IT Research Project - Evaluation of the Impact of On-Screen Entertainment with Off-Screen Physical Activity on Active Living - 2016 </p>
 
             <asp:ContentPlaceHolder ID="cphFooter" runat="server">
 
             </asp:ContentPlaceHolder>
 
         </div>
-          
-      </div>
+       
+      
     </form>
+   
 </body>
 </html>

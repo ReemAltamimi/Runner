@@ -104,7 +104,7 @@ public class PhysicalActivity
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
             //select the last time in date column that match the user id and in the date of today
-            string str = "select DailySteps from PhysicalActivityData where UserID= '" + userId + "' AND CAST([DateAndTime] AS DATE) = '" + dt + "'";
+            string str = "select DailySteps from PhysicalActivityData where UserID= '" + userId + "' AND CAST([DateAndTime] AS DATE) = '" + String.Format("{0:u}", dt) + "'";
             SqlCommand command1 = new SqlCommand(str, connection);
             steps = Convert.ToInt32(command1.ExecuteScalar());
             connection.Close();

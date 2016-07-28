@@ -5,9 +5,9 @@
 
         /*Table style*/
         .auto-style1 {
-           position:fixed;
-            left:25vw;
-            top:22vh;
+           position:absolute;
+            left:2.5vw;
+            top:0vh;
             width: 50vw;
             height:70vh;         
         }

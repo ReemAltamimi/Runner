@@ -101,7 +101,12 @@ public partial class Main : System.Web.UI.Page
     protected void btnGame_Click(object sender, EventArgs e)
     {
         if(Session["GroupName"].ToString().Trim().Equals("Experiment"))
-            Response.Redirect("~/Game/Game.aspx");
+        {
+            //Response.Redirect("~/Game/Game.aspx");
+            Response.Redirect("~/Game/Game.aspx", false);
+            HttpContext.Current.ApplicationInstance.CompleteRequest();
+        }
+          
     }
 
     protected void btnLeaderboard_Click(object sender, EventArgs e)

@@ -8,11 +8,13 @@
         {
             border-style:none;
             background-color:SeaGreen;
-            width: 600px;
+            width: 50vw;
+            max-width:50vw;
+            max-height:50vh;
             align-items:center;
-            position:fixed; 
-            top:35vh;
-            left:27vw;
+            position:absolute; 
+            top:10vh;
+            left:2vw;
             }
         .TableHeader
         {
@@ -79,7 +81,7 @@
 
            <asp:Label ID="lblAbout" runat="server" Text="Check the list below to see your friends and their numbers of steps today" 
                 Font-Bold ="true" Font-Names="Cambria" ForeColor="White" style ="max-width:650px; text-align:justify; 
-                position:fixed; left: 25vw; top:30vh" ></asp:Label>
+                position:absolute; left: 2vw; top:3vh" ></asp:Label>
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
 
@@ -219,7 +221,7 @@
             </ItemTemplate>
            </asp:ListView>
 
-                       <a href="Main.aspx" style="position:fixed; left:60vw; top:85vh">Back to Main page</a>
+                       <a href="Main.aspx" style="position:absolute; left:40vw; top:64vh">Back to Main page</a>
         </div>
 
 
