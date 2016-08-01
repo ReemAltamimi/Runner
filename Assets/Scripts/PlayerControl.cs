@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour
     public int maxJump = 2;
     public GUIText stepsPrefab;
     public GUIText timePrefab;
+    public GUIText scorePrefab;
     public Speed debugSpeed = Speed.Medium;
     public float heartbeatTime = 30;
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -38,6 +39,7 @@ public class PlayerControl : MonoBehaviour
     private float direction = 1;
     private GUIText stepsText;
     private GUIText timeText;
+    private GUIText scoreText;
     private bool doHeartbeat = false;
     private float heartbeatTimeRemaining = 30.0f;
     private static float playTimeRemaining = 600;
@@ -53,6 +55,13 @@ public class PlayerControl : MonoBehaviour
     public void Start()
     {
         var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+
+        if (scorePrefab)
+        {
+            scoreText = Instantiate(scorePrefab);
+
+        }
+
 
         if (scene.name.StartsWith("Level"))
             doHeartbeat = true;
@@ -102,7 +111,7 @@ public class PlayerControl : MonoBehaviour
     {
         print("hero is fast");
         maxSpeed = fastSpeed;
-        maxJump = 2;
+        maxJump = int.MaxValue;
     }
 
     public void SetSteps(int steps)
@@ -157,6 +166,11 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetButtonDown("Jump") && jumpLevel < maxJump)
         {
             jump = true;
+        }
+
+        if (transform.position.y < -500)
+        {
+            Application.LoadLevel(Application.loadedLevel);
         }
 
         if (doHeartbeat)
@@ -257,7 +271,7 @@ public class PlayerControl : MonoBehaviour
 			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
 
             // Add a vertical force to the player.
-            float force = (jumpLevel < jumpForce.Length) ? jumpForce[jumpLevel] : 0;
+            float force = (jumpLevel < jumpForce.Length) ? jumpForce[jumpLevel] : jumpForce[jumpForce.Length-1];
             var rigidbody = GetComponent<Rigidbody2D>();
             Vector2 velocity = rigidbody.velocity;
             velocity.y = 0;

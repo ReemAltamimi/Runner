@@ -274,7 +274,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -73.1, y: 26.5, z: -1}
+  m_LocalPosition: {x: -39.9, y: 8.1, z: -1}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 400012}
@@ -559,7 +559,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dafa1cc4eb8714341a7c595abfba35d8, type: 3}
   jumpForce:
   - 20
-  - 12
+  - 15
   taunts:
   - {fileID: 8300000, guid: 27cbebf9d650249e5b032494eae5322c, type: 3}
   - {fileID: 8300000, guid: 986fa1b8984964da79d1be0597332fb2, type: 3}
@@ -575,6 +575,7 @@ MonoBehaviour:
   maxJump: 2
   stepsPrefab: {fileID: 13267436, guid: 7e58655e87c9a184394c8a1151ce4850, type: 2}
   timePrefab: {fileID: 13267436, guid: d3262e57d706b8c4e9033637c30144c7, type: 2}
+  scorePrefab: {fileID: 13280832, guid: c49d7d0e22db1df4fb9bb449d39de963, type: 2}
   debugSpeed: 2
   heartbeatTime: 30
 --- !u!114 &11400004
@@ -612,9 +613,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starsNeededForKey: 10
-  oneStar: 250
-  twoStars: 300
-  threeStars: 340
+  oneStar: 50
+  twoStars: 80
+  threeStars: 100
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1
