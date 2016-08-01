@@ -27,6 +27,15 @@ public partial class Thread : System.Web.UI.Page
         //changer the header div background
         ((HtmlGenericControl)this.Page.Master.FindControl("header")).Style.Add("background", "#ff3377");
 
+        //make image in right and left sides invisible
+        ((Image)this.Page.Master.FindControl("Image1")).Visible = false;
+        ((Image)this.Page.Master.FindControl("Image2")).Visible = false;
+        //make the middle div content invisible
+        ((HtmlGenericControl)this.Page.Master.FindControl("content")).Style.Add("visibility", "hidden");
+
+        ((HtmlGenericControl)this.Page.Master.FindControl("rightSidePanel")).Style.Add("visibility", "hidden");
+
+
     }
 
     protected void btnComment_Click(object sender, EventArgs e)

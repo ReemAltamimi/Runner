@@ -4,31 +4,21 @@
 
      <style type="text/css">
 
-      
-     #rightSidePanel
-    {
-        display:none;
-    }
-      #leftSidePanel
-    {
-        display:none;
-    }
-
         /*div1 style*/
         .style3 {
           width: 70vw;
           height: 70vh;
-          position: fixed;
-          left:1vw;
-          top: 22vh;
+          position:absolute;
+          left:0vw;
+          top: 0vh;
           background:#adaaaa;
         }
           /*div2 style*/
         .style4 {
           width: 25vw;
             height: 70vh;
-            position: fixed;
-            top: 22vh;
+            position: absolute;
+            top: 0vh;
             left: 72vw;
             background:#adaaaa;
         }
@@ -37,12 +27,7 @@
     </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="cphLeft" Runat="Server">
-</asp:Content>
 
-<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
-
-
-    
     <div class="style3">
 
         <asp:Label ID="Label1" runat="server" Text="My question is about " Font-Bold="True" 
@@ -83,38 +68,45 @@
         </asp:SqlDataSource>
      
     </div>
-
+    
         <div class="style4">
 
             <asp:Label ID="Label2" runat="server" Text="My question is  " Font-Bold="True" 
             Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="Maroon" Height="50px"
-                style="text-align:center; position:fixed; left:74vw; top: 23vh"></asp:Label>
+                style="text-align:center; position:absolute; left:2vw; top: 3vh"></asp:Label>
 
                <asp:TextBox ID="txbQuestion" runat="server" Height="149px" TextMode="MultiLine" 
-                   Width="273px" BorderStyle="Outset" style="position:fixed; left:74vw; top:30vh"></asp:TextBox>
+                   Width="273px" BorderStyle="Outset" style="position:absolute; left:2vw; top:10vh"></asp:TextBox>
     
 
              <asp:Label ID="lblName" runat="server" Text="My Name"
                  Font-Bold="True" Font-Names="Comic Sans MS" Font-Size="Small" 
                  ForeColor="Maroon" Height="50px" 
-                 style="text-align:center; position:fixed; left:74vw; top:60vh"></asp:Label>
+                 style="text-align:center; position:absolute; left:2vw; top:40vh"></asp:Label>
 
-            <asp:TextBox ID="txbName" runat="server" style="position:fixed; left:80vw; top:60vh">
+            <asp:TextBox ID="txbName" runat="server" style="position:absolute; left:8vw; top:40vh">
 
             </asp:TextBox>
      
             <asp:Button ID="btnPost" runat="server" OnClick="btnPost_Click" 
                 BackColor="#006666" Font-Names="Cooper Black" ForeColor="white" Text="Post"
-                style="position:fixed; left:80vw; top:75vh" Width="140" Height="50px"  />
+                style="position:absolute; left:8vw; top:55vh" Width="140" Height="50px"  />
 
-           <a href="Main.aspx" style="position:fixed; left:81vw; top:85vh">Back to Main page</a>
+           <a href="Main.aspx" style="position:absolute; left:9vw; top:65vh">Back to Main page</a>
         
         
 
         </div>
 
+
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="cphContent" Runat="Server">
+
       </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="cphRight" Runat="Server">
+
+    
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="cphFooter" Runat="Server">
 </asp:Content>
