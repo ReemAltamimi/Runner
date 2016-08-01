@@ -22,11 +22,10 @@ public class PlayerHealth : MonoBehaviour
 	{
 		// Setting up references.
 		playerControl = GetComponent<PlayerControl>();
-		healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+		
 		anim = GetComponent<Animator>();
 
-		// Getting the intial scale of the healthbar (whilst the player has full health).
-		healthScale = healthBar.transform.localScale;
+		
 	}
 
 
@@ -64,9 +63,6 @@ public class PlayerHealth : MonoBehaviour
 
 					// ... disable user Player Control script
 					GetComponent<PlayerControl>().enabled = false;
-
-					// ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
-					GetComponentInChildren<Gun>().enabled = false;
 
 					// ... Trigger the 'Die' animation state
 					anim.SetTrigger("Die");
@@ -123,10 +119,21 @@ public class PlayerHealth : MonoBehaviour
 
 	public void UpdateHealthBar ()
 	{
-		// Set the health bar's colour to proportion of the way between green and red based on the player's health.
-		healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
+        if (healthBar == null)
+        {
+            healthBar = GameObject.Find("HealthBar").GetComponent<SpriteRenderer>();
+            // Getting the intial scale of the healthbar (whilst the player has full health).
+            healthScale = healthBar.transform.localScale;
+        }
+        if (healthBar != null)
+        {
+            // Set the health bar's colour to proportion of the way between green and red based on the player's health.
+            healthBar.material.color = Color.Lerp(Color.green, Color.red, 1 - health * 0.01f);
 
-		// Set the scale of the health bar to be proportional to the player's health.
-		healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, 1, 1);
+            // Set the scale of the health bar to be proportional to the player's health.
+            healthBar.transform.localScale = new Vector3(healthScale.x * health * 0.01f, healthScale.y, healthScale.z);
+        }
+
+      
 	}
 }

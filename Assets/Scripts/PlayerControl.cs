@@ -30,6 +30,7 @@ public class PlayerControl : MonoBehaviour
     public GUIText stepsPrefab;
     public GUIText timePrefab;
     public GUIText scorePrefab;
+    public Transform healthBarPrefab;
     public Speed debugSpeed = Speed.Medium;
     public float heartbeatTime = 30;
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -40,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     private GUIText stepsText;
     private GUIText timeText;
     private GUIText scoreText;
+    private Transform healthBar;
     private bool doHeartbeat = false;
     private float heartbeatTimeRemaining = 30.0f;
     private static float playTimeRemaining = 600;
@@ -62,6 +64,12 @@ public class PlayerControl : MonoBehaviour
 
         }
 
+        if (healthBarPrefab)
+        {
+            healthBar = Instantiate(healthBarPrefab);
+            healthBar.transform.parent = Camera.main.transform;
+            healthBar.transform.localPosition = new Vector3(0, 18, 2);
+        }
 
         if (scene.name.StartsWith("Level"))
             doHeartbeat = true;

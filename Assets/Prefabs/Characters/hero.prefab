@@ -576,6 +576,7 @@ MonoBehaviour:
   stepsPrefab: {fileID: 13267436, guid: 7e58655e87c9a184394c8a1151ce4850, type: 2}
   timePrefab: {fileID: 13267436, guid: d3262e57d706b8c4e9033637c30144c7, type: 2}
   scorePrefab: {fileID: 13280832, guid: c49d7d0e22db1df4fb9bb449d39de963, type: 2}
+  healthBarPrefab: {fileID: 400000, guid: af80fe7abb2604963b7e7b5a24685a6b, type: 2}
   debugSpeed: 2
   heartbeatTime: 30
 --- !u!114 &11400004
