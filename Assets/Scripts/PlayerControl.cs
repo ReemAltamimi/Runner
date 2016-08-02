@@ -52,17 +52,17 @@ public class PlayerControl : MonoBehaviour
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
-	}
-
-    public void Start()
-    {
-        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
-
         if (scorePrefab)
         {
             scoreText = Instantiate(scorePrefab);
 
         }
+
+    }
+
+    public void Start()
+    {
+        var scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 
         if (healthBarPrefab)
         {
