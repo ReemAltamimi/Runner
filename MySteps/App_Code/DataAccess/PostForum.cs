@@ -35,4 +35,20 @@ public class PostForum
 
         return rowsAffected;
     }
+
+    public static string  getQuestion(int forumId)
+    {
+        string question;
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            string selectQuestion = "select question from Forum where forumId= '" + forumId + "'";
+            SqlCommand command = new SqlCommand(selectQuestion, connection);
+
+            question = command.ExecuteScalar().ToString();
+            connection.Close();
+        }
+
+        return question;
+    }
+
 }

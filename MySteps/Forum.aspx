@@ -30,7 +30,7 @@
 
     <div class="style3">
 
-        <asp:Label ID="Label1" runat="server" Text="My question is about " Font-Bold="True" 
+        <asp:Label ID="Label1" runat="server" Text="My question is about " Font-Bold="True" style="text-align:center; display:inline-block; padding-top:25px; padding-left:25px" 
             Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="Maroon" Height="50px"></asp:Label>
     
         <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="title" DataValueField="titleId" Font-Bold="True" Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="Maroon" Height="50px" Width="300px">

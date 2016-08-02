@@ -35,6 +35,7 @@ public partial class Thread : System.Web.UI.Page
 
         ((HtmlGenericControl)this.Page.Master.FindControl("rightSidePanel")).Style.Add("visibility", "hidden");
 
+        Label3.Text = "The answer for ' " + PostForum.getQuestion(Convert.ToInt32(Session["ForumId"])) + " ' is : ";
 
     }
 

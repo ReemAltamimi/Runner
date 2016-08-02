@@ -30,7 +30,7 @@
     
     
     <div class="style3">
-        <asp:Label ID="Label3" runat="server" Text="Answer of " Font-Bold="True" style="text-align:center"
+        <asp:Label ID="Label3" runat="server" Text="Answer of " Font-Bold="True" style="text-align:center; display:inline-block; padding-top:25px; padding-left:25px"
             Font-Names="Comic Sans MS" Font-Size="Medium" ForeColor="Maroon" Height="50px"></asp:Label>
     
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" AllowPaging="True" Width="873px" RowStyle-VerticalAlign="Middle" RowStyle-HorizontalAlign="Center" 

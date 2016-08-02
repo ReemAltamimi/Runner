@@ -30,7 +30,7 @@ public class LevelProgress : MonoBehaviour {
         {
             Debug.LogError("Missing door");
         }
-
+        
         score = FindObjectOfType<Score>();
         if (score == null)
         {
