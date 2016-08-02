@@ -24,10 +24,14 @@ public class Enemy : MonoBehaviour
 		// Setting up the references.
 		ren = transform.Find("body").GetComponent<SpriteRenderer>();
 		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
-	void FixedUpdate ()
+    void Start()
+    {
+        var score = GameObject.FindObjectOfType<Score>();
+    }
+
+    void FixedUpdate ()
 	{
 		// Create an array of all the colliders in front of the enemy.
 		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
@@ -79,11 +83,15 @@ public class Enemy : MonoBehaviour
 		ren.enabled = true;
 		ren.sprite = deadEnemy;
 
-		// Increase the score by 100 points
-		score.score += 100;
+        if (score != null)
+        {
+            // Increase the score by 100 points
+            score.score += 100;
 
-		// Set dead to true.
-		dead = true;
+        }
+
+        // Set dead to true.
+        dead = true;
 
 		// Allow the enemy to rotate and spin it by adding a torque.
 		GetComponent<Rigidbody2D>().fixedAngle = false;
