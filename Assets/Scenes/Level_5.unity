@@ -16543,6 +16543,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 32
       objectReference: {fileID: 0}
+    - target: {fileID: 134980, guid: f41e0a58625bdf7489c2a5a911cab4a3, type: 2}
+      propertyPath: m_TagString
+      value: ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 134980, guid: f41e0a58625bdf7489c2a5a911cab4a3, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f41e0a58625bdf7489c2a5a911cab4a3, type: 2}
   m_IsPrefabParent: 0
