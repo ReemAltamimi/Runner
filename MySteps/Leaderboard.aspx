@@ -94,7 +94,8 @@
                     <tr runat="server" class="TableHeader">
                         <td runat="server">User</td>
                         <td runat="server">Steps</td>
-                        <td runat="server">Game Level</td>
+                        <td runat="server">Current Game Level</td>
+                        <td runat="server">Levels Details</td>
                     </tr>
                     <tr id="ItemPlaceholder" runat="server">
                     </tr>
@@ -153,8 +154,12 @@
                             >
                         </asp:Label>
                     </td>
+                     <td align="center">
+                    <a href='/Leaderboard2.aspx?gamerId=<%#Server.UrlEncode(DataBinder.Eval(Container.DataItem, "Id").ToString())%>&gamerName=<%#Server.UrlEncode(DataBinder.Eval(Container.DataItem, "UserName").ToString())%>'>Levels Details</a>
+                     </td>
                 </tr>                
             </ItemTemplate>
+   
            </asp:ListView>
 
 

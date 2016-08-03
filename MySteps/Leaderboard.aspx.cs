@@ -53,7 +53,7 @@ public partial class Leaderboard : System.Web.UI.Page
                     Game.insertGameData(Convert.ToInt32(userId), DateTime.Now, 0, Game.DEFAULT_TIME);
                 }
                 //fill the list view with all users'names and their steps of today and their game levels
-                string str = "SELECT DailySteps, UserData.UserName, MAX(GameData.UnLockedLevel) as UnLockedLevel From PhysicalActivityData INNER JOIN UserData ON PhysicalActivityData.UserID = UserData.Id INNER JOIN GameData ON PhysicalActivityData.UserID = GameData.UserID where UserData.Share = 'Y' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE())) Group by PhysicalActivityData.DailySteps, UserData.UserName, UserData.Id";
+                string str = "SELECT DailySteps, UserData.UserName, UserData.Id, MAX(GameData.UnLockedLevel) as UnLockedLevel From PhysicalActivityData INNER JOIN UserData ON PhysicalActivityData.UserID = UserData.Id INNER JOIN GameData ON PhysicalActivityData.UserID = GameData.UserID where UserData.Share = 'Y' AND DateAndTime>= DATEADD(dd, 0, DATEDIFF(dd, 0, GETDATE())) AND DateAndTime < DATEADD(dd, 1, DATEDIFF(dd, 0, GETDATE())) Group by PhysicalActivityData.DailySteps, UserData.UserName, UserData.Id";
 
                 SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["RegisterationConnectionString"].ConnectionString);
                 SqlDataAdapter sda = new SqlDataAdapter(str, conn);
@@ -73,4 +73,5 @@ public partial class Leaderboard : System.Web.UI.Page
 
       
     }
+    
 }

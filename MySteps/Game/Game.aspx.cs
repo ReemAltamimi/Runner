@@ -75,8 +75,8 @@ public partial class Default2 : System.Web.UI.Page
         }
 
         //get steps of yesterday
-        steps = 15000;
-        //steps = Convert.ToInt32(Session["YesterdaySteps"]);
+        //steps = 15000;
+        steps = Convert.ToInt32(Session["YesterdaySteps"]);
         Response.Write("<script language='javascript'>alert('Your number of steps yesterday is:" + Session["YesterdaySteps"].ToString() + "')</script>");
 /*
 #if BEN_IS_LAZY
