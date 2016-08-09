@@ -122,7 +122,9 @@ public class Game
 
         using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
         {
-            string getLevel = "select UnLockedLevel from gamedata where[UserId] = @UserId and[Date] = (select max(Date) from GameData)" ;
+            string getLevel = "select max(UnLockedLevel) from gamedata where[UserId] = @UserId" ;
+            //string getLevel = "select UnLockedLevel from gamedata where[UserId] = @UserId and[Date] = (select max(Date) from GameData)";
+
             SqlCommand command = new SqlCommand(getLevel, connection);
             command.Parameters.Add(new SqlParameter("UserId", userId));
             var levelObj = command.ExecuteScalar(); ;

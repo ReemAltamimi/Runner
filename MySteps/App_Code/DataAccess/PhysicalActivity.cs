@@ -131,4 +131,42 @@ public class PhysicalActivity
         return temp;
     }
 
+
+//update no of steps in db
+    public static void updateSteps(DateTime dt, int userId, int steps)
+    {
+        int rowsAffected = 0;
+        using (SqlConnection connection = ConnectionManager.GetDatabaseConnection())
+        {
+            //Check if the user has already insert his/her data for today, if so, it 
+            //will update the record.
+            //if not it will insert a new record
+            string checkUserId = "select count(*) from PhysicalActivityData where UserID= '" + userId + "' AND CAST([DateAndTime] AS DATE) = '" + String.Format("{0:u}", dt) + "'";
+            SqlCommand command1 = new SqlCommand(checkUserId, connection);
+            int temp = Convert.ToInt32(command1.ExecuteScalar().ToString());
+            if (temp == 1)
+            {
+                string updateQuery = "UPDATE PhysicalActivityData SET DailySteps = @steps WHERE UserID = '" + userId + "' AND CAST([DateAndTime] AS DATE) = '" + String.Format("{0:u}", dt) + "'";
+
+                SqlCommand command = new SqlCommand(updateQuery, connection);
+
+                command.Parameters.AddWithValue("@steps", steps);
+
+                rowsAffected = command.ExecuteNonQuery();
+            }
+            else
+            {
+                string insertQuery = "insert into PhysicalActivityData (UserID,DateAndTime,DailySteps) values (@id, @dateTime, @steps)";
+                SqlCommand command3 = new SqlCommand(insertQuery, connection);
+
+                command3.Parameters.AddWithValue("@id", userId);
+                command3.Parameters.AddWithValue("@dateTime", dt);
+                command3.Parameters.AddWithValue("@steps", steps);
+                rowsAffected = command3.ExecuteNonQuery();
+            }
+            connection.Close();
+        }      
+
+    }
+
 }

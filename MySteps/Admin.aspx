@@ -59,6 +59,9 @@
         <asp:Button ID="btnForum" runat="server" Text="Show Forum Data" OnClick="btnForum_Click" Height="40px" />
         <asp:Button ID="btnThread" runat="server" Text="Show Thread Data" OnClick="btnThread_Click" Height="40px" />
     
+        <asp:Button ID="btnParticipants" runat="server" Text="Show Interested Participants" OnClick="btnParticipants_Click" Height="40px" />
+    
+
         <asp:Button ID="btnReminder" runat="server" Text="Send a Reminder" OnClick="btnReminder_Click" Height="40px" />
          
     
@@ -72,7 +75,7 @@
         <asp:Label ID="lblUserEmail" runat="server" Text="Enter User Email: " style="position:fixed; top:20vh; left:0vw;" Font-Bold="True" Font-Names="Cambria" Font-Size="Medium" ></asp:Label>
        
          <asp:TextBox ID="txbUserEmail" runat="server" style="position:fixed; top:20vh; left:10vw;"></asp:TextBox>
-         <asp:TextBox ID="txbText" runat="server" Width="600px" Rows="4" TextMode="MultiLine"
+         <asp:TextBox ID="txbText" runat="server" Width="600px" Rows="3" TextMode="MultiLine"
              style="position:fixed; top:20vh; left:30vw;"></asp:TextBox>
               
         <asp:Button ID="btnEmail" runat="server" Text="Reply to an enquiry" Height="40px" OnClick="btnEmail_Click"

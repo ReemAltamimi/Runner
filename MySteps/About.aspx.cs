@@ -22,7 +22,7 @@ public partial class About : System.Web.UI.Page
         try
         {
             //Open the About pdf file
-            Response.Redirect("~/About_Chart.pdf");
+            Response.Redirect("~/AboutChart.aspx");
         }
         catch (Exception exp)
         {
@@ -35,7 +35,7 @@ public partial class About : System.Web.UI.Page
         try
         {
             //Open the Manual pdf file
-            Response.Redirect("~/manual_charge_en_US.pdf");
+            Response.Redirect("~/AboutManual.aspx");
         }
         catch (Exception exp)
         {

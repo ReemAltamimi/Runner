@@ -9,7 +9,8 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        ((Image)this.Page.Master.FindControl("Image1")).Visible = false;
+        ((Image)this.Page.Master.FindControl("Image2")).Visible = false;
     }
     
     protected void imgBtnAbout_Click(object sender, ImageClickEventArgs e)
@@ -33,5 +34,15 @@ public partial class _Default : System.Web.UI.Page
     {
         //navigate to Contact page
         Response.Redirect("~/Contact.aspx");
+    }
+    protected void ImgBtnInfoStamnt_Click(object sender, ImageClickEventArgs e)
+    {
+        //navigate to About page
+        Response.Redirect("~/InfoStatement.aspx");
+    }
+    protected void ImgBtnParticipationForm_Click(object sender, ImageClickEventArgs e)
+    {
+        //navigate to About page
+        Response.Redirect("~/InterestOfParticipation.aspx");
     }
 }

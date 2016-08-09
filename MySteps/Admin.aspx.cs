@@ -95,6 +95,11 @@ public partial class Admin : System.Web.UI.Page
         String query = "select * from Thread";
         GetTableData(query);
     }
+    protected void btnParticipants_Click(object sender, EventArgs e)
+    {
+        String query = "select * from InterestedParticipants";
+        GetTableData(query);
+    }
 
     public void GetTableData(string query)
     {
@@ -125,16 +130,21 @@ public partial class Admin : System.Web.UI.Page
         const string fromPassword = "Reem123456";
 
         MailAddress from = new MailAddress("mystepsnewcastle@gmail.com");
-        MailAddress to = new MailAddress("Reem.Altamimi@uon.edu.au");
+        MailAddress to = new MailAddress("reem.altamimi@uon.edu.au");
         MailMessage message = new MailMessage(from, to);
         // message.Subject = "Using the SmtpClient class.";
         message.Subject = "Reminder";
         message.Body = @"Hi, Have you visited MySteps website today! ";
-        // Add a carbon copy recipient.
-        MailAddress copy = new MailAddress(getUsersEmails()+"topof2007@hotmail.com");
-        message.Bcc.Add(copy);
-        // smtp settings
+
+        // Add a carbon copy recipients.
+        string[] copy = getUsersEmails().Split(',');
+        foreach (string s in copy)
+        {
+            message.Bcc.Add(new MailAddress(s));
+        }
        
+        // smtp settings
+
         var smtp = new System.Net.Mail.SmtpClient();
         {
             smtp.Host = "smtp.gmail.com";
@@ -222,9 +232,9 @@ public partial class Admin : System.Web.UI.Page
                     {
                         if (!String.IsNullOrEmpty(emailsList))
                         {
-                            emailsList += ", ";
+                            emailsList += ",";
                         }
-                        emailsList += reader["Email"].ToString();
+                        emailsList += reader["Email"].ToString().Trim();
                     }
                 }
                 connection.Close();       

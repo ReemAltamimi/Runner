@@ -45,7 +45,15 @@ public partial class Main : System.Web.UI.Page
             //assign Session["YesterdaySteps"] for game play
             if (Session["YesterdaySteps"] == null)
             {
-                Session["YesterdaySteps"] = PhysicalActivity.getSteps(DateTime.Now.AddDays(-1).Date, userId);
+                //Get the date of today
+                var YesterdayactivityDate = DateTime.Now.AddDays(-1);
+
+                var Yesterdaysteps = connection.GetActivityByDate(FitbitConnection.Activity.steps, YesterdayactivityDate);
+
+                //update no of steps for yesterday in db
+                PhysicalActivity.updateSteps(YesterdayactivityDate.Date, userId, Convert.ToInt32(Yesterdaysteps));
+
+                Session["YesterdaySteps"] = Yesterdaysteps;
 
                 int CheckFirstDayAward = UserData.getFisrtDayAward(Convert.ToInt32(userId));
 
@@ -55,14 +63,22 @@ public partial class Main : System.Web.UI.Page
                     //In case of first day login
                     if (CheckFirstDayAward == 0)
                     {
+                        Response.Write("<script language='javascript'>alert('Warning: Yesterday, your number of steps were:" + Session["YesterdaySteps"].ToString() 
+                            + " , but you will get the first day award: 10,000 steps , \\n And today your number of steps is: " + Session["Steps"].ToString() + "')</script>");
                         Session["YesterdaySteps"] = 10000;
                         int rows = UserData.SetFisrtDayAwardToTrue(Convert.ToInt32(userId));
+                        
                     }
                     else
                     {
-                        Response.Write("<script language='javascript'>alert('Warning: Your number of steps for yesterday is:" + Session["YesterdaySteps"].ToString() + " , so you will be slow at game play')</script>");
+                        Response.Write("<script language='javascript'>alert('Warning: Yesterday, your number of steps were:" + Session["YesterdaySteps"].ToString() + " , so you will be slow at game play , \\n And today your number of steps is: " + Session["Steps"].ToString() + "')</script>");
 
                     }
+
+                }
+                else
+                {
+                    Response.Write("<script language='javascript'>alert('Yesterday, your number of steps were :" + Session["YesterdaySteps"].ToString() + ", \\n And today your number of steps is: " + Session["Steps"].ToString() + "')</script>");
 
                 }
 
@@ -102,9 +118,9 @@ public partial class Main : System.Web.UI.Page
     {
         if(Session["GroupName"].ToString().Trim().Equals("Experiment"))
         {
-            //Response.Redirect("~/Game/Game.aspx");
-            Response.Redirect("~/Game/Game.aspx", false);
-            HttpContext.Current.ApplicationInstance.CompleteRequest();
+            Response.Redirect("~/Game/Game.aspx");
+            //Response.Redirect("~/Game/Game.aspx", false);
+            //HttpContext.Current.ApplicationInstance.CompleteRequest();
         }
           
     }
