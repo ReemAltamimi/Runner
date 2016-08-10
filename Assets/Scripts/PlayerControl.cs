@@ -71,7 +71,7 @@ public class PlayerControl : MonoBehaviour
             healthBar.transform.localPosition = new Vector3(0, 18, 2);
         }
 
-        if (scene.name.StartsWith("Level"))
+        if (scene.name.ToLower().StartsWith("level"))
             doHeartbeat = true;
 
         if (Application.isEditor)
@@ -190,7 +190,7 @@ public class PlayerControl : MonoBehaviour
                 playTimeRemainingSeconds = Mathf.FloorToInt(playTimeRemaining);
                
 
-                if (playTimeRemainingSeconds < 10)
+                if (playTimeRemainingSeconds < 10 && timeWarning != null)
                 {
                     GetComponent<AudioSource>().PlayOneShot(timeWarning);
                 }
