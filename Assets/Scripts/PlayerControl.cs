@@ -76,7 +76,7 @@ public class PlayerControl : MonoBehaviour
 
         if (Application.isEditor)
         {
-            SetSteps(5000);
+            SetSteps(11552);
             SetTime(600);
             switch (debugSpeed)
             {

@@ -47,7 +47,7 @@
 
         <div id="rightSidePanel" runat="server">
 
-           <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/ScreenTime1.png" class="img" />
+           <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/Game_Screenshot.jpg" class="img" />
         
 
              <asp:ContentPlaceHolder ID="cphRight" runat="server">
