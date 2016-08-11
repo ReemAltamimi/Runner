@@ -9,10 +9,8 @@ public class Pauser : MonoBehaviour {
 		
 	}
     public void pause()
-    {
-        
+    {      
         paused = !paused;
-
         if (paused)
             Time.timeScale = 0;
         else
